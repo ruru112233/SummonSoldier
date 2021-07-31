@@ -6,14 +6,17 @@ using UnityEngine.UI;
 public class SummonManager : MonoBehaviour
 {
     [SerializeField]
-    private Button summonButton = null;
+    private List<Button> summonButtons = null;
+
+    [SerializeField]
+    private SummonPanelList playerPanel = null;
 
     public List<GameObject> soldierPrefabs;
 
     // Start is called before the first frame update
     void Start()
     {
-        summonButton.onClick.SetListener(SummonSoldier);
+        SummonSoldier();
     }
 
     // Update is called once per frame
@@ -24,7 +27,17 @@ public class SummonManager : MonoBehaviour
 
     void SummonSoldier()
     {
-        SetPanel(1);
+
+        void AddSummonButton(int idx)
+        {
+            summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => SetPanel(idx));
+        }
+
+        for (int i = 0; i < summonButtons.Count; i++)
+        {
+            AddSummonButton(i);
+        }
+
     }
 
     /// <summary>
@@ -32,24 +45,25 @@ public class SummonManager : MonoBehaviour
     /// </summary>
     /// <param name="setPanel"> セットするパネルナンバー </param>
 
-    void SetPanel(int setPanel)
+    void SetPanel(int idx)
     {
         // サモンパネルを取得
-        GameObject[] panelObj = GameObject.FindGameObjectsWithTag("panel1");
+        GameObject panelObj = playerPanel.panel[idx];
+        
+        Transform transform = panelObj.transform;
 
         // 召喚時の位置を設定
-        Vector3 pos = new Vector3(0, 0.1f, 0);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
         // サモンパネルがソルジャーが存在していない場合、ソルジャーを生成
-        if (panelObj[setPanel - 1].transform.childCount == 0)
+        if (panelObj.transform.childCount == 0)
         {
             // プレハブからインスタンスを生成
-            GameObject obj = (GameObject)Instantiate(soldierPrefabs[0], pos, Quaternion.identity);
+            GameObject obj = (GameObject)Instantiate(soldierPrefabs[idx], pos, Quaternion.identity);
 
             // 生成したオブジェクトを子として登録
-            obj.transform.parent = panelObj[setPanel - 1].transform;
+            obj.transform.parent = panelObj.transform;
         }
-
     }
 
 }
