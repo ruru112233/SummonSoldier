@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5554551882481055385}
   - component: {fileID: 5554551882481055384}
   - component: {fileID: 5554551882481055387}
+  - component: {fileID: 7401598206386784567}
   m_Layer: 0
-  m_Name: Monster6
+  m_Name: EnemyMonster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 00d93905a0050ea4ba14fbba01c4a48e, type: 2}
+  - {fileID: 2100000, guid: 6066efb756ef0af46915e732abd2c49e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,3 +96,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7401598206386784567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554551882481055386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de30c954aaadd5d46a62d8ed2b957d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  at: 10
+  df: 10
+  speed: 10
