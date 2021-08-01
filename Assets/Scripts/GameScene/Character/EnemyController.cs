@@ -25,7 +25,7 @@ public class EnemyController : Prms
     // Update is called once per frame
     void Update()
     {
-        hpText.text = Hp.ToString();
+        //hpText.text = Hp.ToString();
 
         if (Hp <= 0)
         {

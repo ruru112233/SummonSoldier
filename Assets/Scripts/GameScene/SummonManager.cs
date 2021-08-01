@@ -17,18 +17,6 @@ public class SummonManager : MonoBehaviour
     void Start()
     {
         SummonSoldier();
-        // 上段のボタンセット
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    summonButtons[i].onClick.SetListener(UpperRowSummon);
-        //}
-
-        // 下段のボタンセット
-        //for (int i = 3; i < 6; i++)
-        //{
-        //    summonButtons[i].onClick.SetListener(LowerRowSummon);
-        //}
-
     }
 
     // Update is called once per frame
@@ -39,7 +27,6 @@ public class SummonManager : MonoBehaviour
 
     void SummonSoldier()
     {
-
         void AddSummonButton(int idx)
         {
             if (idx < 3)
@@ -52,7 +39,6 @@ public class SummonManager : MonoBehaviour
                 // 下段のセット
                 summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => LowerRowSummon(idx));
             }
-
         }
 
         for (int i = 0; i < summonButtons.Count; i++)
@@ -74,7 +60,7 @@ public class SummonManager : MonoBehaviour
         }
 
         // パネルの子要素チェック
-        GameObject panelObj = ChildCheck(upperPanels);
+        GameObject panelObj = ChildCheck.PanelCheck(upperPanels);
 
         // パネルの子要素が空だったら、空のパネルにセットする。
         if (panelObj != null)
@@ -86,36 +72,22 @@ public class SummonManager : MonoBehaviour
     void LowerRowSummon(int idx)
     {
         Debug.Log("下段");
-        GameObject[] LowerPanels = new GameObject[3];
+        GameObject[] lowerPanels = new GameObject[3];
+
 
         for (int i = 3; i < 6; i++)
         {
-            LowerPanels[i - 3] = playerPanel.panel[i];
+            lowerPanels[i - 3] = playerPanel.panel[i];
         }
 
         // パネルの子要素チェック
-        GameObject panelObj = ChildCheck(LowerPanels);
+        GameObject panelObj = ChildCheck.PanelCheck(lowerPanels);
 
         // パネルの子要素が空だったら、空のパネルにセットする。
         if (panelObj != null)
         {
             Summon(panelObj, idx);
         }
-    }
-
-    // パネルの子要素チェック
-    GameObject ChildCheck(GameObject[] panels)
-    {
-
-        foreach (GameObject obj in panels)
-        {
-            if (obj.transform.childCount == 0)
-            {
-                return obj;
-            }
-        }
-
-        return null;
     }
 
     // 召喚
@@ -132,32 +104,6 @@ public class SummonManager : MonoBehaviour
         // 生成したオブジェクトを子として登録
         obj.transform.parent = panelObj.transform;
     }
-    
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="setPanel"> セットするパネルナンバー </param>
-
-    void SetPanel(int idx)
-    {
-        // サモンパネルを取得
-        GameObject panelObj = playerPanel.panel[idx];
-        
-        Transform transform = panelObj.transform;
-
-        // 召喚時の位置を設定
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-
-        // サモンパネルがソルジャーが存在していない場合、ソルジャーを生成
-        if (panelObj.transform.childCount == 0)
-        {
-            // プレハブからインスタンスを生成
-            GameObject obj = (GameObject)Instantiate(soldierPrefabs[idx], pos, Quaternion.identity);
-
-            // 生成したオブジェクトを子として登録
-            obj.transform.parent = panelObj.transform;
-        }
-    }
 
 }
