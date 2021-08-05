@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5554551882481055385}
   - component: {fileID: 5554551882481055384}
   - component: {fileID: 5554551882481055387}
-  - component: {fileID: 5351866872769309811}
+  - component: {fileID: 8917762512827837634}
   m_Layer: 0
-  m_Name: Monster5
+  m_Name: Monster6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6066efb756ef0af46915e732abd2c49e, type: 2}
+  - {fileID: 2100000, guid: 00d93905a0050ea4ba14fbba01c4a48e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5351866872769309811
+--- !u!114 &8917762512827837634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  at: 0
-  df: 0
-  speed: 0
+  at: 2
+  df: 2
+  speed: 50
