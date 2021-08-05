@@ -56,7 +56,10 @@ public class OnClick : MonoBehaviour
         // プレイヤー→敵
         if (playersObj.Count != 0)
         {
-            enemysObj[0].GetComponent<EnemyController>().Hp -= playersObj[0].GetComponent<PlayerController>().At;
+            int at = playersObj[0].GetComponent<PlayerController>().At;
+            int df = playersObj[0].GetComponent<PlayerController>().Df;
+            //enemysObj[0].GetComponent<EnemyController>().Hp -= playersObj[0].GetComponent<PlayerController>().At;
+            enemysObj[0].GetComponent<EnemyController>().DamageText(CalcScript.DamagePoint(at, df));
         }
         // 敵→プレイヤー
         //playersObj[0].GetComponent<PlayerController>().Hp -= enemysObj[0].GetComponent<EnemyController>().At;

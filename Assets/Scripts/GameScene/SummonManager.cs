@@ -96,7 +96,7 @@ public class SummonManager : MonoBehaviour
         Transform transform = panelObj.transform;
 
         // 召喚時の位置を設定
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         // プレハブからインスタンスを生成
         GameObject obj = (GameObject)Instantiate(soldierPrefabs[idx], pos, Quaternion.identity);

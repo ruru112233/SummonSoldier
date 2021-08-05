@@ -1576,12 +1576,12 @@ MonoBehaviour:
   - {fileID: 837830430}
   playerPanel: {fileID: 1675103398}
   soldierPrefabs:
-  - {fileID: 5554551882481055386, guid: e220653b46ecd884593f095f94bfd20b, type: 3}
-  - {fileID: 5554551882481055386, guid: b5d475bec80586843b60e23a796d845e, type: 3}
-  - {fileID: 5554551882481055386, guid: 484637f568584bd4e8db07f2035d494e, type: 3}
-  - {fileID: 5554551882481055386, guid: 45d6a79c723ffae49a0e210e376426dc, type: 3}
-  - {fileID: 5554551882481055386, guid: 54a53825129f99047924f0af3041631c, type: 3}
-  - {fileID: 5554551882481055386, guid: 43b0d168909bddc49ab1da29dc553282, type: 3}
+  - {fileID: 3349916093931319400, guid: 8d3527df729791e4a86a65d948a71890, type: 3}
+  - {fileID: 8078620422473125660, guid: 56221eca16c741e4abbe849e961cf930, type: 3}
+  - {fileID: 707647692622973727, guid: d7a175f04093dd34da2678a6d38cd47b, type: 3}
+  - {fileID: 4956436721014419568, guid: e7e10c4062fecb84799f639d0d5b9ca7, type: 3}
+  - {fileID: 2057034050316524762, guid: 23c55285f1d0ee94e8ac8d98b88febc0, type: 3}
+  - {fileID: 1377564347920679598, guid: 49c314baaa9cc854cb96f5f3d105f879, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,9 +1862,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 5554551882481055386, guid: 39b1e76476f141846ac5fcdb9fa9b41e, type: 3}
-  - {fileID: 5554551882481055386, guid: 5b886634793b2f448b45040ca079d8d7, type: 3}
-  - {fileID: 5554551882481055386, guid: 43737a7dc3af6364aaeebab4abb4fec7, type: 3}
+  - {fileID: 1348772656181419873, guid: 92615885dcf4db447adc65a5841f6d56, type: 3}
+  - {fileID: 3821001409030260188, guid: e69a3ced16ee7fc40bba6153269a8845, type: 3}
+  - {fileID: 7003574520225502456, guid: bcde6d2e3eefccb48aa1137cd2070ff2, type: 3}
   enemyPanels: {fileID: 1772759382}
 --- !u!1 &1242623342
 GameObject:
@@ -2484,7 +2484,7 @@ GameObject:
   - component: {fileID: 1675103398}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: PlayerPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2993,7 +2993,7 @@ GameObject:
   - component: {fileID: 1772759382}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: EnemyPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3227,8 +3227,8 @@ Canvas:
   m_GameObject: {fileID: 2047779918}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

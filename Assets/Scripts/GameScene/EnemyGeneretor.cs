@@ -53,7 +53,7 @@ public class EnemyGeneretor : MonoBehaviour
         int idx = Random.Range(0, monsterPrefabs.Count);
 
         // 召喚時の位置を設定
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         // プレハブからインスタンスを生成
         GameObject obj = (GameObject)Instantiate(monsterPrefabs[idx], pos, Quaternion.identity);
