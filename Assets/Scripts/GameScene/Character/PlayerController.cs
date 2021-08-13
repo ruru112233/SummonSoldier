@@ -28,52 +28,49 @@ public class PlayerController : Prms
     {
         base.Update();
 
-        time += Time.deltaTime;
+        // 敵のパネルにオブジェクトがあった場合、攻撃する
+        if(EnemyCountCheck(enemyPanel) != 0) Attack();
 
-        Debug.Log(transform.rotation);
-
-        if (time > waitTime)
-        {
-            Debug.Log("プレイヤーの攻撃");
-            time = 0;
-            Attack();
-            waitTime = CalcScript.AttackTime(Speed);
-        }
-
-        if (Hp <= 0)
-        {
-            Destroy(gameObject);
-        }
+        // HP0になったらオブジェクトを削除
+        if (Hp <= 0) Destroy(gameObject);
     }
 
     // 攻撃
     void Attack()
     {
-        anime.SetTrigger("attack");
+        time += Time.deltaTime;
 
-        enemysObj.Clear();
-
-        Debug.Log("enemyPanel.panel>>>:" + enemyPanel.panel);
-
-        // エネミーのオブジェクトを格納
-        foreach (GameObject panel in enemyPanel.panel)
+        if (time > waitTime)
         {
-            if (panel.transform.childCount != 0)
+            Debug.Log("プレイヤーの攻撃");
+
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            enemysObj.Clear();
+
+            Debug.Log("enemyPanel.panel>>>:" + enemyPanel.panel);
+
+            // エネミーのオブジェクトを格納
+            foreach (GameObject panel in enemyPanel.panel)
             {
-                Transform t = panel.GetComponentInChildren<Transform>();
-                GameObject obj = t.GetChild(0).gameObject;
-                enemysObj.Add(obj);
+                if (panel.transform.childCount != 0)
+                {
+                    Transform t = panel.GetComponentInChildren<Transform>();
+                    GameObject obj = t.GetChild(0).gameObject;
+                    enemysObj.Add(obj);
+                }
             }
+
+            EnemyController enemyTarget = EnemyTarget(enemysObj);
+
+            // 攻撃処理
+            enemyTarget.DamageText(CalcScript.DamagePoint(at, df));
+
+            this.transform.Rotate(0, -1.0f, 0);
         }
-
-        EnemyController enemyTarget = EnemyTarget(enemysObj);
-
-        // 攻撃処理
-        enemyTarget.DamageText(CalcScript.DamagePoint(at, df));
-
-        //await Task.Delay(500);
-
-        this.transform.Rotate(0, -1.0f, 0);
     }
 
     // ターゲット選定
@@ -86,7 +83,21 @@ public class PlayerController : Prms
         return enemy;
     }
 
-    
+    // 子要素に敵が存在するか確認
+    int EnemyCountCheck(SummonPanelList enemyPanel)
+    {
+        int count = 0;
+
+        foreach (GameObject panel in enemyPanel.panel)
+        {
+            if (panel.transform.childCount == 1)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
 
 
 
