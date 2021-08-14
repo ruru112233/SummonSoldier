@@ -10,7 +10,7 @@ public class DropArea : MonoBehaviour, IDropHandler
         DragObj dragObj = data.pointerDrag.GetComponent<DragObj>();
         if (dragObj != null)
         {
-            dragObj.parentTransform = this.transform;
+            //dragObj.parentTransform = this.transform;
             Debug.Log(gameObject.name + "‚É" + data.pointerDrag.name + "‚ğƒhƒƒbƒv");
         }
     }
