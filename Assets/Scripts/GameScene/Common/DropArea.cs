@@ -7,8 +7,6 @@ public class DropArea : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData data)
     {
-        Debug.Log(gameObject.name);
-
         DragObj dragObj = data.pointerDrag.GetComponent<DragObj>();
         if (dragObj != null)
         {
