@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : Prms
 {
@@ -13,14 +14,16 @@ public class PlayerController : Prms
 
     public int Speed { get { return speed; }  set { speed = value; } }
 
-    // 攻撃タイミング
-    float waitTime = 0;
-    float time = 0;
+    EnemyController enemyTarget = null;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+
+        startTextPos = text.transform.position;
+        text.SetActive(false);
+
         waitTime = CalcScript.AttackTime(Speed);
     }
 
@@ -42,16 +45,12 @@ public class PlayerController : Prms
 
         if (time > waitTime)
         {
-            Debug.Log("プレイヤーの攻撃");
-
             time = 0;
             waitTime = CalcScript.AttackTime(Speed);
 
             anime.SetTrigger("attack");
 
             enemysObj.Clear();
-
-            Debug.Log("enemyPanel.panel>>>:" + enemyPanel.panel);
 
             // エネミーのオブジェクトを格納
             foreach (GameObject panel in enemyPanel.panel)
@@ -67,9 +66,8 @@ public class PlayerController : Prms
             EnemyController enemyTarget = EnemyTarget(enemysObj);
 
             // 攻撃処理
-            enemyTarget.DamageText(CalcScript.DamagePoint(at, df));
-
-            this.transform.Rotate(0, -1.0f, 0);
+            StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
+            myTransform.Rotate(0, -1.0f, 0);
         }
     }
 
@@ -99,6 +97,22 @@ public class PlayerController : Prms
         return count;
     }
 
+    public IEnumerator DamageText(int damage)
+    {
+        text.SetActive(true);
 
+        text.GetComponent<Text>().text = damage.ToString();
+        text.transform.position = startTextPos;
+
+        Hp -= damage;
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (text != null)
+        {
+            text.SetActive(false);
+        }
+
+    }
 
 }

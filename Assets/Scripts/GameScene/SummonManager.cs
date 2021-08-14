@@ -50,7 +50,6 @@ public class SummonManager : MonoBehaviour
 
     void UpperRowSummon(int idx)
     {
-        Debug.Log("上段");
         // 上段のパネルを取得
         GameObject[] upperPanels = new GameObject[3];
 
@@ -71,7 +70,6 @@ public class SummonManager : MonoBehaviour
 
     void LowerRowSummon(int idx)
     {
-        Debug.Log("下段");
         GameObject[] lowerPanels = new GameObject[3];
 
 

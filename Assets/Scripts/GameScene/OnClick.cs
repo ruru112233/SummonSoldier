@@ -59,7 +59,7 @@ public class OnClick : MonoBehaviour
             int at = playersObj[0].GetComponent<PlayerController>().At;
             int df = playersObj[0].GetComponent<PlayerController>().Df;
             //enemysObj[0].GetComponent<EnemyController>().Hp -= playersObj[0].GetComponent<PlayerController>().At;
-            enemysObj[0].GetComponent<EnemyController>().DamageText(CalcScript.DamagePoint(at, df));
+            StartCoroutine(enemysObj[0].GetComponent<EnemyController>().DamageText(CalcScript.DamagePoint(at, df)));
         }
         // ìGÅ®ÉvÉåÉCÉÑÅ[
         //playersObj[0].GetComponent<PlayerController>().Hp -= enemysObj[0].GetComponent<EnemyController>().At;
