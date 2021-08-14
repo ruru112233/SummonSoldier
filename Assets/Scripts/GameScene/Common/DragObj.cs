@@ -9,9 +9,9 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void OnBeginDrag(PointerEventData data)
     {
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        //GetComponent<CanvasGroup>().blocksRaycasts = false;
         parentTransform = transform.parent;
-        transform.SetParent(transform.parent.parent);
+        transform.SetParent(parentTransform.parent, false);
     }
 
     public void OnDrag(PointerEventData data)
@@ -21,8 +21,8 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void OnEndDrag(PointerEventData data)
     {
-        transform.SetParent(parentTransform);
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        transform.SetParent(parentTransform, false);
+        //GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
 }
