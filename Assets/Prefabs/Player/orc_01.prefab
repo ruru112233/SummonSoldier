@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 2079687707409624408}
   m_Layer: 0
   m_Name: orc_01
-  m_TagString: Untagged
+  m_TagString: PlayerMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

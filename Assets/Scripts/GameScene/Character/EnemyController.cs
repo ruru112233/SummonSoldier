@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 public class EnemyController : Prms
 {
-    
     public int Hp { get { return hp; } set { hp = value; } }
 
     public int At { get { return at; } set { at = value; } }
@@ -26,6 +25,9 @@ public class EnemyController : Prms
         startTextPos.y += 1.0f;
         text.SetActive(false);
 
+        // 下段に召喚され、上段が召喚されていなかったら上段に上げる
+        PositionCheck.PositionChenge(myTransform, 1.8f);
+
         waitTime = CalcScript.AttackTime(Speed);
     }
 
@@ -36,7 +38,11 @@ public class EnemyController : Prms
 
         // 敵のパネルにオブジェクトがあった場合、攻撃する
         if (PlayerCountCheck(playerPanel) != 0) Attack();
-        
+
+        // オブジェクトの数に変更があった場合、前衛移動の処理をする
+        if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 1.8f);
+
+        // HPが0になった時の処理
         if (Hp <= 0) Destroy(gameObject);
     }
 

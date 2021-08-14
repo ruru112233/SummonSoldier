@@ -40,4 +40,32 @@ public static class ChildCheck
 
         return null;
     }
+
+    // 前衛にオブジェクトがないかチェックする
+    public static Transform AvantGardeCheck(int idx, Transform transform)
+    {
+        Transform t = null;
+        // 親の親を取得
+        Transform parent = transform.parent.parent;
+        // parentから移動先のオブジェクトを選択
+        Transform chengeParent = parent.transform.GetChild(idx);
+
+        if (chengeParent.childCount == 0)
+        {
+            t = chengeParent;
+        }
+
+        return t;
+    }
+
+    // 全体のオブジェクトの数をカウント
+    public static int ChildObjCount()
+    {
+        int playerCount = GameObject.FindGameObjectsWithTag("PlayerMonster").Length;
+        int enemyCount = GameObject.FindGameObjectsWithTag("EnemyMonster").Length;
+
+        int sumCount = playerCount + enemyCount;
+
+        return sumCount;
+    }
 }

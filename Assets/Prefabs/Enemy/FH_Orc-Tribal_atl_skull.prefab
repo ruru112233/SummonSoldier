@@ -4494,7 +4494,7 @@ GameObject:
   - component: {fileID: 1348772656181419872}
   m_Layer: 0
   m_Name: FH_Orc-Tribal_atl_skull
-  m_TagString: Untagged
+  m_TagString: EnemyMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

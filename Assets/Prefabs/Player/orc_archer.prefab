@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 9209584940446046125}
   m_Layer: 0
   m_Name: orc_archer
-  m_TagString: Untagged
+  m_TagString: PlayerMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

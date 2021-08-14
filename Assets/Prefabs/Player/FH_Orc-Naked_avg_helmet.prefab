@@ -3648,7 +3648,7 @@ GameObject:
   - component: {fileID: 6109684247988182379}
   m_Layer: 0
   m_Name: FH_Orc-Naked_avg_helmet
-  m_TagString: Untagged
+  m_TagString: PlayerMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
