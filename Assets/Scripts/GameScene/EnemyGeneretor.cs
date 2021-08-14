@@ -27,7 +27,6 @@ public class EnemyGeneretor : MonoBehaviour
 
         if (startTime > intervalTime)
         {
-            Debug.Log("ƒ‚ƒ“ƒXƒ^[‚Ì¶¬");
             MonsterInstance();
             startTime = 0;
         }

@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 
 public class EnemyController : Prms
 {
-    [SerializeField]
-    private GameObject text = null;
-
-    private Vector3 startTextPos = new Vector3();
-
+    
     public int Hp { get { return hp; } set { hp = value; } }
 
     public int At { get { return at; } set { at = value; } }
@@ -21,55 +17,86 @@ public class EnemyController : Prms
 
     public int Speed { get { return speed; } set { speed = value; } }
 
-    int hp1 = 0;
-    int hp2 = 0;
-
     // Start is called before the first frame update
     public override void Start()
     {
-        hp1 = Hp;
-        hp2 = Hp;
+        base.Start();
 
         startTextPos = text.transform.position;
         startTextPos.y += 1.0f;
         text.SetActive(false);
+
+        waitTime = CalcScript.AttackTime(Speed);
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        //hpText.text = Hp.ToString();
+        base.Update();
 
-        if (OnDamegeCheck(Hp))
+        // 敵のパネルにオブジェクトがあった場合、攻撃する
+        if (PlayerCountCheck(playerPanel) != 0) Attack();
+        
+        if (Hp <= 0) Destroy(gameObject);
+    }
+
+    // 攻撃
+    void Attack()
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
         {
-            Debug.Log("ダメージ");
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
 
-        }
+            anime.SetTrigger("attack");
 
-        if (Hp <= 0)
-        {
-            Destroy(gameObject);
+            playersObj.Clear();
+
+            // エネミーのオブジェクトを格納
+            foreach (GameObject panel in playerPanel.panel)
+            {
+                if (panel.transform.childCount != 0)
+                {
+                    Transform t = panel.GetComponentInChildren<Transform>();
+                    GameObject obj = t.GetChild(0).gameObject;
+                    playersObj.Add(obj);
+                }
+            }
+
+            PlayerController playerTarget = PlayerTarget(playersObj);
+
+            // 攻撃処理
+            StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
+            myTransform.Rotate(0, -1.0f, 0);
         }
     }
 
-    // ダメージ判定
-    bool OnDamegeCheck(int hp)
+    // ターゲット選定
+    PlayerController PlayerTarget(List<GameObject> objs)
     {
-        if (Time.frameCount % 2 == 0)
+        int r = Random.Range(0, objs.Count);
+
+        PlayerController player = objs[r].GetComponent<PlayerController>();
+
+        return player;
+    }
+
+    // 子要素に敵が存在するか確認
+    int PlayerCountCheck(SummonPanelList playerPanel)
+    {
+        int count = 0;
+
+        foreach (GameObject panel in playerPanel.panel)
         {
-            hp1 = Hp;
-        }
-        else
-        {
-            hp2 = Hp;
+            if (panel.transform.childCount == 1)
+            {
+                count++;
+            }
         }
 
-        if (hp1 != hp2)
-        {
-            return true;
-        }
-
-        return false;
+        return count;
     }
 
     public void setDamage(int damage)
@@ -77,7 +104,7 @@ public class EnemyController : Prms
         this.Hp -= damage;
     }
 
-    public async void DamageText(int damage)
+    public IEnumerator DamageText(int damage)
     {
         text.SetActive(true);
 
@@ -86,7 +113,7 @@ public class EnemyController : Prms
 
         Hp -= damage;
 
-        await Task.Delay(800);
+        yield return new WaitForSeconds(0.8f);
 
         if (text != null)
         {

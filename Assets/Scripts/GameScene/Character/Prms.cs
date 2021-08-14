@@ -5,6 +5,10 @@ using UnityEngine;
 public class Prms : MonoBehaviour
 {
     [SerializeField]
+    protected GameObject text = null;
+    protected Vector3 startTextPos = new Vector3();
+
+    [SerializeField]
     protected int hp = 0
                 , at = 0
                 , df = 0
@@ -12,6 +16,10 @@ public class Prms : MonoBehaviour
 
     protected SummonPanelList playerPanel = null
                             , enemyPanel = null;
+
+    // 攻撃タイミング
+    protected float waitTime = 0;
+    protected float time = 0;
 
     // モンスターを格納する
     protected List<GameObject> playersObj = new List<GameObject>();
