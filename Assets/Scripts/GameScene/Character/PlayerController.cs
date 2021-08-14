@@ -21,8 +21,11 @@ public class PlayerController : Prms
     {
         base.Start();
 
-        startTextPos = text.transform.position;
+        startTextPos = myTransform.position;
+        startTextPos.y += 2.0f;
         text.SetActive(false);
+
+        PositionCheck.PositionChenge(myTransform, 0f);
 
         waitTime = CalcScript.AttackTime(Speed);
     }
@@ -31,8 +34,14 @@ public class PlayerController : Prms
     {
         base.Update();
 
+        // この処理は重いか？
+        startTextPos = new Vector3(myTransform.position.x, myTransform.position.y + 2.0f, myTransform.position.z);
+
         // 敵のパネルにオブジェクトがあった場合、攻撃する
-        if(EnemyCountCheck(enemyPanel) != 0) Attack();
+        if (EnemyCountCheck(enemyPanel) != 0) Attack();
+
+        // オブジェクトの数に変更があった場合、前衛移動の処理をする
+        if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 0f);
 
         // HP0になったらオブジェクトを削除
         if (Hp <= 0) Destroy(gameObject);

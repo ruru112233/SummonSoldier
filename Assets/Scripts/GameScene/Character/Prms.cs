@@ -27,6 +27,11 @@ public class Prms : MonoBehaviour
 
     protected Animator anime = new Animator();
 
+    // オブジェクト数を入れておく
+    protected int objCount = 0;
+    int count1 = 0;
+    int count2 = 0;
+
     // 初期位置
     protected Transform myTransform;
 
@@ -38,12 +43,17 @@ public class Prms : MonoBehaviour
 
         anime = this.GetComponent<Animator>();
         myTransform = this.transform;
+
+        
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
         StartAngle();
+
+        objCount = ChildCheck.ChildObjCount();
+
     }
 
     // キャラのアングルを適正位置にする
@@ -52,5 +62,29 @@ public class Prms : MonoBehaviour
         Vector3 localAngle = myTransform.localEulerAngles;
         localAngle.y = 0f;
         myTransform.localEulerAngles = localAngle;
+    }
+
+    // 全体のオブジェクトの数に変化があったかどうか
+    protected bool ObjCountCheck()
+    {
+        bool check = false;
+
+        if (Time.frameCount % 2 == 0)
+        {
+            count1 = objCount;
+        }
+        else
+        {
+            count2 = objCount;
+        }
+
+        if (count1 != count2)
+        {
+            check = true;
+        }
+
+        Debug.Log(check);
+
+        return check;
     }
 }

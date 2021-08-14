@@ -3537,7 +3537,7 @@ GameObject:
   - component: {fileID: 3312986754267099440}
   m_Layer: 0
   m_Name: FH_Orc-Naked_avg_ponny tail
-  m_TagString: Untagged
+  m_TagString: PlayerMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
