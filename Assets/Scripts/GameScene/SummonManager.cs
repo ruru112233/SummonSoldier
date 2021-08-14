@@ -32,12 +32,12 @@ public class SummonManager : MonoBehaviour
             if (idx < 3)
             {
                 // 上段のセット
-                summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => UpperRowSummon(idx));
+                //summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => UpperRowSummon(idx));
             }
             else
             {
                 // 下段のセット
-                summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => LowerRowSummon(idx));
+                //summonButtons[idx].GetComponent<Button>().onClick.AddListener(() => LowerRowSummon(idx));
             }
         }
 
@@ -48,7 +48,7 @@ public class SummonManager : MonoBehaviour
 
     }
 
-    void UpperRowSummon(int idx)
+    public void UpperRowSummon(int idx, int panelNo)
     {
         // 上段のパネルを取得
         GameObject[] upperPanels = new GameObject[3];
@@ -59,7 +59,7 @@ public class SummonManager : MonoBehaviour
         }
 
         // パネルの子要素チェック
-        GameObject panelObj = ChildCheck.PanelCheck(upperPanels);
+        GameObject panelObj = ChildCheck.PanelCheck2(upperPanels[panelNo]);
 
         // パネルの子要素が空だったら、空のパネルにセットする。
         if (panelObj != null)
@@ -68,9 +68,11 @@ public class SummonManager : MonoBehaviour
         }
     }
 
-    void LowerRowSummon(int idx)
+    public void LowerRowSummon(int idx, int panelNo)
     {
         GameObject[] lowerPanels = new GameObject[3];
+
+        Debug.Log("idx>>>:" + idx + "panelNo>>>:" + panelNo);
 
 
         for (int i = 3; i < 6; i++)
@@ -79,7 +81,7 @@ public class SummonManager : MonoBehaviour
         }
 
         // パネルの子要素チェック
-        GameObject panelObj = ChildCheck.PanelCheck(lowerPanels);
+        GameObject panelObj = ChildCheck.PanelCheck2(lowerPanels[panelNo]);
 
         // パネルの子要素が空だったら、空のパネルにセットする。
         if (panelObj != null)
@@ -89,7 +91,7 @@ public class SummonManager : MonoBehaviour
     }
 
     // 召喚
-    void Summon(GameObject panelObj, int idx)
+    public void Summon(GameObject panelObj, int idx)
     {
         Transform transform = panelObj.transform;
 

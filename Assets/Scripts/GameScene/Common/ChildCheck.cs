@@ -5,6 +5,7 @@ using UnityEngine;
 public static class ChildCheck
 {
  
+    // 一番左から埋めていく
     public static GameObject PanelCheck(GameObject[] panels)
     {
 
@@ -18,6 +19,19 @@ public static class ChildCheck
 
         return null;
     }
+
+    // 指定したパネルにセットする
+    public static GameObject PanelCheck2(GameObject obj)
+    {
+
+        if (obj.transform.childCount == 0)
+        {
+            return obj;
+        }
+
+        return null;
+    }
+
 
     public static GameObject RandPanel(List<GameObject> panels)
     {

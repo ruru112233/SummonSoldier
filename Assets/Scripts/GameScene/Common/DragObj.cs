@@ -17,7 +17,7 @@ public class DragObj : DragCommon, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(parentTransform.parent, false);
-        instancePanel.transform.SetSiblingIndex(siblingIndex - 1);
+        instancePanel.transform.SetSiblingIndex(SibilingIndex - 1);
         instancePanel.SetActive(true);
     }
 
@@ -30,7 +30,7 @@ public class DragObj : DragCommon, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         instancePanel.SetActive(false);
         transform.SetParent(parentTransform, false);
-        transform.SetSiblingIndex(siblingIndex);
+        transform.SetSiblingIndex(SibilingIndex);
         canvasGroup.blocksRaycasts = true;
     }
 
