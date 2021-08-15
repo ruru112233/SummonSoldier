@@ -11,6 +11,7 @@ TagManager:
   - PlayerMonster
   - SummonManager
   - MasterData
+  - BattleMonster
   layers:
   - Default
   - TransparentFX
