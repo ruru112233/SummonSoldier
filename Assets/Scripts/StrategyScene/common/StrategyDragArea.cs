@@ -18,11 +18,8 @@ public class StrategyDragArea : DropArea
 
     public override void OnDrop(PointerEventData data)
     {
-        base.OnDrop(data);
-
         StrategyDragObj strategyDragObj = data.pointerDrag.GetComponent<StrategyDragObj>();
-
-        if (strategyDragObj != null)
+        if (strategyDragObj != null && strategyDragObj.MoveFlag)
         {
             monsterImage.sprite = md.monsterImageList[strategyDragObj.monsterNo];
             md.selectMonsterList.selectMonsterList[ChangeScript.SummonPanelIndex(gameObject.name)]

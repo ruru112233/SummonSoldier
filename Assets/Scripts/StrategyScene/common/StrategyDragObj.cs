@@ -42,8 +42,11 @@ public class StrategyDragObj : DragObj
 
     public override void OnBeginDrag(PointerEventData data)
     {
-        base.OnBeginDrag(data);
-        instancePanel.transform.SetSiblingIndex(SibilingIndex);
+        if (MoveFlag)
+        {
+            base.OnBeginDrag(data);
+            instancePanel.transform.SetSiblingIndex(SibilingIndex);
+        }
     }
 
     public override void OnDrag(PointerEventData data)
@@ -56,13 +59,15 @@ public class StrategyDragObj : DragObj
 
     public override void OnEndDrag(PointerEventData data)
     {
-        base.OnEndDrag(data);
-        MoveFlag = selectMonsterCheck();
-
-        Debug.Log(MoveFlag);
+        if (MoveFlag)
+        {
+            base.OnEndDrag(data);
+            MoveFlag = selectMonsterCheck();
+        }
 
     }
 
+    // イメージの色を返す（合わせて、存在していなければMoveFlagも操作）
     Color ImageColor()
     {
         SelectMonsterList selectMonsterList = md.selectMonsterList;
@@ -74,6 +79,7 @@ public class StrategyDragObj : DragObj
             }
         }
 
+        MoveFlag = true;
         return Color.white;
     }
 
