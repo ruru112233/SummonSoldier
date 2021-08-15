@@ -13,11 +13,11 @@ public static class CalcScript
         int randAt = Random.Range(at - 3, at + 3);
         int randDf = Random.Range(df - 2, df + 2);
 
-        int damage = randAt * 3 - randDf * 2;
+        int damage = randAt * 3 - randDf * 3;
 
         if (damage <= 3)
         {
-            damage = Random.Range(1, 4);
+            damage = Random.Range(0, 4);
         }
 
         return damage;
