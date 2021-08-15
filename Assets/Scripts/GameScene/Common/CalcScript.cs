@@ -13,11 +13,11 @@ public static class CalcScript
         int randAt = Random.Range(at - 3, at + 3);
         int randDf = Random.Range(df - 2, df + 2);
 
-        int damage = randAt * 3 - randDf * 2;
+        int damage = randAt * 3 - randDf * 3;
 
         if (damage <= 3)
         {
-            damage = Random.Range(1, 4);
+            damage = Random.Range(0, 4);
         }
 
         return damage;
@@ -26,13 +26,15 @@ public static class CalcScript
     // スピードによる攻撃速度の計算
     public static float AttackTime(int speed)
     {
-        float randTime = Random.Range((speed - 4.0f), (speed + 3.5f));
+        float defaltTime = 5.0f;
 
-        float attackTime = 100 - randTime * 3;
+        float randTime = Random.Range(speed * 0.01f - 0.3f, speed * 0.01f + 0.3f);
 
-        if (attackTime < 1.0f)
+        float attackTime = defaltTime - randTime;
+
+        if (attackTime <= 0.3f)
         {
-            attackTime = 1.0f;
+            attackTime = 0.3f;
         }
 
         return attackTime;
