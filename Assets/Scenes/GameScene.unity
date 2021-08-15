@@ -926,6 +926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86478d07e5d6743408822718843df2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _labelReference:
+    m_LabelString: MonsterImage
+  monsterImageList: []
 --- !u!4 &385955600
 Transform:
   m_ObjectHideFlags: 0

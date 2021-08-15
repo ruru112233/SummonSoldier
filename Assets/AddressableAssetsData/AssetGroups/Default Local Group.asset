@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 36bcc0b1e8a750f40b2cf08748733736
     m_Address: Assets/Image/MonsterImage
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - MonsterImage
     m_MainAsset: {fileID: 102900000, guid: 36bcc0b1e8a750f40b2cf08748733736, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: 36bcc0b1e8a750f40b2cf08748733736, type: 3}
   m_ReadOnly: 0
