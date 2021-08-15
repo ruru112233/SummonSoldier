@@ -12,7 +12,8 @@ public class Prms : MonoBehaviour
     protected int hp = 0
                 , at = 0
                 , df = 0
-                , speed = 0;
+                , speed = 0
+                , cost = 0;
 
     protected SummonPanelList playerPanel = null
                             , enemyPanel = null;

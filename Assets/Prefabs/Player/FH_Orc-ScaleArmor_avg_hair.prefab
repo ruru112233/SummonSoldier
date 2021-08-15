@@ -2145,6 +2145,7 @@ MonoBehaviour:
   at: 23
   df: 25
   speed: 40
+  cost: 4
 --- !u!1 &4956436721014419570
 GameObject:
   m_ObjectHideFlags: 0
