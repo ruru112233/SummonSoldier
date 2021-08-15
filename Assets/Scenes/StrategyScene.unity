@@ -912,14 +912,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterData
       objectReference: {fileID: 0}
-    - target: {fileID: 4566623849370869326, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
-      propertyPath: m_TagString
-      value: MasterData
-      objectReference: {fileID: 0}
-    - target: {fileID: 4566623849370869327, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
-      propertyPath: test
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4566623849370869328, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1427,24 +1419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fe2c6a890af474aaf81d23a827146c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1370914805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4566623849370869326, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
-  m_PrefabInstance: {fileID: 713331431}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1370914806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370914805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5812613db5c7802489f3f95ca4fc01e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectMonsterList: 000000000000000000000000
 --- !u!1 &1441964896
 GameObject:
   m_ObjectHideFlags: 0
