@@ -10,7 +10,11 @@ public class MasterData : MonoBehaviour
     [SerializeField]
     private AssetLabelReference _labelReference;
 
+    // モンスターイメージ画像格納
     public List<Sprite> monsterImageList;
+
+    // セットしたモンスターの引継ぎ用
+    public SelectMonsterList selectMonsterList = null;
 
     public bool spriteLoadFlag = false;
 
@@ -36,6 +40,7 @@ public class MasterData : MonoBehaviour
     void Start()
     {
         MonsterImageLoad();
+        selectMonsterList = this.GetComponent<SelectMonsterList>();
     }
 
     // Update is called once per frame

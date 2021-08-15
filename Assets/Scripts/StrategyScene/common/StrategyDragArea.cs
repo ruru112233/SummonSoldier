@@ -13,7 +13,7 @@ public class StrategyDragArea : DropArea
     {
         base.Start();
         monsterImage = this.GetComponent<Image>();
-        md = GameObject.FindWithTag("MasterData").GetComponent<MasterData>();
+        
     }
 
     public override void OnDrop(PointerEventData data)
@@ -26,8 +26,8 @@ public class StrategyDragArea : DropArea
         {
             Debug.Log(strategyDragObj.monsterNo);
             monsterImage.sprite = md.monsterImageList[strategyDragObj.monsterNo];
+            md.selectMonsterList.selectMonsterList[ChangeScript.SummonPanelIndex(gameObject.name)]
+                = strategyDragObj.monsterNo;
         }
-
     }
-
 }
