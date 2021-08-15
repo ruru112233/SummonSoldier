@@ -13,7 +13,7 @@ public class DragObj : DragCommon, IBeginDragHandler, IDragHandler, IEndDragHand
         base.Start();
     }
 
-    public void OnBeginDrag(PointerEventData data)
+    public virtual void OnBeginDrag(PointerEventData data)
     {
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(parentTransform.parent, false);
@@ -21,12 +21,12 @@ public class DragObj : DragCommon, IBeginDragHandler, IDragHandler, IEndDragHand
         instancePanel.SetActive(true);
     }
 
-    public void OnDrag(PointerEventData data)
+    public virtual void OnDrag(PointerEventData data)
     {
         transform.position = data.position;
     }
 
-    public void OnEndDrag(PointerEventData data)
+    public virtual void OnEndDrag(PointerEventData data)
     {
         instancePanel.SetActive(false);
         transform.SetParent(parentTransform, false);
