@@ -24,7 +24,6 @@ public class StrategyDragArea : DropArea
 
         if (strategyDragObj != null)
         {
-            Debug.Log(strategyDragObj.monsterNo);
             monsterImage.sprite = md.monsterImageList[strategyDragObj.monsterNo];
             md.selectMonsterList.selectMonsterList[ChangeScript.SummonPanelIndex(gameObject.name)]
                 = strategyDragObj.monsterNo;

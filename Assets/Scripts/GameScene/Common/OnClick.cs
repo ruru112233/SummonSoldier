@@ -108,6 +108,5 @@ public class OnClick : MonoBehaviour
             Image image = monster.GetComponent<Image>();
             image.sprite = null;
         }
-
     }
 }
