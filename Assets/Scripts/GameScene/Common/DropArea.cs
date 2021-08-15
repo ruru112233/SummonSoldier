@@ -19,8 +19,7 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     public virtual void Start()
     {
-        
-        
+        md = GameObject.FindWithTag("MasterData").GetComponent<MasterData>();
     }
 
     public virtual void OnDrop(PointerEventData data)
@@ -29,13 +28,6 @@ public class DropArea : MonoBehaviour, IDropHandler
         Debug.Log(gameObject.name + "Ç…" + data.pointerDrag.name + "ÇÉhÉçÉbÉv");
     }
 
-    public int SummonPanelIndex(string name)
-    {
-        int len = name.Length;
-        string str = name.Substring(len - 1);
-        int num = int.Parse(str) - 1;
-
-        return num;
-    }
+    
 
 }

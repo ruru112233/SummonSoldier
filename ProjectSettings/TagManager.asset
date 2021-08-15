@@ -10,6 +10,7 @@ TagManager:
   - EnemyMonster
   - PlayerMonster
   - SummonManager
+  - MasterData
   layers:
   - Default
   - TransparentFX

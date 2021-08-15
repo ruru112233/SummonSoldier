@@ -20,7 +20,7 @@ public class GameDropArea : DropArea
         if (dragObj != null)
         {
             MonsterIndex = dragObj.SibilingIndex;
-            int panelNo = SummonPanelIndex(transform.name);
+            int panelNo = ChangeScript.SummonPanelIndex(transform.name);
 
             if (panelNo <= 2)
             {
