@@ -26,13 +26,15 @@ public static class CalcScript
     // スピードによる攻撃速度の計算
     public static float AttackTime(int speed)
     {
-        float randTime = Random.Range((speed - 4.0f), (speed + 3.5f));
+        float defaltTime = 5.0f;
 
-        float attackTime = 100 - randTime * 3;
+        float randTime = Random.Range(speed * 0.01f - 0.3f, speed * 0.01f + 0.3f);
 
-        if (attackTime < 1.0f)
+        float attackTime = defaltTime - randTime;
+
+        if (attackTime <= 0.3f)
         {
-            attackTime = 1.0f;
+            attackTime = 0.3f;
         }
 
         return attackTime;
