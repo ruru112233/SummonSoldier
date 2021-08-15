@@ -10,7 +10,8 @@ public class OnClick : MonoBehaviour
     [SerializeField]
     private Button atButton = null
                  , gameSceneButton = null
-                 , strategySceneButton = null;
+                 , strategySceneButton = null
+                 , selectClearButton = null;
 
     [SerializeField]
     private SummonPanelList playerPanel = null
@@ -23,9 +24,15 @@ public class OnClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetButton();
+    }
+
+    void SetButton()
+    {
         if (atButton != null) atButton.onClick.SetListener(AttackButton);
         if (gameSceneButton != null) gameSceneButton.onClick.SetListener(OnLoadGameScene);
         if (strategySceneButton != null) strategySceneButton.onClick.SetListener(OnLoadStrategyScene);
+        if (selectClearButton != null) selectClearButton.onClick.SetListener(SelectMonsterClear);
     }
 
     void AttackButton()
@@ -82,5 +89,25 @@ public class OnClick : MonoBehaviour
     void OnLoadStrategyScene()
     {
         SceneManager.LoadScene("StrategyScene");
+    }
+
+
+    // 選択したモンスターをクリアする
+    void SelectMonsterClear()
+    {
+        MasterData md = GameObject.FindWithTag("MasterData").GetComponent<MasterData>();
+
+        for(int i = 0; i < md.selectMonsterList.selectMonsterList.Length; i++)
+        {
+            md.selectMonsterList.selectMonsterList[i] = -1;
+        }
+
+        GameObject[] buttleMonsters = GameObject.FindGameObjectsWithTag("BattleMonster");
+        foreach (GameObject monster in buttleMonsters)
+        {
+            Image image = monster.GetComponent<Image>();
+            image.sprite = null;
+        }
+
     }
 }
