@@ -6,10 +6,31 @@ using UnityEngine.AddressableAssets;
 
 public class MasterData : MonoBehaviour
 {
+
     [SerializeField]
     private AssetLabelReference _labelReference;
 
     public List<Sprite> monsterImageList;
+
+    public bool spriteLoadFlag = false;
+
+    public static MasterData instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        if (this != instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +50,12 @@ public class MasterData : MonoBehaviour
         Addressables.LoadAssetsAsync<Sprite>(_labelReference, null).
         Completed += op =>
         {
-          foreach (Sprite sprite in op.Result)
-          {
-              monsterImageList.Add(sprite);
-          }
+            foreach (Sprite sprite in op.Result)
+            {
+                monsterImageList.Add(sprite);
+            }
+
+            spriteLoadFlag = true;
         };
     } 
 

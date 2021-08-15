@@ -14,36 +14,22 @@ public class DropArea : MonoBehaviour, IDropHandler
         set { monsterIndex = value; }
     }
 
-    SummonManager sm;
+    protected SummonManager sm;
+    protected MasterData md;
 
-    private void Start()
+    public virtual void Start()
     {
-        sm = GameObject.FindWithTag("SummonManager").GetComponent<SummonManager>();
+        
+        
     }
 
-    public void OnDrop(PointerEventData data)
+    public virtual void OnDrop(PointerEventData data)
     {
-        DragObj dragObj = data.pointerDrag.GetComponent<DragObj>();
-        if (dragObj != null)
-        {
-            MonsterIndex = dragObj.SibilingIndex;
-            int panelNo = SummonPanelIndex(transform.name);
-
-            if (panelNo <= 2)
-            {
-                sm.UpperRowSummon(MonsterIndex - 1, panelNo);
-            }
-            else
-            {
-                sm.LowerRowSummon(MonsterIndex - 1, panelNo - 3);
-            }
-
-
-            Debug.Log(gameObject.name + "に" + data.pointerDrag.name + "をドロップ");
-        }
+        
+        Debug.Log(gameObject.name + "に" + data.pointerDrag.name + "をドロップ");
     }
 
-    int SummonPanelIndex(string name)
+    public int SummonPanelIndex(string name)
     {
         int len = name.Length;
         string str = name.Substring(len - 1);

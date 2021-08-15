@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OnClick : MonoBehaviour
 {
     [SerializeField]
-    private Button atButton = null;
+    private Button atButton = null
+                 , gameSceneButton = null
+                 , strategySceneButton = null;
 
     [SerializeField]
     private SummonPanelList playerPanel = null
@@ -20,7 +23,9 @@ public class OnClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        atButton.onClick.SetListener(AttackButton);
+        if (atButton != null) atButton.onClick.SetListener(AttackButton);
+        if (gameSceneButton != null) gameSceneButton.onClick.SetListener(OnLoadGameScene);
+        if (strategySceneButton != null) strategySceneButton.onClick.SetListener(OnLoadStrategyScene);
     }
 
     void AttackButton()
@@ -66,4 +71,16 @@ public class OnClick : MonoBehaviour
 
     }
 
+    // ゲームシーンに遷移
+    void OnLoadGameScene()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+
+    // ストラテジーシーンに遷移
+    void OnLoadStrategyScene()
+    {
+        SceneManager.LoadScene("StrategyScene");
+    }
 }
