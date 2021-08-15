@@ -9,7 +9,13 @@ public class StrategyDragObj : DragObj
     public int monsterNo = 0;
     MasterData masterData = null;
 
-    Image monsterImage = null;
+    private bool moveFlag = true;
+
+    public bool MoveFlag
+    {
+        get { return moveFlag; }
+        set { moveFlag = value; }
+    }
 
     // Start is called before the first frame update
     public override void Start()
@@ -20,6 +26,7 @@ public class StrategyDragObj : DragObj
         monsterImage = this.GetComponent<Image>();
     }
 
+
     // masterデータにロードされたら、スプライトを表示する
     IEnumerator SpriteView()
     {
@@ -28,6 +35,10 @@ public class StrategyDragObj : DragObj
         monsterImage.sprite = masterData.monsterImageList[monsterNo];
     }
 
+    public void Update()
+    {
+        monsterImage.color = ImageColor();
+    }
 
     public override void OnBeginDrag(PointerEventData data)
     {
@@ -37,11 +48,46 @@ public class StrategyDragObj : DragObj
 
     public override void OnDrag(PointerEventData data)
     {
-        base.OnDrag(data);
+        if (MoveFlag)
+        {
+            base.OnDrag(data);
+        }
     }
 
     public override void OnEndDrag(PointerEventData data)
     {
         base.OnEndDrag(data);
+        MoveFlag = selectMonsterCheck();
+
+        Debug.Log(MoveFlag);
+
+    }
+
+    Color ImageColor()
+    {
+        SelectMonsterList selectMonsterList = md.selectMonsterList;
+        foreach (int mon in selectMonsterList.selectMonsterList)
+        {
+            if (mon == monsterNo)
+            {
+                return Color.gray;
+            }
+        }
+
+        return Color.white;
+    }
+
+    bool selectMonsterCheck()
+    {
+        SelectMonsterList selectMonsterList = md.selectMonsterList;
+        foreach (int mon in selectMonsterList.selectMonsterList)
+        {
+            if (mon == monsterNo)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
