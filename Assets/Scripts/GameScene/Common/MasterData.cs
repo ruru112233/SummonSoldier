@@ -8,15 +8,20 @@ public class MasterData : MonoBehaviour
 {
 
     [SerializeField]
-    private AssetLabelReference _labelReference;
+    private AssetLabelReference _labelReference
+                              , _itemListLabel;
 
     // モンスターイメージ画像格納
     public List<Sprite> monsterImageList;
 
+    // ItemListの格納
+    public List<ScriptableObject> itemList;
+
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
 
-    public bool spriteLoadFlag = false;
+    public bool spriteLoadFlag = false
+              , itemListFlag = false;
 
     public static MasterData instance;
 
@@ -40,6 +45,7 @@ public class MasterData : MonoBehaviour
     void Start()
     {
         MonsterImageLoad();
+        ItemListLoad();
         selectMonsterList = this.GetComponent<SelectMonsterList>();
     }
 
@@ -63,5 +69,21 @@ public class MasterData : MonoBehaviour
             spriteLoadFlag = true;
         };
     } 
+
+    // ItemListのロード
+    void ItemListLoad()
+    {
+        Addressables.LoadAssetsAsync<ScriptableObject>(_itemListLabel, null).
+        Completed += op =>
+        {
+            foreach (ScriptableObject obj in op.Result)
+            {
+                itemList.Add(obj);
+                Debug.Log(obj);
+            }
+
+            itemListFlag = true;
+        };
+    }
 
 }

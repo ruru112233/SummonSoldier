@@ -912,6 +912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterData
       objectReference: {fileID: 0}
+    - target: {fileID: 4566623849370869327, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
+      propertyPath: _itemListLabel.m_LabelString
+      value: ItemList
+      objectReference: {fileID: 0}
     - target: {fileID: 4566623849370869328, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
       propertyPath: m_RootOrder
       value: 2
