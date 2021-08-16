@@ -84,8 +84,6 @@ public class Prms : MonoBehaviour
             check = true;
         }
 
-        Debug.Log(check);
-
         return check;
     }
 }
