@@ -427,8 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80640446574a3fb47993e1619b20bf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaPointText: {fileID: 0}
-  maxManaPoint: 0
+  manaPointText: {fileID: 1427678169}
+  maxManaPoint: 10
   curManaPoint: 0
 --- !u!1 &165185146
 GameObject:
@@ -752,6 +752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67af3747cb5f4a4e8748a5cee188820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaManager: {fileID: 152887101}
+  summonManager: {fileID: 941658142}
   objCheck: 0
 --- !u!1 &290244688
 GameObject:

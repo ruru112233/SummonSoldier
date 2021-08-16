@@ -18,7 +18,6 @@ public static class PositionCheck
 
             if (chengeParent != null) 
             {
-                Debug.Log("オブジェクト移動");
                 transform.parent = chengeParent.transform;
                 transform.position = new Vector3(transform.position.x, transform.position.y, correction);
             }

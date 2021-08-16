@@ -14,6 +14,8 @@ public class PlayerController : Prms
 
     public int Speed { get { return speed; }  set { speed = value; } }
 
+    public int Cost { get { return cost; } set { cost = value; } }
+
     EnemyController enemyTarget = null;
 
     // Start is called before the first frame update
