@@ -12,6 +12,8 @@ public class ItemSO : ScriptableObject
     {
         MAXHPUP, //MaxHpを上昇
         ATUP, //攻撃力アップ
+        DFUP, //守備力アップ
+        SPEEDUP, //スピードアップ
     }
 
     public ITEM_TYPE item_type;
