@@ -11,11 +11,16 @@ public class OnClick : MonoBehaviour
     private Button atButton = null
                  , gameSceneButton = null
                  , strategySceneButton = null
-                 , selectClearButton = null;
+                 , selectClearButton = null
+                 , menuButton = null
+                 , closeButton = null;
 
     [SerializeField]
     private SummonPanelList playerPanel = null
                           , enemyPanel = null;
+
+    [SerializeField]
+    private GameObject menuPanel = null;
 
     // モンスターを格納する
     public List<GameObject> playersObj = null;
@@ -25,14 +30,17 @@ public class OnClick : MonoBehaviour
     void Start()
     {
         SetButton();
+        menuPanel.SetActive(false);
     }
 
     void SetButton()
     {
-        if (atButton != null) atButton.onClick.SetListener(AttackButton);
-        if (gameSceneButton != null) gameSceneButton.onClick.SetListener(OnLoadGameScene);
-        if (strategySceneButton != null) strategySceneButton.onClick.SetListener(OnLoadStrategyScene);
-        if (selectClearButton != null) selectClearButton.onClick.SetListener(SelectMonsterClear);
+        if (atButton) atButton.onClick.SetListener(AttackButton);
+        if (gameSceneButton) gameSceneButton.onClick.SetListener(OnLoadGameScene);
+        if (strategySceneButton) strategySceneButton.onClick.SetListener(OnLoadStrategyScene);
+        if (selectClearButton) selectClearButton.onClick.SetListener(SelectMonsterClear);
+        if (menuButton) menuButton.onClick.SetListener(MenuButton);
+        if (closeButton) closeButton.onClick.SetListener(CloseButton);
     }
 
     void AttackButton()
@@ -108,5 +116,20 @@ public class OnClick : MonoBehaviour
             Image image = monster.GetComponent<Image>();
             image.sprite = null;
         }
+    }
+
+    // メニューボタン
+    void MenuButton()
+    {
+        Debug.Log("メニュー");
+        menuPanel.SetActive(true);
+
+    }
+
+    // Cloaseボタン
+    void CloseButton()
+    {
+        Debug.Log("クローズ");
+        menuPanel.SetActive(false);
     }
 }
