@@ -15,7 +15,7 @@ public class MasterData : MonoBehaviour
     public List<Sprite> monsterImageList;
 
     // ItemListの格納
-    public List<ScriptableObject> itemList;
+    public List<ItemSO> itemList;
 
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
@@ -73,13 +73,12 @@ public class MasterData : MonoBehaviour
     // ItemListのロード
     void ItemListLoad()
     {
-        Addressables.LoadAssetsAsync<ScriptableObject>(_itemListLabel, null).
+        Addressables.LoadAssetsAsync<ItemSO>(_itemListLabel, null).
         Completed += op =>
         {
-            foreach (ScriptableObject obj in op.Result)
+            foreach (ItemSO obj in op.Result)
             {
                 itemList.Add(obj);
-                Debug.Log(obj);
             }
 
             itemListFlag = true;

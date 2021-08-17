@@ -3,10 +3,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObject/Item")]
 public class ItemSO : ScriptableObject
 {
-    public string itemName;
-    public int value;
-    public string description;
-    public Sprite sprite;
+    [SerializeField]
+    private string itemName;
+
+    [SerializeField]
+    private int value;
+
+    [SerializeField]
+    private string description;
+
+    [SerializeField]
+    private Sprite sprite;
 
     public enum ITEM_TYPE
     {
@@ -17,5 +24,28 @@ public class ItemSO : ScriptableObject
     }
 
     public ITEM_TYPE item_type;
+
+
+    public string GetItemName()
+    {
+        return itemName;
+    }
+
+    public int GetValue()
+    {
+        return value;
+    }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
+    public Sprite GetSprite()
+    {
+        return sprite;
+    }
+
+
 
 }
