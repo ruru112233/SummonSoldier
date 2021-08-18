@@ -28,6 +28,9 @@ public class MasterData : MonoBehaviour
     public bool spriteLoadFlag = false
               , itemListFlag = false;
 
+    public Dictionary<string, int> itemCounter = new Dictionary<string, int>();
+
+
     public static MasterData instance;
 
     private void Awake()
@@ -51,6 +54,7 @@ public class MasterData : MonoBehaviour
     {
         MonsterImageLoad();
         ItemListLoad();
+        StartCoroutine(ItemCountList());
         selectMonsterList = this.GetComponent<SelectMonsterList>();
     }
 
@@ -59,6 +63,7 @@ public class MasterData : MonoBehaviour
     {
         
     }
+
 
     // キャラ画像のロード
     void MonsterImageLoad()
@@ -88,6 +93,26 @@ public class MasterData : MonoBehaviour
 
             itemListFlag = true;
         };
+    }
+
+
+    // 初期Item数を格納
+    IEnumerator ItemCountList()
+    {
+        yield return new WaitUntil(() => itemListFlag);
+
+        ItemCount itemCount = new ItemCount();
+
+        int num = 0;
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            string itemId = "id";
+            itemId += (num + 1).ToString();
+            itemCounter.Add(itemId, 0);
+            num++;
+        }
+
     }
 
 }

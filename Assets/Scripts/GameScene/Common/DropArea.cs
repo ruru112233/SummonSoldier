@@ -25,7 +25,7 @@ public class DropArea : MonoBehaviour, IDropHandler
     public virtual void OnDrop(PointerEventData data)
     {
         
-        Debug.Log(gameObject.name + "に" + data.pointerDrag.name + "をドロップ");
+        //Debug.Log(gameObject.name + "に" + data.pointerDrag.name + "をドロップ");
     }
 
     

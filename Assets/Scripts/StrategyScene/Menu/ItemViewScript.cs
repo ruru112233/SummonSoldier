@@ -40,7 +40,6 @@ public class ItemViewScript : MonoBehaviour
         instance.transform.SetParent(itemContent.transform, false);
 
         var child0 = instance.transform.GetChild(0);
-        Debug.Log(child0.name);
 
         child0.GetComponent<Image>().sprite = sprite;
         var nameText = instance.transform.GetChild(1).GetComponent<Text>();

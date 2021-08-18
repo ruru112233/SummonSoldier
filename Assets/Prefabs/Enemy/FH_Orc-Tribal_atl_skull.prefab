@@ -4561,10 +4561,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7615313548822300703}
-  hp: 200
+  hp: 80
   at: 10
-  df: 20
+  df: 10
   speed: 40
+  cost: 0
+  dropItemList: 010000000300000005000000
 --- !u!1 &1348772656181419875
 GameObject:
   m_ObjectHideFlags: 0

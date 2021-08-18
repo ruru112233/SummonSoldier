@@ -72,9 +72,6 @@ public class SummonManager : MonoBehaviour
     {
         GameObject[] lowerPanels = new GameObject[3];
 
-        Debug.Log("idx>>>:" + idx + "panelNo>>>:" + panelNo);
-
-
         for (int i = 3; i < 6; i++)
         {
             lowerPanels[i - 3] = playerPanel.panel[i];

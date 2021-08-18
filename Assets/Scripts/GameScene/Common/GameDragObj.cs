@@ -25,8 +25,6 @@ public class GameDragObj : DragObj
 
     public override void OnBeginDrag(PointerEventData data)
     {
-        Debug.Log("curManaPoint:" + manaManager.curManaPoint);
-        Debug.Log("cost:" + player.Cost);
         if(player && manaManager.curManaPoint >= player.Cost)
         {
             base.OnBeginDrag(data);

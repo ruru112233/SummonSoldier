@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4040659678922552458}
   hp: 110
-  at: 10
+  at: 20
   df: 12
   speed: 40
   cost: 2
