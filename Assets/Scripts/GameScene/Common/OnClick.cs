@@ -13,7 +13,8 @@ public class OnClick : MonoBehaviour
                  , strategySceneButton = null
                  , selectClearButton = null
                  , menuButton = null
-                 , closeButton = null;
+                 , closeButton = null
+                 , strategyButton = null;
 
     [SerializeField]
     private SummonPanelList playerPanel = null
@@ -30,7 +31,7 @@ public class OnClick : MonoBehaviour
     void Start()
     {
         SetButton();
-        menuPanel.SetActive(false);
+        if(menuPanel) menuPanel.SetActive(false);
     }
 
     void SetButton()
@@ -41,6 +42,7 @@ public class OnClick : MonoBehaviour
         if (selectClearButton) selectClearButton.onClick.SetListener(SelectMonsterClear);
         if (menuButton) menuButton.onClick.SetListener(MenuButton);
         if (closeButton) closeButton.onClick.SetListener(CloseButton);
+        if (strategyButton) strategyButton.onClick.SetListener(OnLoadStrategyScene);
     }
 
     void AttackButton()

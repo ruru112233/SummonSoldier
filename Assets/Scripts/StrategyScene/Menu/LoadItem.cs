@@ -16,10 +16,6 @@ public class LoadItem : MonoBehaviour
     {
         masterData = MasterData.instance;
 
-        itemcount.counts.Add("id1", 2);
-        itemcount.counts.Add("id3", 3);
-        itemcount.counts.Add("id4", 1);
-
         StartCoroutine(ItemMenu());
 
     }
@@ -55,9 +51,9 @@ public class LoadItem : MonoBehaviour
 
         int count = 0;
 
-        if (itemcount.counts.ContainsKey(id))
+        if (masterData.itemCounter.ContainsKey(id))
         {
-            count = itemcount.counts[id];
+            count = masterData.itemCounter[id];
             return count;
         }
         
