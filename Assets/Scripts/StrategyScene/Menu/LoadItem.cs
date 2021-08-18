@@ -42,8 +42,6 @@ public class LoadItem : MonoBehaviour
             data.count = GetItemCount(id);
             data.itemIndex = index;
 
-            Debug.Log(id + " : " + data.count);
-
             itemView.AddItemButton( data );
 
             index++;

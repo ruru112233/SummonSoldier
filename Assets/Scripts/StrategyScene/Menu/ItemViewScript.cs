@@ -34,9 +34,8 @@ public class ItemViewScript : MonoBehaviour
 
         var sprite = data.sprite;
         var itemName = data.itemName;
+        var count = data.count;
         var index = data.itemIndex;
-
-        Debug.Log(itemContent);
 
         instance.transform.SetParent(itemContent.transform, false);
 
@@ -45,14 +44,16 @@ public class ItemViewScript : MonoBehaviour
 
         child0.GetComponent<Image>().sprite = sprite;
         var nameText = instance.transform.GetChild(1).GetComponent<Text>();
-        nameText.text = itemName;
+        var countText = instance.transform.GetChild(2).GetComponent<Text>();
 
         var button = instance.GetComponent<Button>();
 
         if (data.count > 0)
         {
             button.onClick.AddListener(() => { Debug.Log(data.itemName + "‚ª‰Ÿ‚³‚ê‚½"); });
-            nameText.text = data.itemName;
+            nameText.text = itemName;
+            countText.text = count.ToString();
+
             instance.gameObject.SetActive(true);
         }
         else
