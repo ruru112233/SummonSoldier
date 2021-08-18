@@ -42,8 +42,6 @@ public class LoadItem : MonoBehaviour
             data.count = GetItemCount(id);
             data.itemIndex = index;
 
-            Debug.Log(id + " : " + data.count);
-
             itemView.AddItemButton( data );
 
             index++;
@@ -57,15 +55,12 @@ public class LoadItem : MonoBehaviour
 
         int count = 0;
 
-        for (int i = 0; i < itemcount.counts.Count; i++)
+        if (itemcount.counts.ContainsKey(id))
         {
-            if (itemcount.counts.ContainsKey(id))
-            {
-                count = itemcount.counts[id];
-                return count;
-            }
+            count = itemcount.counts[id];
+            return count;
         }
-
+        
         return count;
     }
 
