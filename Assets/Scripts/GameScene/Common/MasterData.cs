@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 
+public class ItemCount
+{
+    public Dictionary<string, int> counts = new Dictionary<string, int>(); 
+}
+
 public class MasterData : MonoBehaviour
 {
 

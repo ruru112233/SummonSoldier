@@ -7,12 +7,18 @@ public class LoadItem : MonoBehaviour
     [SerializeField]
     private ItemViewScript itemView = null;
 
-    MasterData masterData; 
+    MasterData masterData;
+
+    ItemCount itemcount = new ItemCount();
 
     // Start is called before the first frame update
     void Start()
     {
         masterData = MasterData.instance;
+
+        itemcount.counts.Add("id1", 2);
+        itemcount.counts.Add("id3", 3);
+        itemcount.counts.Add("id4", 1);
 
         StartCoroutine(ItemMenu());
 
@@ -29,16 +35,38 @@ public class LoadItem : MonoBehaviour
 
             var data = new ItemData();
 
+            string id = "id" + itemData.GetId();
+
             data.sprite = itemData.GetSprite();
             data.itemName = itemData.GetItemName();
-            data.count = 1;
+            data.count = GetItemCount(id);
             data.itemIndex = index;
+
+            Debug.Log(id + " : " + data.count);
 
             itemView.AddItemButton( data );
 
             index++;
         }
 
+    }
+
+    // ƒAƒCƒeƒ€‚Ìæ“¾”‚ğ•Ô‚·
+    int GetItemCount(string id)
+    {   
+
+        int count = 0;
+
+        for (int i = 0; i < itemcount.counts.Count; i++)
+        {
+            if (itemcount.counts.ContainsKey(id))
+            {
+                count = itemcount.counts[id];
+                return count;
+            }
+        }
+
+        return count;
     }
 
     // Update is called once per frame
