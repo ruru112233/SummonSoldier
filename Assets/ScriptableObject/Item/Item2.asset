@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48a4727ff9a7594abafc7525d82c319, type: 3}
   m_Name: Item2
   m_EditorClassIdentifier: 
+  id: 2
   itemName: "\u30BF\u30A4\u30EA\u30E7\u30AF\u30B0\u30F3\u30C8\u30CE\u30D3\u30FC\u30EB"
   value: 5
   description: "\u6700\u5927HP\u3092\u7D50\u69CB\u5897\u3084\u3059"

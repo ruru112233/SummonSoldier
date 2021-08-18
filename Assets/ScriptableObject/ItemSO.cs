@@ -4,6 +4,9 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     [SerializeField]
+    public int id;
+
+    [SerializeField]
     private string itemName;
 
     [SerializeField]
@@ -25,6 +28,11 @@ public class ItemSO : ScriptableObject
 
     public ITEM_TYPE item_type;
 
+
+    public int GetId()
+    {
+        return id;
+    }
 
     public string GetItemName()
     {
