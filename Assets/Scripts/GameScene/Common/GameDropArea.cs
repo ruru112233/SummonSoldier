@@ -23,7 +23,8 @@ public class GameDropArea : DropArea
 
         if (dragObj != null)
         {
-            MonsterIndex = dragObj.SibilingIndex;
+            MonsterIndex = dragObj.MonsterIndex;
+            
 
             if (dragObj.dropFlag)
             {
@@ -31,11 +32,11 @@ public class GameDropArea : DropArea
 
                 if (panelNo <= 2)
                 {
-                    sm.UpperRowSummon(MonsterIndex - 1, panelNo);
+                    sm.UpperRowSummon(MonsterIndex, panelNo);
                 }
                 else
                 {
-                    sm.LowerRowSummon(MonsterIndex - 1, panelNo - 3);
+                    sm.LowerRowSummon(MonsterIndex, panelNo - 3);
                 }
             }
         }

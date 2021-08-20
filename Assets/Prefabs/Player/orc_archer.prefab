@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 795644388361399658}
+  longRangeFlag: 1
   hp: 100
   at: 15
   df: 25

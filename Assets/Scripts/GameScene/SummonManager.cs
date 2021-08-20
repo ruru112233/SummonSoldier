@@ -95,6 +95,8 @@ public class SummonManager : MonoBehaviour
         // 召喚時の位置を設定
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
+        Debug.Log("idx>>>:" + idx);
+
         // プレハブからインスタンスを生成
         GameObject obj = (GameObject)Instantiate(soldierPrefabs[idx], pos, Quaternion.identity);
 

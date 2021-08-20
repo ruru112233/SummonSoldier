@@ -40,7 +40,16 @@ public class PlayerController : Prms
         startTextPos = new Vector3(myTransform.position.x, myTransform.position.y + 2.0f, myTransform.position.z);
 
         // 敵のパネルにオブジェクトがあった場合、攻撃する
-        if (EnemyCountCheck(enemyPanel) != 0) Attack();
+        if (longRangeFlag)
+        {
+            Debug.Log("遠距離");
+            if (AllEnemyCountCheck(enemyPanel)) Attack();
+        }
+        else
+        {
+            Debug.Log("近距離");
+            if (FrontEnemyCountCheck(enemyPanel)) Attack();
+        }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
         if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 0f);
@@ -92,20 +101,35 @@ public class PlayerController : Prms
         return enemy;
     }
 
-    // 子要素に敵が存在するか確認
-    int EnemyCountCheck(SummonPanelList enemyPanel)
+    // 前列パネルで子要素に敵が存在するか確認
+    bool FrontEnemyCountCheck(SummonPanelList enemyPanel)
     {
-        int count = 0;
 
+        for (int i = 0; i < 3; i++)
+        {
+            if (enemyPanel.panel[0].transform.childCount == 1)
+            {
+                return true;
+            }
+        }
+        
+
+        return false;
+    }
+
+
+    // 全体のパネルで子要素に敵が存在するか確認
+    bool AllEnemyCountCheck(SummonPanelList enemyPanel)
+    {
         foreach (GameObject panel in enemyPanel.panel)
         {
             if (panel.transform.childCount == 1)
             {
-                count++;
+                return true;
             }
         }
 
-        return count;
+        return false;
     }
 
     public IEnumerator DamageText(int damage)
