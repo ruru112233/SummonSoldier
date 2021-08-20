@@ -48,7 +48,6 @@ public class Prms : MonoBehaviour
 
         anime = this.GetComponent<Animator>();
         myTransform = this.transform;
-
         
     }
 
@@ -89,5 +88,13 @@ public class Prms : MonoBehaviour
         }
 
         return check;
+    }
+
+    // テキストのポジションをセットする
+    protected Vector3 DamageTextPos(Transform transform)
+    {
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
+
+        return pos;
     }
 }

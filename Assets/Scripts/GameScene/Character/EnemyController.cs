@@ -29,8 +29,6 @@ public class EnemyController : Prms
 
         masterData = MasterData.instance;
 
-        startTextPos = text.transform.position;
-        startTextPos.y += 1.0f;
         text.SetActive(false);
 
         // 下段に召喚され、上段が召喚されていなかったら上段に上げる
@@ -126,10 +124,11 @@ public class EnemyController : Prms
 
     public IEnumerator DamageText(int damage)
     {
-        text.SetActive(true);
-
+        
         text.GetComponent<Text>().text = damage.ToString();
-        text.transform.position = startTextPos;
+        text.transform.position = DamageTextPos(this.transform);
+
+        text.SetActive(true);
 
         Hp -= damage;
 
