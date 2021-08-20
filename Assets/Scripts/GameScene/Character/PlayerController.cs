@@ -41,12 +41,12 @@ public class PlayerController : Prms
         if (longRangeFlag)
         {
             Debug.Log("遠距離");
-            if (AllEnemyCountCheck(enemyPanel)) Attack();
+            if (AllEnemyCountCheck(enemyPanel)) AllAttack();
         }
         else
         {
             Debug.Log("近距離");
-            if (FrontEnemyCountCheck(enemyPanel)) Attack();
+            if (FrontEnemyCountCheck(enemyPanel)) FrontAttack();
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
@@ -56,8 +56,42 @@ public class PlayerController : Prms
         if (Hp <= 0) Destroy(gameObject);
     }
 
-    // 攻撃
-    void Attack()
+    // 前衛から選択して攻撃
+    void FrontAttack()
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            enemysObj.Clear();
+
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject panel = enemyPanel.panel[i];
+
+                if (panel.transform.childCount != 0)
+                {
+                    // エネミーのオブジェクトを格納
+                    enemysObj.Add(SetObj(panel));
+                }
+            }
+
+            EnemyController enemyTarget = EnemyTarget(enemysObj);
+
+            // 攻撃処理
+            StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
+
+
+    // 全体から選択して攻撃
+    void AllAttack()
     {
         time += Time.deltaTime;
 
@@ -73,12 +107,7 @@ public class PlayerController : Prms
             // エネミーのオブジェクトを格納
             foreach (GameObject panel in enemyPanel.panel)
             {
-                if (panel.transform.childCount != 0)
-                {
-                    Transform t = panel.GetComponentInChildren<Transform>();
-                    GameObject obj = t.GetChild(0).gameObject;
-                    enemysObj.Add(obj);
-                }
+                enemysObj.Add(SetObj(panel));
             }
 
             EnemyController enemyTarget = EnemyTarget(enemysObj);
@@ -102,8 +131,6 @@ public class PlayerController : Prms
     // 前列パネルで子要素に敵が存在するか確認
     bool FrontEnemyCountCheck(SummonPanelList enemyPanel)
     {
-        Debug.Log(enemyPanel.panel[0].name);
-
         for (int i = 0; i < 3; i++)
         {
             if (enemyPanel.panel[i].transform.childCount == 1)
@@ -112,7 +139,6 @@ public class PlayerController : Prms
             }
         }
         
-
         return false;
     }
 

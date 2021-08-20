@@ -97,4 +97,48 @@ public class Prms : MonoBehaviour
 
         return pos;
     }
+
+
+    // モンスターオブジェクトをセットする
+    protected GameObject SetObj(GameObject panel)
+    {
+    
+        Transform t = panel.GetComponentInChildren<Transform>();
+        GameObject obj = t.GetChild(0).gameObject;
+
+        return obj;
+        
+
+    }
+
+
+    // 前衛のパネルで子要素に敵が存在するか確認
+    protected bool FrontCountCheck(SummonPanelList playerPanel)
+    {
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (enemyPanel.panel[i].transform.childCount == 1)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // 全体のパネルで子要素に敵が存在するか確認
+    protected bool AllCountCheck(SummonPanelList playerPanel)
+    {
+
+        foreach (GameObject panel in playerPanel.panel)
+        {
+            if (panel.transform.childCount == 1)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
