@@ -45,7 +45,14 @@ public class EnemyController : Prms
         base.Update();
 
         // 敵のパネルにオブジェクトがあった場合、攻撃する
-        if (PlayerCountCheck(playerPanel) != 0) Attack();
+        if (longRangeFlag)
+        {
+            if (AllCountCheck(playerPanel)) AllAttack();
+        }
+        else
+        {
+            if (FrontCountCheck(playerPanel)) FrontAttack();
+        }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
         if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 1.8f);
@@ -58,8 +65,41 @@ public class EnemyController : Prms
         }
     }
 
-    // 攻撃
-    void Attack()
+    // 前衛から選択して攻撃
+    void FrontAttack()
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            playersObj.Clear();
+
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject panel = playerPanel.panel[i];
+
+                if (panel.transform.childCount != 0)
+                {
+                    // エネミーのオブジェクトを格納
+                    playersObj.Add(SetObj(panel));
+                }
+            }
+
+            PlayerController playerTarget = PlayerTarget(playersObj);
+
+            // 攻撃処理
+            StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
+
+    // 全体を選択して攻撃
+    void AllAttack()
     {
         time += Time.deltaTime;
 
@@ -77,9 +117,7 @@ public class EnemyController : Prms
             {
                 if (panel.transform.childCount != 0)
                 {
-                    Transform t = panel.GetComponentInChildren<Transform>();
-                    GameObject obj = t.GetChild(0).gameObject;
-                    playersObj.Add(obj);
+                    playersObj.Add(SetObj(panel));
                 }
             }
 
@@ -101,21 +139,7 @@ public class EnemyController : Prms
         return player;
     }
 
-    // 子要素に敵が存在するか確認
-    int PlayerCountCheck(SummonPanelList playerPanel)
-    {
-        int count = 0;
-
-        foreach (GameObject panel in playerPanel.panel)
-        {
-            if (panel.transform.childCount == 1)
-            {
-                count++;
-            }
-        }
-
-        return count;
-    }
+    
 
     public void setDamage(int damage)
     {
