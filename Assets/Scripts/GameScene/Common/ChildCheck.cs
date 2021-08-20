@@ -82,4 +82,49 @@ public static class ChildCheck
 
         return sumCount;
     }
+
+    // 前衛のパネルで子要素に敵が存在するか確認
+    public static bool FrontCountCheck(SummonPanelList panels)
+    {
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (panels.panel[i].transform.childCount == 1)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // 全体のパネルで子要素に敵が存在するか確認
+    public static bool AllCountCheck(SummonPanelList panels)
+    {
+
+        foreach (GameObject panel in panels.panel)
+        {
+            if (panel.transform.childCount == 1)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // 自身の位置が前衛かをチェックする
+    public static bool FrontCheck(Transform transform)
+    {
+        GameObject parent = transform.parent.gameObject;
+
+        int idxNo = parent.transform.GetSiblingIndex();
+
+        if (idxNo < 3)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

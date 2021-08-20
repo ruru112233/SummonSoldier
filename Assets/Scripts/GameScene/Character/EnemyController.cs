@@ -47,11 +47,11 @@ public class EnemyController : Prms
         // 敵のパネルにオブジェクトがあった場合、攻撃する
         if (longRangeFlag)
         {
-            if (AllCountCheck(playerPanel)) AllAttack();
+            if (ChildCheck.AllCountCheck(playerPanel)) AllAttack();
         }
         else
         {
-            if (FrontCountCheck(playerPanel)) FrontAttack();
+            if (ChildCheck.FrontCountCheck(playerPanel)) FrontAttack();
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
