@@ -8,6 +8,10 @@ public class Prms : MonoBehaviour
     protected GameObject text = null;
     protected Vector3 startTextPos = new Vector3();
 
+    // ‰“‹——£‰Â”\‚©”»’è
+    [SerializeField]
+    protected bool longRangeFlag = false;
+
     [SerializeField]
     protected int hp = 0
                 , at = 0
