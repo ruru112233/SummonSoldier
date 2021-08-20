@@ -23,8 +23,6 @@ public class PlayerController : Prms
     {
         base.Start();
 
-        startTextPos = myTransform.position;
-        startTextPos.y += 2.0f;
         text.SetActive(false);
 
         PositionCheck.PositionChenge(myTransform, 0f);
@@ -104,10 +102,11 @@ public class PlayerController : Prms
     // 前列パネルで子要素に敵が存在するか確認
     bool FrontEnemyCountCheck(SummonPanelList enemyPanel)
     {
+        Debug.Log(enemyPanel.panel[0].name);
 
         for (int i = 0; i < 3; i++)
         {
-            if (enemyPanel.panel[0].transform.childCount == 1)
+            if (enemyPanel.panel[i].transform.childCount == 1)
             {
                 return true;
             }
@@ -134,10 +133,12 @@ public class PlayerController : Prms
 
     public IEnumerator DamageText(int damage)
     {
-        text.SetActive(true);
-
+        
         text.GetComponent<Text>().text = damage.ToString();
-        text.transform.position = startTextPos;
+        
+        text.transform.position = DamageTextPos(this.transform);
+
+        text.SetActive(true);
 
         Hp -= damage;
 
