@@ -41,12 +41,14 @@ public class PlayerController : Prms
         if (longRangeFlag)
         {
             Debug.Log("遠距離");
-            if (AllEnemyCountCheck(enemyPanel)) AllAttack();
+            if (ChildCheck.AllCountCheck(enemyPanel)) AllAttack();
         }
         else
         {
             Debug.Log("近距離");
-            if (FrontEnemyCountCheck(enemyPanel)) FrontAttack();
+            if (ChildCheck.FrontCountCheck(enemyPanel)&&
+                ChildCheck.FrontCheck(this.transform)) 
+                FrontAttack();
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
@@ -128,35 +130,7 @@ public class PlayerController : Prms
         return enemy;
     }
 
-    // 前列パネルで子要素に敵が存在するか確認
-    bool FrontEnemyCountCheck(SummonPanelList enemyPanel)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            if (enemyPanel.panel[i].transform.childCount == 1)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
-
-    // 全体のパネルで子要素に敵が存在するか確認
-    bool AllEnemyCountCheck(SummonPanelList enemyPanel)
-    {
-        foreach (GameObject panel in enemyPanel.panel)
-        {
-            if (panel.transform.childCount == 1)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    
     public IEnumerator DamageText(int damage)
     {
         
