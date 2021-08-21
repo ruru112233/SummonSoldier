@@ -46,9 +46,9 @@ public class GameDragObj : DragObj
     public override void OnEndDrag(PointerEventData data)
     {
         base.OnEndDrag(data);
+
         if (player && manaManager.curManaPoint >= player.Cost)
         {
-            
             manaManager.curManaPoint -= player.Cost;   
         }
     }
