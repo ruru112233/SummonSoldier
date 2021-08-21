@@ -139,7 +139,7 @@ public class CharaController : Prms
         }
     }
 
-
+    
     // 全体から選択して攻撃
     protected void AllAttack(SummonPanelList panels, List<GameObject> objs)
     {
@@ -157,7 +157,10 @@ public class CharaController : Prms
             // パネルオブジェクトを格納
             foreach (GameObject panel in panels.panel)
             {
-                objs.Add(SetObj(panel));
+                if (panel.transform.childCount != 0)
+                {
+                    objs.Add(SetObj(panel));
+                }
             }
 
             CharaController target = Target(objs);
@@ -177,6 +180,7 @@ public class CharaController : Prms
 
         return chara;
     }
+
 
     public IEnumerator DamageText(int damage)
     {
