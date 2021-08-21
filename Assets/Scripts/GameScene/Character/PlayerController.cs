@@ -15,7 +15,6 @@ public class PlayerController : CharaController
 
         PositionCheck.PositionChenge(myTransform, 0f);
 
-        waitTime = CalcScript.AttackTime(Speed);
     }
 
     public override void Update()

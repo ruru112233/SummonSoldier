@@ -25,8 +25,6 @@ public class EnemyController : CharaController
         // 下段に召喚され、上段が召喚されていなかったら上段に上げる
         PositionCheck.PositionChenge(myTransform, 1.8f);
 
-        waitTime = CalcScript.AttackTime(Speed);
-
     }
 
     // Update is called once per frame
