@@ -20,6 +20,9 @@ public class CharaController : Prms
     int count1 = 0;
     int count2 = 0;
 
+    // アタックタイプによる攻撃タイミングの補正値
+    float speedCorrection = 1;
+
     // アニメーション
     protected Animator anime = new Animator();
 
@@ -40,6 +43,9 @@ public class CharaController : Prms
 
         anime = this.GetComponent<Animator>();
         myTransform = this.transform;
+
+        // アタックタイプによる補正値をセット
+        AttackTypeCor();
 
         playerPanel = GameObject.FindWithTag("PlayerPanel").GetComponent<SummonPanelList>();
         enemyPanel = GameObject.FindWithTag("EnemyPanel").GetComponent<SummonPanelList>();
@@ -62,6 +68,28 @@ public class CharaController : Prms
         Vector3 localAngle = myTransform.localEulerAngles;
         localAngle.y = 0f;
         myTransform.localEulerAngles = localAngle;
+    }
+
+    // アタックタイプによる補正
+    void AttackTypeCor()
+    {
+        if (ATTACK_TYPE.ROW_RANGE == attack_type)
+        {
+            speedCorrection = 1.1f;
+        }
+        else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
+        {
+            speedCorrection = 1.2f;
+        }
+        else if (ATTACK_TYPE.ALL_RANGE == attack_type)
+        {
+            speedCorrection = 1.4f;
+        }
+        else
+        {
+            speedCorrection = 1f;
+        }
+
     }
 
     // 全体のオブジェクトの数に変化があったかどうか
@@ -114,7 +142,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 
@@ -151,7 +179,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 
@@ -265,7 +293,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 
@@ -363,7 +391,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 
@@ -398,7 +426,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 
@@ -450,7 +478,7 @@ public class CharaController : Prms
         if (time > waitTime)
         {
             time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+            waitTime = CalcScript.AttackTime(Speed, speedCorrection);
 
             anime.SetTrigger("attack");
 

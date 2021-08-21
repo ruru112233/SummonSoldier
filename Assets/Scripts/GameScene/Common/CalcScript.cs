@@ -23,10 +23,10 @@ public static class CalcScript
         return damage;
     }
 
-    // スピードによる攻撃速度の計算
-    public static float AttackTime(int speed)
+    // スピードによる攻撃タイミングの計算
+    public static float AttackTime(int speed, float correction)
     {
-        float defaltTime = 5.0f;
+        float defaltTime = 5.0f * correction;
 
         float randTime = Random.Range(speed * 0.01f - 0.3f, speed * 0.01f + 0.3f);
 
