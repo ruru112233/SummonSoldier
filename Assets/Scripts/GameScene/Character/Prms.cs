@@ -23,6 +23,17 @@ public class Prms : MonoBehaviour
     protected float waitTime = 0;
     protected float time = 0;
 
+    // 攻撃タイプ選定
+    public enum ATTACK_TYPE
+    {
+        SINGLE_RANGE, // 単体
+        COLUMN_RANGE, // 縦1列
+        ROW_RANGE, // 横1列
+        ALL_RANGE, // 全体
+    }
+
+    public ATTACK_TYPE attack_type;
+
 
     // Start is called before the first frame update
     public virtual void Start()

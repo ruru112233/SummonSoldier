@@ -114,14 +114,22 @@ public static class ChildCheck
         return false;
     }
 
-    // 縦1列のパネルで子要素に敵が存在するか確認（何列目に存在するかを返す）
-    public static List<int> RowCountCheck(SummonPanelList panels)
+    // 縦1列以上存在しているかチェック
+    public static bool ColumnCheck(SummonPanelList panels)
     {
-        // 列を返す変数
-        List<int> rowCheck = new List<int>();
+        if (ColumnNoCheck(panels).Count != 0)
+        {
+            return true;
+        }
 
+        return false;
+    }
+
+    // 縦1列のパネルで子要素に敵が存在するか確認（何列目に存在するかを返す）
+    public static List<int> ColumnNoCheck(SummonPanelList panels)
+    {
         // 一時格納用
-        List<int> rows = new List<int>();
+        List<int> columns = new List<int>();
 
         foreach (GameObject panel in panels.panel)
         {
@@ -131,23 +139,24 @@ public static class ChildCheck
                 {
                     case 0:
                     case 3:
-                        rows.Add(1);
+                        columns.Add(1);
                         break;
                     case 1:
                     case 4:
-                        rows.Add(2);
+                        columns.Add(2);
                         break;
                     case 2:
                     case 5:
-                        rows.Add(3);
+                        columns.Add(3);
                         break;
                 }
             }
         }
 
-        rowCheck = rows.Distinct().ToList();
+        // 列を返す変数
+        List<int> columnCheck = columns.Distinct().ToList();
 
-        return rowCheck;
+        return columnCheck;
 
     }
 

@@ -3715,11 +3715,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 4040659678922552458}
+  longRangeFlag: 0
   hp: 110
   at: 20
   df: 12
   speed: 40
   cost: 2
+  attack_type: 1
 --- !u!1 &8078620422473125662
 GameObject:
   m_ObjectHideFlags: 0
