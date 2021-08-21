@@ -137,9 +137,6 @@ public class CharaController : Prms
             StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
             // エフェクト処理
             Vector3 targetPos = target.transform.position;
-            targetPos.x += 0f;
-            targetPos.y += 1.2f;
-            targetPos.z += 0f;
             if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             myTransform.Rotate(0, -1.0f, 0);
         }

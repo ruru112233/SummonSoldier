@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2565205794522192668}
-  effectPrefab: {fileID: 104674, guid: 7d94f95c4fa5bad48a97306b1143b882, type: 3}
+  effectPrefab: {fileID: 100014, guid: ce442e8269f7e264a802dfea7a77b4d8, type: 3}
   longRangeFlag: 0
   hp: 500
   at: 20
