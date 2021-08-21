@@ -27,7 +27,6 @@ public class EnemyController : CharaController
 
         waitTime = CalcScript.AttackTime(Speed);
 
-
     }
 
     // Update is called once per frame
@@ -36,13 +35,49 @@ public class EnemyController : CharaController
         base.Update();
 
         // 敵のパネルにオブジェクトがあった場合、攻撃する
-        if (longRangeFlag)
+        if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
         {
-            if (ChildCheck.AllCountCheck(playerPanel)) AllAttack(playerPanel, playersObj);
+            // 単体
+            if (longRangeFlag)
+            {
+                Debug.Log("遠距離");
+                if (ChildCheck.AllCountCheck(playerPanel))
+                    AllAttack(playerPanel, playersObj);
+            }
+            else
+            {
+                Debug.Log("近距離");
+                if (ChildCheck.FrontCountCheck(playerPanel) &&
+                    ChildCheck.FrontCheck(this.transform))
+                    FrontAttack(playerPanel, playersObj);
+            }
         }
-        else
+        else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
         {
-            if (ChildCheck.FrontCountCheck(playerPanel)) FrontAttack(playerPanel, playersObj);
+            // 縦一列
+            if (ChildCheck.ColumnCheck(playerPanel))
+                ColumnAttack(playerPanel, playersObj);
+
+        }
+        else if (ATTACK_TYPE.ROW_RANGE == attack_type)
+        {
+            // 横一列
+            if (longRangeFlag)
+            {
+                if (ChildCheck.RowCheck(playerPanel))
+                    AllRowAttack(playerPanel, playersObj);
+            }
+            else
+            {
+                if (ChildCheck.FrontRowCheck(playerPanel))
+                    FrontRowAttack(playerPanel, playersObj);
+            }
+        }
+        else if (ATTACK_TYPE.ALL_RANGE == attack_type)
+        {
+            // 全体
+            if (ChildCheck.AllCountCheck(playerPanel))
+                AllRangeAttack(playerPanel, playersObj);
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
