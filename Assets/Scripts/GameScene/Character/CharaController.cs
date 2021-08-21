@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CharaController : Prms
 {
-
     public int Hp { get { return hp; } set { hp = value; } }
 
     public int At { get { return at; } set { at = value; } }
@@ -127,15 +126,15 @@ public class CharaController : Prms
 
                 if (panel.transform.childCount != 0)
                 {
-                    // エネミーのオブジェクトを格納
+                    // パネルオブジェクトを格納
                     objs.Add(SetObj(panel));
                 }
             }
 
-            CharaController target = Target<CharaController>(objs);
+            CharaController target = Target(objs);
 
             // 攻撃処理
-            StartCoroutine(target.DamageText(CalcScript.DamagePoint(at, df)));
+            StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
@@ -155,26 +154,26 @@ public class CharaController : Prms
 
             objs.Clear();
 
-            // エネミーのオブジェクトを格納
+            // パネルオブジェクトを格納
             foreach (GameObject panel in panels.panel)
             {
                 objs.Add(SetObj(panel));
             }
 
-            CharaController target = Target<CharaController>(objs);
+            CharaController target = Target(objs);
 
             // 攻撃処理
-            StartCoroutine(target.DamageText(CalcScript.DamagePoint(at, df)));
+            StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
 
     // ターゲット選定
-    protected T Target<T>(List<GameObject> objs)
+    protected CharaController Target(List<GameObject> objs)
     {
         int r = Random.Range(0, objs.Count);
 
-        T chara = objs[r].GetComponent<T>();
+        CharaController chara = objs[r].GetComponent<CharaController>();
 
         return chara;
     }

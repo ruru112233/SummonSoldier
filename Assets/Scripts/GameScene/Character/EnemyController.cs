@@ -8,18 +8,9 @@ using System.Threading.Tasks;
 
 public class EnemyController : CharaController
 {
-    //public int Hp { get { return hp; } set { hp = value; } }
-
-    //public int At { get { return at; } set { at = value; } }
-
-    //public int Df { get { return df; } set { df = value; } }
-
-    //public int Speed { get { return speed; } set { speed = value; } }
-
     [SerializeField]
     private List<int> dropItemList = new List<int>();
 
-    ItemCount itemCount;
     MasterData masterData;
 
     // Start is called before the first frame update
@@ -65,106 +56,7 @@ public class EnemyController : CharaController
         }
     }
 
-    // 前衛から選択して攻撃
-    //void FrontAttack()
-    //{
-    //    time += Time.deltaTime;
-
-    //    if (time > waitTime)
-    //    {
-    //        time = 0;
-    //        waitTime = CalcScript.AttackTime(Speed);
-
-    //        anime.SetTrigger("attack");
-
-    //        playersObj.Clear();
-
-    //        for (int i = 0; i < 3; i++)
-    //        {
-    //            GameObject panel = playerPanel.panel[i];
-
-    //            if (panel.transform.childCount != 0)
-    //            {
-    //                // エネミーのオブジェクトを格納
-    //                playersObj.Add(SetObj(panel));
-    //            }
-    //        }
-
-    //        PlayerController playerTarget = PlayerTarget(playersObj);
-
-    //        // 攻撃処理
-    //        StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
-    //        myTransform.Rotate(0, -1.0f, 0);
-    //    }
-    //}
-
-    // 全体を選択して攻撃
-    //void AllAttack()
-    //{
-    //    time += Time.deltaTime;
-
-    //    if (time > waitTime)
-    //    {
-    //        time = 0;
-    //        waitTime = CalcScript.AttackTime(Speed);
-
-    //        anime.SetTrigger("attack");
-
-    //        playersObj.Clear();
-
-    //        // エネミーのオブジェクトを格納
-    //        foreach (GameObject panel in playerPanel.panel)
-    //        {
-    //            if (panel.transform.childCount != 0)
-    //            {
-    //                playersObj.Add(SetObj(panel));
-    //            }
-    //        }
-
-    //        PlayerController playerTarget = PlayerTarget(playersObj);
-
-    //        // 攻撃処理
-    //        StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
-    //        myTransform.Rotate(0, -1.0f, 0);
-    //    }
-    //}
-
-    // ターゲット選定
-    //PlayerController PlayerTarget(List<GameObject> objs)
-    //{
-    //    int r = Random.Range(0, objs.Count);
-
-    //    PlayerController player = objs[r].GetComponent<PlayerController>();
-
-    //    return player;
-    //}
-
     
-
-    //public void setDamage(int damage)
-    //{
-    //    this.Hp -= damage;
-    //}
-
-    //public IEnumerator DamageText(int damage)
-    //{
-        
-    //    text.GetComponent<Text>().text = damage.ToString();
-    //    text.transform.position = DamageTextPos(this.transform);
-
-    //    text.SetActive(true);
-
-    //    Hp -= damage;
-
-    //    yield return new WaitForSeconds(0.8f);
-
-    //    if (text != null)
-    //    {
-    //        text.SetActive(false);
-    //    }
-        
-    //}
-
     // HPが0になった時、ランダムでアイテムをドロップする
     ///
     /// id1 = タイリョクノビール
