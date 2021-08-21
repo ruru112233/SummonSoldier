@@ -4,17 +4,19 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : Prms
+public class PlayerController : CharaController
 {
-    public int Hp { get { return hp; }  set { hp = value; } }
 
-    public int At { get { return at; }  set { at = value; } }
 
-    public int Df { get { return df; }  set { df = value; } }
+    //public int Hp { get { return hp; } set { hp = value; } }
 
-    public int Speed { get { return speed; }  set { speed = value; } }
+    //public int At { get { return at; } set { at = value; } }
 
-    public int Cost { get { return cost; } set { cost = value; } }
+    //public int Df { get { return df; } set { df = value; } }
+
+    //public int Speed { get { return speed; } set { speed = value; } }
+
+    //public int Cost { get { return cost; } set { cost = value; } }
 
     EnemyController enemyTarget = null;
 
@@ -34,6 +36,8 @@ public class PlayerController : Prms
     {
         base.Update();
 
+        Debug.Log(ChildCheck.RowCountCheck(enemyPanel).Count);
+
         // この処理は重いか？
         startTextPos = new Vector3(myTransform.position.x, myTransform.position.y + 2.0f, myTransform.position.z);
 
@@ -41,14 +45,14 @@ public class PlayerController : Prms
         if (longRangeFlag)
         {
             Debug.Log("遠距離");
-            if (ChildCheck.AllCountCheck(enemyPanel)) AllAttack();
+            if (ChildCheck.AllCountCheck(enemyPanel)) AllAttack(enemyPanel, enemysObj);
         }
         else
         {
             Debug.Log("近距離");
             if (ChildCheck.FrontCountCheck(enemyPanel)&&
                 ChildCheck.FrontCheck(this.transform)) 
-                FrontAttack();
+                FrontAttack(enemyPanel, enemysObj);
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
@@ -59,96 +63,96 @@ public class PlayerController : Prms
     }
 
     // 前衛から選択して攻撃
-    void FrontAttack()
-    {
-        time += Time.deltaTime;
+    //void FrontAttack()
+    //{
+    //    time += Time.deltaTime;
 
-        if (time > waitTime)
-        {
-            time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+    //    if (time > waitTime)
+    //    {
+    //        time = 0;
+    //        waitTime = CalcScript.AttackTime(Speed);
 
-            anime.SetTrigger("attack");
+    //        anime.SetTrigger("attack");
 
-            enemysObj.Clear();
+    //        enemysObj.Clear();
 
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject panel = enemyPanel.panel[i];
+    //        for (int i = 0; i < 3; i++)
+    //        {
+    //            GameObject panel = enemyPanel.panel[i];
 
-                if (panel.transform.childCount != 0)
-                {
-                    // エネミーのオブジェクトを格納
-                    enemysObj.Add(SetObj(panel));
-                }
-            }
+    //            if (panel.transform.childCount != 0)
+    //            {
+    //                // エネミーのオブジェクトを格納
+    //                enemysObj.Add(SetObj(panel));
+    //            }
+    //        }
 
-            EnemyController enemyTarget = EnemyTarget(enemysObj);
+    //        EnemyController enemyTarget = EnemyTarget(enemysObj);
 
-            // 攻撃処理
-            StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
-            myTransform.Rotate(0, -1.0f, 0);
-        }
-    }
+    //        // 攻撃処理
+    //        StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
+    //        myTransform.Rotate(0, -1.0f, 0);
+    //    }
+    //}
 
 
     // 全体から選択して攻撃
-    void AllAttack()
-    {
-        time += Time.deltaTime;
+    //void AllAttack()
+    //{
+    //    time += Time.deltaTime;
 
-        if (time > waitTime)
-        {
-            time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+    //    if (time > waitTime)
+    //    {
+    //        time = 0;
+    //        waitTime = CalcScript.AttackTime(Speed);
 
-            anime.SetTrigger("attack");
+    //        anime.SetTrigger("attack");
 
-            enemysObj.Clear();
+    //        enemysObj.Clear();
 
-            // エネミーのオブジェクトを格納
-            foreach (GameObject panel in enemyPanel.panel)
-            {
-                enemysObj.Add(SetObj(panel));
-            }
+    //        // エネミーのオブジェクトを格納
+    //        foreach (GameObject panel in enemyPanel.panel)
+    //        {
+    //            enemysObj.Add(SetObj(panel));
+    //        }
 
-            EnemyController enemyTarget = EnemyTarget(enemysObj);
+    //        EnemyController enemyTarget = EnemyTarget(enemysObj);
 
-            // 攻撃処理
-            StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
-            myTransform.Rotate(0, -1.0f, 0);
-        }
-    }
+    //        // 攻撃処理
+    //        StartCoroutine(enemyTarget.DamageText(CalcScript.DamagePoint(at, df)));
+    //        myTransform.Rotate(0, -1.0f, 0);
+    //    }
+    //}
 
     // ターゲット選定
-    EnemyController EnemyTarget(List<GameObject> objs)
-    {
-        int r = Random.Range(0, objs.Count);
+    //EnemyController EnemyTarget(List<GameObject> objs)
+    //{
+    //    int r = Random.Range(0, objs.Count);
 
-        EnemyController enemy = objs[r].GetComponent<EnemyController>();
+    //    EnemyController enemy = objs[r].GetComponent<EnemyController>();
 
-        return enemy;
-    }
+    //    return enemy;
+    //}
 
-    
-    public IEnumerator DamageText(int damage)
-    {
-        
-        text.GetComponent<Text>().text = damage.ToString();
-        
-        text.transform.position = DamageTextPos(this.transform);
 
-        text.SetActive(true);
+    //public IEnumerator DamageText(int damage)
+    //{
 
-        Hp -= damage;
+    //    text.GetComponent<Text>().text = damage.ToString();
 
-        yield return new WaitForSeconds(0.5f);
+    //    text.transform.position = DamageTextPos(this.transform);
 
-        if (text != null)
-        {
-            text.SetActive(false);
-        }
+    //    text.SetActive(true);
 
-    }
+    //    Hp -= damage;
+
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    if (text != null)
+    //    {
+    //        text.SetActive(false);
+    //    }
+
+    //}
 
 }

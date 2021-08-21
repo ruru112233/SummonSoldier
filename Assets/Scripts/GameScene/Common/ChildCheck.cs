@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ChildCheck
@@ -113,6 +114,44 @@ public static class ChildCheck
         return false;
     }
 
+    // 縦1列のパネルで子要素に敵が存在するか確認（何列目に存在するかを返す）
+    public static List<int> RowCountCheck(SummonPanelList panels)
+    {
+        // 列を返す変数
+        List<int> rowCheck = new List<int>();
+
+        // 一時格納用
+        List<int> rows = new List<int>();
+
+        foreach (GameObject panel in panels.panel)
+        {
+            if (panel.transform.childCount == 1)
+            {
+                switch (panel.transform.GetSiblingIndex())
+                {
+                    case 0:
+                    case 3:
+                        rows.Add(1);
+                        break;
+                    case 1:
+                    case 4:
+                        rows.Add(2);
+                        break;
+                    case 2:
+                    case 5:
+                        rows.Add(3);
+                        break;
+                }
+            }
+        }
+
+        rowCheck = rows.Distinct().ToList();
+
+        return rowCheck;
+
+    }
+
+
     // 自身の位置が前衛かをチェックする
     public static bool FrontCheck(Transform transform)
     {
@@ -127,4 +166,5 @@ public static class ChildCheck
 
         return false;
     }
+
 }

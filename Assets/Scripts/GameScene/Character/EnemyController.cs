@@ -6,15 +6,15 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Threading.Tasks;
 
-public class EnemyController : Prms
+public class EnemyController : CharaController
 {
-    public int Hp { get { return hp; } set { hp = value; } }
+    //public int Hp { get { return hp; } set { hp = value; } }
 
-    public int At { get { return at; } set { at = value; } }
+    //public int At { get { return at; } set { at = value; } }
 
-    public int Df { get { return df; } set { df = value; } }
+    //public int Df { get { return df; } set { df = value; } }
 
-    public int Speed { get { return speed; } set { speed = value; } }
+    //public int Speed { get { return speed; } set { speed = value; } }
 
     [SerializeField]
     private List<int> dropItemList = new List<int>();
@@ -47,11 +47,11 @@ public class EnemyController : Prms
         // 敵のパネルにオブジェクトがあった場合、攻撃する
         if (longRangeFlag)
         {
-            if (ChildCheck.AllCountCheck(playerPanel)) AllAttack();
+            if (ChildCheck.AllCountCheck(playerPanel)) AllAttack(playerPanel, playersObj);
         }
         else
         {
-            if (ChildCheck.FrontCountCheck(playerPanel)) FrontAttack();
+            if (ChildCheck.FrontCountCheck(playerPanel)) FrontAttack(playerPanel, playersObj);
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
@@ -66,104 +66,104 @@ public class EnemyController : Prms
     }
 
     // 前衛から選択して攻撃
-    void FrontAttack()
-    {
-        time += Time.deltaTime;
+    //void FrontAttack()
+    //{
+    //    time += Time.deltaTime;
 
-        if (time > waitTime)
-        {
-            time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+    //    if (time > waitTime)
+    //    {
+    //        time = 0;
+    //        waitTime = CalcScript.AttackTime(Speed);
 
-            anime.SetTrigger("attack");
+    //        anime.SetTrigger("attack");
 
-            playersObj.Clear();
+    //        playersObj.Clear();
 
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject panel = playerPanel.panel[i];
+    //        for (int i = 0; i < 3; i++)
+    //        {
+    //            GameObject panel = playerPanel.panel[i];
 
-                if (panel.transform.childCount != 0)
-                {
-                    // エネミーのオブジェクトを格納
-                    playersObj.Add(SetObj(panel));
-                }
-            }
+    //            if (panel.transform.childCount != 0)
+    //            {
+    //                // エネミーのオブジェクトを格納
+    //                playersObj.Add(SetObj(panel));
+    //            }
+    //        }
 
-            PlayerController playerTarget = PlayerTarget(playersObj);
+    //        PlayerController playerTarget = PlayerTarget(playersObj);
 
-            // 攻撃処理
-            StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
-            myTransform.Rotate(0, -1.0f, 0);
-        }
-    }
+    //        // 攻撃処理
+    //        StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
+    //        myTransform.Rotate(0, -1.0f, 0);
+    //    }
+    //}
 
     // 全体を選択して攻撃
-    void AllAttack()
-    {
-        time += Time.deltaTime;
+    //void AllAttack()
+    //{
+    //    time += Time.deltaTime;
 
-        if (time > waitTime)
-        {
-            time = 0;
-            waitTime = CalcScript.AttackTime(Speed);
+    //    if (time > waitTime)
+    //    {
+    //        time = 0;
+    //        waitTime = CalcScript.AttackTime(Speed);
 
-            anime.SetTrigger("attack");
+    //        anime.SetTrigger("attack");
 
-            playersObj.Clear();
+    //        playersObj.Clear();
 
-            // エネミーのオブジェクトを格納
-            foreach (GameObject panel in playerPanel.panel)
-            {
-                if (panel.transform.childCount != 0)
-                {
-                    playersObj.Add(SetObj(panel));
-                }
-            }
+    //        // エネミーのオブジェクトを格納
+    //        foreach (GameObject panel in playerPanel.panel)
+    //        {
+    //            if (panel.transform.childCount != 0)
+    //            {
+    //                playersObj.Add(SetObj(panel));
+    //            }
+    //        }
 
-            PlayerController playerTarget = PlayerTarget(playersObj);
+    //        PlayerController playerTarget = PlayerTarget(playersObj);
 
-            // 攻撃処理
-            StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
-            myTransform.Rotate(0, -1.0f, 0);
-        }
-    }
+    //        // 攻撃処理
+    //        StartCoroutine(playerTarget.DamageText(CalcScript.DamagePoint(at, df)));
+    //        myTransform.Rotate(0, -1.0f, 0);
+    //    }
+    //}
 
     // ターゲット選定
-    PlayerController PlayerTarget(List<GameObject> objs)
-    {
-        int r = Random.Range(0, objs.Count);
+    //PlayerController PlayerTarget(List<GameObject> objs)
+    //{
+    //    int r = Random.Range(0, objs.Count);
 
-        PlayerController player = objs[r].GetComponent<PlayerController>();
+    //    PlayerController player = objs[r].GetComponent<PlayerController>();
 
-        return player;
-    }
+    //    return player;
+    //}
 
     
 
-    public void setDamage(int damage)
-    {
-        this.Hp -= damage;
-    }
+    //public void setDamage(int damage)
+    //{
+    //    this.Hp -= damage;
+    //}
 
-    public IEnumerator DamageText(int damage)
-    {
+    //public IEnumerator DamageText(int damage)
+    //{
         
-        text.GetComponent<Text>().text = damage.ToString();
-        text.transform.position = DamageTextPos(this.transform);
+    //    text.GetComponent<Text>().text = damage.ToString();
+    //    text.transform.position = DamageTextPos(this.transform);
 
-        text.SetActive(true);
+    //    text.SetActive(true);
 
-        Hp -= damage;
+    //    Hp -= damage;
 
-        yield return new WaitForSeconds(0.8f);
+    //    yield return new WaitForSeconds(0.8f);
 
-        if (text != null)
-        {
-            text.SetActive(false);
-        }
+    //    if (text != null)
+    //    {
+    //        text.SetActive(false);
+    //    }
         
-    }
+    //}
 
     // HPが0になった時、ランダムでアイテムをドロップする
     ///
