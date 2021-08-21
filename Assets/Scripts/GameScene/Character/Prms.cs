@@ -8,6 +8,10 @@ public class Prms : MonoBehaviour
     protected GameObject text = null;
     protected Vector3 startTextPos = new Vector3();
 
+    // エフェクトの格納
+    [SerializeField]
+    protected GameObject effectPrefab = null;
+
     // 遠距離可能か判定
     [SerializeField]
     protected bool longRangeFlag = false;

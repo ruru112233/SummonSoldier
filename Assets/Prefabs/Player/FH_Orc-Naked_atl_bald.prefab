@@ -1834,11 +1834,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2565205794522192668}
-  hp: 100
+  effectPrefab: {fileID: 104674, guid: 7d94f95c4fa5bad48a97306b1143b882, type: 3}
+  longRangeFlag: 0
+  hp: 500
   at: 20
   df: 10
   speed: 40
   cost: 1
+  attack_type: 0
 --- !u!1 &3349916093931319402
 GameObject:
   m_ObjectHideFlags: 0
