@@ -170,6 +170,9 @@ public class CharaController : Prms
 
             // 攻撃処理
             StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            // エフェクト処理
+            Vector3 targetPos = target.transform.position;
+            if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
@@ -284,6 +287,9 @@ public class CharaController : Prms
             foreach (CharaController target in targets)
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                // エフェクト処理
+                Vector3 targetPos = target.transform.position;
+                if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -377,6 +383,8 @@ public class CharaController : Prms
             foreach (CharaController target in targets)
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                // エフェクト処理
+                EffectCtr(target);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -412,6 +420,8 @@ public class CharaController : Prms
             foreach (CharaController target in targets)
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                // エフェクト処理
+                EffectCtr(target);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -462,8 +472,21 @@ public class CharaController : Prms
             foreach (CharaController target in targets)
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                // エフェクト処理
+                Vector3 targetPos = target.transform.position;
+                if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
+
+    // エフェクトの操作
+    void EffectCtr(CharaController target)
+    {
+        Vector3 targetPos = target.transform.position;
+        GameObject effect = effectPrefab;
+
+        if (effectPrefab) Instantiate(effect, targetPos, Quaternion.identity);
+    }
+
 }
