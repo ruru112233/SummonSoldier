@@ -201,4 +201,266 @@ public class CharaController : Prms
         }
 
     }
+
+    // ターゲットのCharaControllerを格納して返す
+    protected List<CharaController> CoulumTargets(List<GameObject> objs, int columnNo)
+    {
+        List<CharaController> charas = new List<CharaController>();
+        CharaController chara = new CharaController();
+
+        switch (columnNo)
+        {
+            case 1:
+                foreach (GameObject obj in objs)
+                {
+                    if (obj.transform.parent.name == "SummonPanel1" ||
+                        obj.transform.parent.name == "SummonPanel4")
+                    {
+                        chara = obj.GetComponent<CharaController>();
+                        charas.Add(chara);
+                    }
+
+                }
+                break;
+            case 2:
+                foreach (GameObject obj in objs)
+                {
+                    if (obj.transform.parent.name == "SummonPanel2" ||
+                        obj.transform.parent.name == "SummonPanel5")
+                    {
+                        chara = obj.GetComponent<CharaController>();
+                        charas.Add(chara);
+                    }
+
+                }
+                break;
+            case 3:
+                foreach (GameObject obj in objs)
+                {
+                    if (obj.transform.parent.name == "SummonPanel3" ||
+                        obj.transform.parent.name == "SummonPanel6")
+                    {
+                        chara = obj.GetComponent<CharaController>();
+                        charas.Add(chara);
+                    }
+
+                }
+                break;
+        }
+
+        return charas;
+    }
+
+    // 縦1列を攻撃
+    protected void ColumnAttack(SummonPanelList panels, List<GameObject> objs)
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            objs.Clear();
+
+            int columnNo = ColumnTarget(panels);
+
+            foreach (GameObject panel in panels.panel)
+            {
+                if (panel.transform.childCount != 0)
+                {
+                    objs.Add(SetObj(panel));
+                }
+            }
+
+            List<CharaController> targets = CoulumTargets(objs, columnNo);
+
+            // 攻撃処理
+            foreach (CharaController target in targets)
+            {
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            }
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
+
+
+    // ターゲット選定（列）
+    protected int ColumnTarget(SummonPanelList panel)
+    {
+        List<int> targetList = ChildCheck.ColumnNoCheck(panel);
+
+        int randNo = Random.Range(0, targetList.Count);
+        int targetColumn = targetList[randNo];
+
+        return targetColumn;
+    }
+
+    protected List<CharaController> RowTargets(List<GameObject> objs, int rowNo)
+    {
+        List<CharaController> charas = new List<CharaController>();
+        CharaController chara = new CharaController();
+
+        switch (rowNo)
+        {
+            case 1:
+                foreach (GameObject obj in objs)
+                {
+                    if (obj.transform.parent.name == "SummonPanel1" ||
+                        obj.transform.parent.name == "SummonPanel2" ||
+                        obj.transform.parent.name == "SummonPanel3")
+                    {
+                        chara = obj.GetComponent<CharaController>();
+                        charas.Add(chara);
+                    }
+
+                }
+                break;
+            case 2:
+                foreach (GameObject obj in objs)
+                {
+                    if (obj.transform.parent.name == "SummonPanel4" ||
+                        obj.transform.parent.name == "SummonPanel5" ||
+                        obj.transform.parent.name == "SummonPanel6")
+                    {
+                        chara = obj.GetComponent<CharaController>();
+                        charas.Add(chara);
+                    }
+                }
+                break;
+        }
+
+        return charas;
+    }
+
+    // ターゲット選定（行）
+    protected int RowTarget(SummonPanelList panel)
+    {
+        List<int> targetList = ChildCheck.RowNoCheck(panel);
+
+        int randNo = Random.Range(0, targetList.Count);
+        int targetRow = targetList[randNo];
+
+        return targetRow;
+    }
+
+    // 横一行（前衛）へ攻撃
+    protected void FrontRowAttack(SummonPanelList panels, List<GameObject> objs)
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            objs.Clear();
+
+            foreach (GameObject panel in panels.panel)
+            {
+                if (panel.transform.childCount != 0)
+                {
+                    objs.Add(SetObj(panel));
+                }
+            }
+
+            List<CharaController> targets = RowTargets(objs, 1);
+
+            // 攻撃処理
+            foreach (CharaController target in targets)
+            {
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            }
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
+
+    // 横1行（前衛・後衛）
+    protected void AllRowAttack(SummonPanelList panels, List<GameObject> objs)
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            objs.Clear();
+
+            int rowNo = RowTarget(panels);
+
+            foreach (GameObject panel in panels.panel)
+            {
+                if (panel.transform.childCount != 0)
+                {
+                    objs.Add(SetObj(panel));
+                }
+            }
+
+            List<CharaController> targets = RowTargets(objs, rowNo);
+
+            // 攻撃処理
+            foreach (CharaController target in targets)
+            {
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            }
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
+
+    // 全体のターゲット設定
+    protected List<CharaController> AllTargets(List<GameObject> objs)
+    {
+        List<CharaController> charas = new List<CharaController>();
+        CharaController chara = new CharaController();
+
+        foreach (GameObject obj in objs)
+        {
+            chara = obj.GetComponent<CharaController>();
+            charas.Add(chara);
+        }
+
+        return charas;
+    }
+
+    // 全体攻撃
+    protected void AllRangeAttack(SummonPanelList panels, List<GameObject> objs)
+    {
+        time += Time.deltaTime;
+
+        if (time > waitTime)
+        {
+            time = 0;
+            waitTime = CalcScript.AttackTime(Speed);
+
+            anime.SetTrigger("attack");
+
+            objs.Clear();
+
+            int rowNo = RowTarget(panels);
+
+            foreach (GameObject panel in panels.panel)
+            {
+                if (panel.transform.childCount != 0)
+                {
+                    objs.Add(SetObj(panel));
+                }
+            }
+
+            List<CharaController> targets = AllTargets(objs);
+
+            // 攻撃処理
+            foreach (CharaController target in targets)
+            {
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            }
+            myTransform.Rotate(0, -1.0f, 0);
+        }
+    }
 }

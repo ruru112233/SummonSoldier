@@ -160,6 +160,60 @@ public static class ChildCheck
 
     }
 
+    // 横1行以上存在しているかチェック
+    public static bool RowCheck(SummonPanelList panels)
+    {
+        if (RowNoCheck(panels).Count != 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 前衛に存在しているかチェック
+    public static bool FrontRowCheck(SummonPanelList panels)
+    {
+        if (RowNoCheck(panels).Contains(1))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 横一列のパネルで子要素に敵が存在するか確認（何列目に存在するかを返す）
+    public static List<int> RowNoCheck(SummonPanelList panels)
+    {
+        // 一時格納用
+        List<int> rows = new List<int>();
+
+        foreach (GameObject panel in panels.panel)
+        {
+            if (panel.transform.childCount == 1)
+            {
+                switch (panel.transform.GetSiblingIndex())
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                        rows.Add(1);
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                        rows.Add(2);
+                        break;
+                }
+            }
+        }
+
+        // 列を返す変数
+        List<int> rowCheck = rows.Distinct().ToList();
+
+        return rowCheck;
+
+    }
 
     // 自身の位置が前衛かをチェックする
     public static bool FrontCheck(Transform transform)
