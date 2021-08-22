@@ -8,13 +8,15 @@ using UnityEngine.SceneManagement;
 public class OnClick : MonoBehaviour
 {
     [SerializeField]
-    private Button atButton = null
-                 , gameSceneButton = null
-                 , strategySceneButton = null
-                 , selectClearButton = null
-                 , menuButton = null
-                 , closeButton = null
-                 , strategyButton = null;
+    private Button atButton = null // 攻撃ボタン
+                 , gameSceneButton = null // ゲーム遷移に遷移
+                 , selectClearButton = null // セレクトクリアボタン
+                 , menuButton = null // メニューボタン
+                 , closeButton = null // 閉じるボタン（メニューの）
+                 , strategyButton = null // ストラテジーシーンに遷移
+                 , unitProfileButton = null // ユニットプロフィール確認ボタン
+                 , unitBuyButton = null // ユニット購入ボタン
+                 , reinforcementButton = null;  // 強化
 
     [SerializeField]
     private SummonPanelList playerPanel = null
@@ -32,17 +34,20 @@ public class OnClick : MonoBehaviour
     {
         SetButton();
         if(menuPanel) menuPanel.SetActive(false);
+        if (reinforcementButton) reinforcementButton.gameObject.SetActive(false);
     }
 
     void SetButton()
     {
         if (atButton) atButton.onClick.SetListener(AttackButton);
         if (gameSceneButton) gameSceneButton.onClick.SetListener(OnLoadGameScene);
-        if (strategySceneButton) strategySceneButton.onClick.SetListener(OnLoadStrategyScene);
         if (selectClearButton) selectClearButton.onClick.SetListener(SelectMonsterClear);
         if (menuButton) menuButton.onClick.SetListener(MenuButton);
         if (closeButton) closeButton.onClick.SetListener(CloseButton);
         if (strategyButton) strategyButton.onClick.SetListener(OnLoadStrategyScene);
+        if (unitProfileButton) unitProfileButton.onClick.SetListener(UnitProfileButton);
+        if (unitBuyButton) unitBuyButton.onClick.SetListener(UnitBuyButton);
+        if (reinforcementButton) reinforcementButton.onClick.SetListener(UnitReinforcementButton);
     }
 
     void AttackButton()
@@ -133,5 +138,24 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("クローズ");
         menuPanel.SetActive(false);
+    }
+
+    // ユニットプロフィール確認ボタン
+    void UnitProfileButton()
+    {
+
+    }
+
+
+    // ユニット購入ボタン
+    void UnitBuyButton()
+    {
+
+    }
+    
+    // 強化
+    void UnitReinforcementButton()
+    {
+
     }
 }
