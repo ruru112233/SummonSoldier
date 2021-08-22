@@ -9,8 +9,6 @@ public class LoadItem : MonoBehaviour
 
     MasterData masterData;
 
-    ItemCount itemcount = new ItemCount();
-
     // Start is called before the first frame update
     void Start()
     {

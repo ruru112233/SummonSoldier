@@ -17,7 +17,11 @@ public class Prms : MonoBehaviour
     protected bool longRangeFlag = false;
 
     [SerializeField]
-    protected int hp = 0
+    protected string unitName = null;
+
+    [SerializeField]
+    protected int id = 0
+                , hp = 0
                 , at = 0
                 , df = 0
                 , speed = 0

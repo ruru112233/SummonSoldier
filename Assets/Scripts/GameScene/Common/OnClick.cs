@@ -23,7 +23,8 @@ public class OnClick : MonoBehaviour
                           , enemyPanel = null;
 
     [SerializeField]
-    private GameObject menuPanel = null;
+    private GameObject menuPanel = null
+                     , itemScrollView = null;
 
     // ÉÇÉìÉXÉ^Å[Çäiî[Ç∑ÇÈ
     public List<GameObject> playersObj = null;
@@ -33,7 +34,8 @@ public class OnClick : MonoBehaviour
     void Start()
     {
         SetButton();
-        if(menuPanel) menuPanel.SetActive(false);
+        if (menuPanel) menuPanel.SetActive(false);
+        if (itemScrollView) itemScrollView.SetActive(false);
         if (reinforcementButton) reinforcementButton.gameObject.SetActive(false);
     }
 
