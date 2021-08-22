@@ -46,7 +46,27 @@ public class Prms : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        
+        if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
+        {
+            // íPëÃ
+            effectPrefab = GameObject.FindWithTag("SingleEffect");
+        }
+        else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
+        {
+            // ècÇPóÒ
+            effectPrefab = GameObject.FindWithTag("ColumnEffect");
+        }
+        else if (ATTACK_TYPE.ROW_RANGE == attack_type)
+        {
+            // â°ÇPóÒ
+            effectPrefab = GameObject.FindWithTag("RowEffect");
+        }
+        else if (ATTACK_TYPE.ALL_RANGE == attack_type)
+        {
+            // ëSëÃ
+            effectPrefab = GameObject.FindWithTag("AllEffect");
+        }
+
     }
 
     // Update is called once per frame

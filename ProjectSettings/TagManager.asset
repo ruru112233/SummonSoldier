@@ -12,6 +12,11 @@ TagManager:
   - SummonManager
   - MasterData
   - BattleMonster
+  - RotationModel
+  - SingleEffect
+  - ColumnEffect
+  - RowEffect
+  - AllEffect
   layers:
   - Default
   - TransparentFX

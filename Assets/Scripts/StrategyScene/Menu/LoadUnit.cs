@@ -20,7 +20,9 @@ public class LoadUnit : MonoBehaviour
 
     IEnumerator UnitAddButton()
     {
-        yield return new WaitUntil(() => masterData.spriteLoadFlag && masterData.playerUnitFlag);
+        yield return new WaitUntil(() => masterData.spriteLoadFlag && 
+                                         masterData.playerUnitFlag &&
+                                         masterData.playerUnitRottationFlag);
 
         var index = 0;
 
@@ -33,6 +35,7 @@ public class LoadUnit : MonoBehaviour
 
             data.sprite = unitImage;
             data.unitName = unitData.UnitName;
+            data.rotationObj = masterData.playerRotationUnitList[i];
             data.unitIndex = index;
 
             unitView.AddUnitButton( data );

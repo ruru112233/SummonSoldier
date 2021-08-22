@@ -15,7 +15,8 @@ public class MasterData : MonoBehaviour
     [SerializeField]
     private AssetLabelReference _labelReference
                               , _itemListLabel
-                              , _playerUnitLabel;
+                              , _playerUnitLabel
+                              , _playerRotationLabel;
 
     // モンスターイメージ画像格納
     public List<Sprite> monsterImageList;
@@ -24,14 +25,16 @@ public class MasterData : MonoBehaviour
     public List<ItemSO> itemList;
 
     // PlayerのUnitを格納
-    public List<GameObject> playerUnitList;
+    public List<GameObject> playerUnitList
+                          , playerRotationUnitList;
 
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
 
     public bool spriteLoadFlag = false
               , itemListFlag = false
-              , playerUnitFlag = false;
+              , playerUnitFlag = false
+              , playerUnitRottationFlag = false;
 
     public Dictionary<string, int> itemCounter = new Dictionary<string, int>();
 
@@ -125,6 +128,17 @@ public class MasterData : MonoBehaviour
             }
 
             playerUnitFlag = true;
+        };
+
+        Addressables.LoadAssetsAsync<GameObject>(_playerRotationLabel, null).
+        Completed += op =>
+        {
+            foreach (GameObject obj in op.Result)
+            {
+                playerRotationUnitList.Add(obj);
+            }
+
+            playerUnitRottationFlag = true;
         };
     }
 

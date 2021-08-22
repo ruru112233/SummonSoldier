@@ -8,6 +8,7 @@ public class UnitData
     public Sprite sprite = null;
     public string unitName = null;
     public int unitIndex = 0;
+    public GameObject rotationObj = null;
 }
 
 public class UnitViewSctipt : MonoBehaviour
@@ -32,6 +33,7 @@ public class UnitViewSctipt : MonoBehaviour
 
         var sprite = data.sprite;
         var unitName = data.unitName;
+        var unitRotationObj = data.rotationObj;
         var index = data.unitIndex;
 
         instance.transform.SetParent(unitContent.transform, false);
@@ -40,10 +42,19 @@ public class UnitViewSctipt : MonoBehaviour
 
         var button = instance.GetComponent<Button>();
 
-        button.onClick.AddListener(() => { Debug.Log(data.unitName + "‚ª‰Ÿ‚³‚ê‚½"); });
+        button.onClick.AddListener(() => 
+        { 
+            Debug.Log(data.unitName + "‚ª‰Ÿ‚³‚ê‚½");
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
+
+            foreach (GameObject rotationObj in objs)
+            {
+                Destroy(rotationObj);
+            }
+
+            GameObject obj = Instantiate(unitRotationObj);
+        });
         instance.gameObject.SetActive(true);
-
     }
-
 
 }
