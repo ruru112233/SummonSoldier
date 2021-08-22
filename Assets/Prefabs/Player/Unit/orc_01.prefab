@@ -652,11 +652,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 378667342419488917}
+  effectPrefab: {fileID: 0}
+  longRangeFlag: 0
+  unitName: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF15"
+  id: 5
   hp: 200
   at: 30
   df: 11
   speed: 40
   cost: 5
+  attack_type: 0
 --- !u!1 &2057034050316524764
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,13 @@ MonoBehaviour:
     - ItemList
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 4387cd38897189f438cad0c193d2b8bf
+    m_Address: Assets/Prefabs/Player/Unit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UnitList
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a91dfcfaba2d3c4468d502f0505dbdec, type: 2}
   m_SchemaSet:

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharaController : Prms
 {
+    public string UnitName { get { return unitName; } }
+
     public int Hp { get { return hp; } set { hp = value; } }
 
     public int At { get { return at; } set { at = value; } }
