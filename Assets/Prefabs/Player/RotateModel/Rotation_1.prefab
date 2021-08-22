@@ -3466,8 +3466,8 @@ GameObject:
   - component: {fileID: 1119218817537557566}
   - component: {fileID: 1119218817547057049}
   m_Layer: 0
-  m_Name: Rotation_Naked_atl_bald
-  m_TagString: PlayerMonster
+  m_Name: Rotation_1
+  m_TagString: RotationModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

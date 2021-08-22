@@ -997,8 +997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 600, y: 0}
-  m_SizeDelta: {x: -1200, y: 0}
+  m_AnchoredPosition: {x: 550, y: 0}
+  m_SizeDelta: {x: -1100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351096768
 MonoBehaviour:
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4716981, g: 0.43103117, b: 0.2247241, a: 1}
+  m_Color: {r: 0.4716981, g: 0.43103117, b: 0.2247241, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2437,6 +2437,10 @@ PrefabInstance:
     - target: {fileID: 4566623849370869327, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
       propertyPath: _playerUnitLabel.m_LabelString
       value: UnitList
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566623849370869327, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
+      propertyPath: _playerRotationLabel.m_LabelString
+      value: RotationUnit
       objectReference: {fileID: 0}
     - target: {fileID: 4566623849370869328, guid: 7a482ad4a009cb8478f2914cb2b33231, type: 3}
       propertyPath: m_RootOrder

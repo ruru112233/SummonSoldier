@@ -38,6 +38,13 @@ MonoBehaviour:
     - UnitList
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 0ab4bacca8d7da3428e2e1f5a8ba5cf8
+    m_Address: Assets/Prefabs/Player/RotateModel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RotationUnit
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a91dfcfaba2d3c4468d502f0505dbdec, type: 2}
   m_SchemaSet:

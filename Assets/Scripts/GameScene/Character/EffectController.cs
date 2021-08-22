@@ -5,12 +5,12 @@ using UnityEngine;
 public class EffectController : MonoBehaviour
 {
     float time = 0;
-    ParticleSystem particle;
+    ParticleSystem[] particles;
 
     // Start is called before the first frame update
     void Start()
     {
-        particle = this.GetComponent<ParticleSystem>();
+        particles = GetComponentsInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -21,7 +21,13 @@ public class EffectController : MonoBehaviour
         if (time >= 1.5f)
         {
             time = 0;
-            particle.Stop(true);
+
+            foreach (ParticleSystem particle in particles)
+            {
+                particle.Stop(true);
+            }
+
+            this.transform.gameObject.SetActive(false);
         }
     }
 }

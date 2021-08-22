@@ -81,11 +81,11 @@ public class CharaController : Prms
         }
         else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
         {
-            speedCorrection = 1.2f;
+            speedCorrection = 1.3f;
         }
         else if (ATTACK_TYPE.ALL_RANGE == attack_type)
         {
-            speedCorrection = 1.4f;
+            speedCorrection = 1.5f;
         }
         else
         {
@@ -166,8 +166,7 @@ public class CharaController : Prms
             // 攻撃処理
             StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
             // エフェクト処理
-            Vector3 targetPos = target.transform.position;
-            if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
+            EffectPool(target);
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
@@ -201,8 +200,7 @@ public class CharaController : Prms
             // 攻撃処理
             StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
             // エフェクト処理
-            Vector3 targetPos = target.transform.position;
-            if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
+            EffectPool(target);
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
@@ -318,8 +316,7 @@ public class CharaController : Prms
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
                 // エフェクト処理
-                Vector3 targetPos = target.transform.position;
-                if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
+                EffectPool(target);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -414,7 +411,7 @@ public class CharaController : Prms
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
                 // エフェクト処理
-                EffectCtr(target);
+                EffectPool(target);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -451,7 +448,7 @@ public class CharaController : Prms
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
                 // エフェクト処理
-                EffectCtr(target);
+                EffectPool(target);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
@@ -503,20 +500,30 @@ public class CharaController : Prms
             {
                 StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
                 // エフェクト処理
-                Vector3 targetPos = target.transform.position;
-                if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
+                EffectPool(target);
+                //Vector3 targetPos = target.transform.position;
+                //if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }
     }
 
-    // エフェクトの操作
-    void EffectCtr(CharaController target)
+    // エフェクトのオブジェクトプール
+    void EffectPool(CharaController target)
     {
-        Vector3 targetPos = target.transform.position;
-        GameObject effect = effectPrefab;
+        foreach (Transform t in effectPrefab.transform)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                t.SetPositionAndRotation(target.transform.position, Quaternion.identity);
+                t.gameObject.SetActive(true);
+                return;
+            }
+        }
 
-        if (effectPrefab) Instantiate(effect, targetPos, Quaternion.identity);
+        GameObject obj = effectPrefab.transform.GetChild(0).gameObject;
+        Instantiate(obj, target.transform.position, Quaternion.identity);
+
     }
 
 }
