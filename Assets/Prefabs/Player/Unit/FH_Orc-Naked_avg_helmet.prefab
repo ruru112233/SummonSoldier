@@ -3724,6 +3724,7 @@ MonoBehaviour:
   df: 12
   speed: 40
   cost: 2
+  explanatory: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF12\u306E\u8AAC\u660E"
   attack_type: 1
 --- !u!1 &8078620422473125662
 GameObject:

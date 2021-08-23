@@ -30,6 +30,11 @@ public class OnClick : MonoBehaviour
     public List<GameObject> playersObj = null;
     public List<GameObject> enemysObj = null;
 
+    public Button ReinforcementButton
+    {
+        get { return reinforcementButton; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -132,7 +137,8 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("メニュー");
         menuPanel.SetActive(true);
-
+        gameSceneButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
     }
 
     // Cloaseボタン
@@ -140,6 +146,15 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("クローズ");
         menuPanel.SetActive(false);
+        gameSceneButton.gameObject.SetActive(true);
+        menuButton.gameObject.SetActive(true);
+
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
+        foreach (GameObject rotationObj in objs)
+        {
+            Destroy(rotationObj);
+        }
+
     }
 
     // ユニットプロフィール確認ボタン

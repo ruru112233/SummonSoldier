@@ -15,6 +15,8 @@ public class CharaController : Prms
 
     public int Speed { get { return speed; } set { speed = value; } }
 
+    public string Explanatory { get { return explanatory; } }
+
     public int Cost { get { return cost; } set { cost = value; } }
 
     // オブジェクト数を入れておく

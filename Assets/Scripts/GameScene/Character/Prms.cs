@@ -27,6 +27,9 @@ public class Prms : MonoBehaviour
                 , speed = 0
                 , cost = 0;
 
+    [SerializeField]
+    protected string explanatory = null;
+
     // 攻撃タイミング
     protected float waitTime = 0;
     protected float time = 0;

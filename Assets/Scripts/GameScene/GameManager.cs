@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public ManaManager manaManager = null;
     public SummonManager summonManager = null;
 
+    public OnClick onClick = null;
+
     public static GameManager instance = null;
 
     public bool objCheck = false;

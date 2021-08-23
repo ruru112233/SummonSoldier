@@ -7,6 +7,10 @@ public class UnitData
 {
     public Sprite sprite = null;
     public string unitName = null;
+    public int at = 0;
+    public int df = 0;
+    public int speed = 0;
+    public string explanatory = null;
     public int unitIndex = 0;
     public GameObject rotationObj = null;
 }
@@ -18,6 +22,12 @@ public class UnitViewSctipt : MonoBehaviour
 
     [SerializeField]
     private Button unitButtonPrefab;
+
+    [SerializeField]
+    private ParmText parmText = null;
+
+    [SerializeField]
+    private Transform pos = null;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +43,11 @@ public class UnitViewSctipt : MonoBehaviour
 
         var sprite = data.sprite;
         var unitName = data.unitName;
+        var at = data.at;
+        var df = data.df;
+        var speed = data.speed;
+        var explanatory = data.explanatory;
+
         var unitRotationObj = data.rotationObj;
         var index = data.unitIndex;
 
@@ -45,6 +60,14 @@ public class UnitViewSctipt : MonoBehaviour
         button.onClick.AddListener(() => 
         { 
             Debug.Log(data.unitName + "が押された");
+            // パラメータの反映
+            parmText.unitName.text = unitName;
+            parmText.atText.text = at.ToString();
+            parmText.dfText.text = df.ToString();
+            parmText.speedText.text = speed.ToString();
+            parmText.explanatoryText.text = explanatory;
+
+            // 回転するオブジェクトを生成
             GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
 
             foreach (GameObject rotationObj in objs)
@@ -52,7 +75,9 @@ public class UnitViewSctipt : MonoBehaviour
                 Destroy(rotationObj);
             }
 
-            GameObject obj = Instantiate(unitRotationObj);
+            Vector3 pos = new Vector3(this.pos.position.x, this.pos.position.y, this.pos.position.z);
+            GameObject obj = Instantiate(unitRotationObj, pos, Quaternion.identity);
+            GameManager.instance.onClick.ReinforcementButton.gameObject.SetActive(true);
         });
         instance.gameObject.SetActive(true);
     }
