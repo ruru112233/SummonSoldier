@@ -35,6 +35,11 @@ public class LoadUnit : MonoBehaviour
 
             data.sprite = unitImage;
             data.unitName = unitData.UnitName;
+            data.at = unitData.At;
+            data.df = unitData.Df;
+            data.speed = unitData.Speed;
+            data.explanatory = unitData.Explanatory;
+
             data.rotationObj = masterData.playerRotationUnitList[i];
             data.unitIndex = index;
 
