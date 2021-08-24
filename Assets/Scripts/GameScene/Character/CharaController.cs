@@ -528,4 +528,6 @@ public class CharaController : Prms
 
     }
 
+    // masterオブジェクトの攻撃
+
 }

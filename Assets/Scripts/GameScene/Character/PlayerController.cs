@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class PlayerController : CharaController
 {
+    MasterController enemyMaster = null;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
 
         text.SetActive(false);
+
+        enemyMaster = GameObject.FindWithTag("MasterEnemy").GetComponent<MasterController>();
 
         PositionCheck.PositionChenge(myTransform, 0f);
 
