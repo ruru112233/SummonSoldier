@@ -13,6 +13,8 @@ public class EnemyController : CharaController
 
     MasterData masterData;
 
+    MasterController masterPlayer = null;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -21,6 +23,8 @@ public class EnemyController : CharaController
         masterData = MasterData.instance;
 
         text.SetActive(false);
+
+        masterPlayer = GameObject.FindWithTag("MasterPlayer").GetComponent<MasterController>();
 
         // 下段に召喚され、上段が召喚されていなかったら上段に上げる
         PositionCheck.PositionChenge(myTransform, 1.8f);

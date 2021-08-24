@@ -17,6 +17,8 @@ TagManager:
   - ColumnEffect
   - RowEffect
   - AllEffect
+  - MasterPlayer
+  - MasterEnemy
   layers:
   - Default
   - TransparentFX
