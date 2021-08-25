@@ -10,6 +10,8 @@ public class UnitData
     public int at = 0;
     public int df = 0;
     public int speed = 0;
+    public string attackRange = null;
+    public string attackType = null;
     public string explanatory = null;
     public int unitIndex = 0;
     public GameObject rotationObj = null;
@@ -46,6 +48,8 @@ public class UnitViewSctipt : MonoBehaviour
         var at = data.at;
         var df = data.df;
         var speed = data.speed;
+        var attackRange = data.attackRange;
+        var attackType = data.attackType;
         var explanatory = data.explanatory;
 
         var unitRotationObj = data.rotationObj;
@@ -65,6 +69,8 @@ public class UnitViewSctipt : MonoBehaviour
             parmText.atText.text = at.ToString();
             parmText.dfText.text = df.ToString();
             parmText.speedText.text = speed.ToString();
+            parmText.attackRange.text = attackRange;
+            parmText.attackType.text = attackType;
             parmText.explanatoryText.text = explanatory;
 
             // 回転するオブジェクトを生成

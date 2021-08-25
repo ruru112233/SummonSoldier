@@ -9,6 +9,8 @@ public class ParmText : MonoBehaviour
               , atText = null
               , dfText = null
               , speedText = null
+              , attackRange = null
+              , attackType = null
               , explanatoryText = null;
 
 }
