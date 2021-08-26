@@ -73,6 +73,9 @@ public class UnitViewSctipt : MonoBehaviour
             parmText.attackType.text = attackType;
             parmText.explanatoryText.text = explanatory;
 
+            // masterデータの更新
+            MasterData.instance.statusUpTargetNo = index;
+
             // 回転するオブジェクトを生成
             GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
 

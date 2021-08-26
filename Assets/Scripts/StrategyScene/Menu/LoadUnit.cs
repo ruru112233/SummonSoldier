@@ -16,6 +16,7 @@ public class LoadUnit : MonoBehaviour
         masterData = MasterData.instance;
 
         StartCoroutine(UnitAddButton());
+
     }
 
     IEnumerator UnitAddButton()
@@ -74,7 +75,7 @@ public class LoadUnit : MonoBehaviour
     {
         string type = null;
 
-        if (Prms.ATTACK_TYPE.SINGLE_RANGE== chara.attack_type)
+        if (Prms.ATTACK_TYPE.SINGLE_RANGE == chara.attack_type)
         {
             type = "íPëÃçUåÇ";
         }

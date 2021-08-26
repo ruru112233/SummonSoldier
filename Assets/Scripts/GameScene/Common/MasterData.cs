@@ -9,6 +9,19 @@ public class ItemCount
     public Dictionary<string, int> counts = new Dictionary<string, int>(); 
 }
 
+public class UnitPowerUpStatusData
+{
+    public int hp = 0;
+    public int at = 0;
+    public int df = 0;
+    public int speed = 0;
+}
+
+public class PowerUpStatusDataList
+{
+    public List<UnitPowerUpStatusData> powerUpStatusDataList = new List<UnitPowerUpStatusData>();
+}
+
 public class MasterData : MonoBehaviour
 {
 
@@ -27,6 +40,12 @@ public class MasterData : MonoBehaviour
     // PlayerのUnitを格納
     public List<GameObject> playerUnitList
                           , playerRotationUnitList;
+
+    // ステータスアップさせるユニット判定用
+    public int statusUpTargetNo = -1;
+
+    // ステータスアップ用のList格納用
+    public PowerUpStatusDataList statusDataList = null;
 
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
@@ -65,6 +84,9 @@ public class MasterData : MonoBehaviour
         PlayerUnitList();
         StartCoroutine(ItemCountList());
         selectMonsterList = this.GetComponent<SelectMonsterList>();
+        statusDataList = new PowerUpStatusDataList();
+        StartCoroutine(CreatePowerUpDataList());
+
     }
 
     // キャラ画像のロード
@@ -142,4 +164,17 @@ public class MasterData : MonoBehaviour
         };
     }
 
+    // ユニットのステータスアップ判定用のリスト作成
+    IEnumerator CreatePowerUpDataList()
+    {
+        yield return new WaitUntil(() => playerUnitFlag);
+
+        UnitPowerUpStatusData data = new UnitPowerUpStatusData();
+
+        for (int i = 0; i < playerUnitList.Count; i++)
+        {
+            statusDataList.powerUpStatusDataList.Add( data );
+        }
+
+    }
 }
