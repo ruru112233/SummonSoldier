@@ -145,6 +145,7 @@ public class OnClick : MonoBehaviour
     void CloseButton()
     {
         Debug.Log("ÉNÉçÅ[ÉY");
+        if (itemScrollView) itemScrollView.SetActive(false);
         menuPanel.SetActive(false);
         gameSceneButton.gameObject.SetActive(true);
         menuButton.gameObject.SetActive(true);
@@ -173,6 +174,6 @@ public class OnClick : MonoBehaviour
     // ã≠âª
     void UnitReinforcementButton()
     {
-
+        if (itemScrollView) itemScrollView.SetActive(true);
     }
 }

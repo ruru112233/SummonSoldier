@@ -20,10 +20,12 @@ public class ItemViewScript : MonoBehaviour
     [SerializeField]
     private Button itemButtonPrefab;
 
+    MasterData masterData = new MasterData();
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        masterData = MasterData.instance;
     }
 
     public void AddItemButton(ItemData data)
@@ -49,7 +51,14 @@ public class ItemViewScript : MonoBehaviour
 
         if (data.count > 0)
         {
-            button.onClick.AddListener(() => { Debug.Log(data.itemName + "が押された"); });
+            button.onClick.AddListener(() => 
+            { 
+                Debug.Log(data.itemName + "が押された");
+                UseItem(index);
+
+
+
+            });
             nameText.text = itemName;
             countText.text = count.ToString();
 
@@ -59,6 +68,46 @@ public class ItemViewScript : MonoBehaviour
         {
             instance.gameObject.SetActive(false);
         }
+
+    }
+
+    // アイテム使用の処理
+    void UseItem(int itemIdx)
+    {
+        if (masterData.statusUpTargetNo >= 0)
+        {
+            if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.MAXHPUP)
+            {
+                // MaxHpUp
+                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].hp += masterData.itemList[itemIdx].GetValue();
+            }
+            else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.ATUP)
+            {
+                // AtUp
+                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].at += masterData.itemList[itemIdx].GetValue();
+            }
+            else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.DFUP)
+            {
+                // DfUp
+                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].df += masterData.itemList[itemIdx].GetValue();
+            }
+            else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.SPEEDUP)
+            {
+                // SpeedUp
+                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].speed += masterData.itemList[itemIdx].GetValue();
+            }
+        }
+
+
+        for (int i = 0; i < masterData.playerUnitList.Count; i++)
+        {
+            Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
+            Debug.Log("HP>>>:" + masterData.statusDataList.powerUpStatusDataList[i].hp);
+            Debug.Log("AT>>>:" + masterData.statusDataList.powerUpStatusDataList[i].at);
+            Debug.Log("DF>>>:" + masterData.statusDataList.powerUpStatusDataList[i].df);
+            Debug.Log("SPEED>>>:" + masterData.statusDataList.powerUpStatusDataList[i].speed);
+        }
+
 
     }
 
