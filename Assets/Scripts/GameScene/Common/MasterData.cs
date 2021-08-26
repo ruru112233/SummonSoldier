@@ -11,15 +11,37 @@ public class ItemCount
 
 public class UnitPowerUpStatusData
 {
-    public int hp = 0;
-    public int at = 0;
-    public int df = 0;
-    public int speed = 0;
+    private int hp = 0;
+    private int at = 0;
+    private int df = 0;
+    private int speed = 0;
+
+    public int HpValue
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+    public int AtValue
+    {
+        get { return at; }
+        set { at = value; }
+    }
+    public int DfValue
+    {
+        get { return df; }
+        set { df = value; }
+    }
+    public int SpeedValue
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
 }
 
 public class PowerUpStatusDataList
 {
-    public List<UnitPowerUpStatusData> powerUpStatusDataList = new List<UnitPowerUpStatusData>();
+    public List<UnitPowerUpStatusData> list = new List<UnitPowerUpStatusData>();
 }
 
 public class MasterData : MonoBehaviour
@@ -45,7 +67,11 @@ public class MasterData : MonoBehaviour
     public int statusUpTargetNo = -1;
 
     // ステータスアップ用のList格納用
-    public PowerUpStatusDataList statusDataList = null;
+    //public PowerUpStatusDataList statusDataList = null;
+
+    public List<UnitPowerUpStatusData> statusDataList;
+
+    public Status statusList = new Status();
 
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
@@ -84,7 +110,8 @@ public class MasterData : MonoBehaviour
         PlayerUnitList();
         StartCoroutine(ItemCountList());
         selectMonsterList = this.GetComponent<SelectMonsterList>();
-        statusDataList = new PowerUpStatusDataList();
+        statusDataList = new List<UnitPowerUpStatusData>();
+        statusList = GetComponent<Status>();
         StartCoroutine(CreatePowerUpDataList());
 
     }
@@ -173,7 +200,7 @@ public class MasterData : MonoBehaviour
 
         for (int i = 0; i < playerUnitList.Count; i++)
         {
-            statusDataList.powerUpStatusDataList.Add( data );
+            statusDataList.Add( data );
         }
 
     }

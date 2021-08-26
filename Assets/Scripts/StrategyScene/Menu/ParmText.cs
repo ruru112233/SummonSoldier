@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ParmText : MonoBehaviour
 {
     public Text unitName = null
+              , hpText = null
               , atText = null
               , dfText = null
               , speedText = null

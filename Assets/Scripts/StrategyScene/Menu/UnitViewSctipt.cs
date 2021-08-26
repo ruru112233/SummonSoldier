@@ -7,6 +7,7 @@ public class UnitData
 {
     public Sprite sprite = null;
     public string unitName = null;
+    public int hp = 0;
     public int at = 0;
     public int df = 0;
     public int speed = 0;
@@ -45,6 +46,7 @@ public class UnitViewSctipt : MonoBehaviour
 
         var sprite = data.sprite;
         var unitName = data.unitName;
+        var hp = data.hp;
         var at = data.at;
         var df = data.df;
         var speed = data.speed;
@@ -66,6 +68,7 @@ public class UnitViewSctipt : MonoBehaviour
             Debug.Log(data.unitName + "‚ª‰Ÿ‚³‚ê‚½");
             // ƒpƒ‰ƒ[ƒ^‚Ì”½‰f
             parmText.unitName.text = unitName;
+            parmText.hpText.text = hp.ToString();
             parmText.atText.text = at.ToString();
             parmText.dfText.text = df.ToString();
             parmText.speedText.text = speed.ToString();

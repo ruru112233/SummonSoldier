@@ -19,6 +19,7 @@ TagManager:
   - AllEffect
   - MasterPlayer
   - MasterEnemy
+  - UnitButton
   layers:
   - Default
   - TransparentFX

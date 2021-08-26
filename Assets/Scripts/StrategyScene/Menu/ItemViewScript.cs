@@ -56,8 +56,6 @@ public class ItemViewScript : MonoBehaviour
                 Debug.Log(data.itemName + "が押された");
                 UseItem(index);
 
-
-
             });
             nameText.text = itemName;
             countText.text = count.ToString();
@@ -74,38 +72,68 @@ public class ItemViewScript : MonoBehaviour
     // アイテム使用の処理
     void UseItem(int itemIdx)
     {
+        Debug.Log("UsinItem");
         if (masterData.statusUpTargetNo >= 0)
         {
             if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.MAXHPUP)
             {
+                Debug.Log("hpが呼ばれた");
                 // MaxHpUp
-                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].hp += masterData.itemList[itemIdx].GetValue();
+                // masterData.statusDataList.list[masterData.statusUpTargetNo].hp += masterData.itemList[itemIdx].GetValue();
+
+                masterData.statusList.hpList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
+                
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.ATUP)
             {
+                Debug.Log("atが呼ばれた");
+                
                 // AtUp
-                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].at += masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.atList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.DFUP)
             {
+                Debug.Log("dfが呼ばれた");
+                
                 // DfUp
-                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].df += masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.dfList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.SPEEDUP)
             {
+                Debug.Log("speedが呼ばれた");
+                
                 // SpeedUp
-                masterData.statusDataList.powerUpStatusDataList[masterData.statusUpTargetNo].speed += masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.speedList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
             }
         }
 
+        //Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
+        //Debug.Log("HP>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].hp);
+        //Debug.Log("AT>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].at);
+        //Debug.Log("DF>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].df);
+        //Debug.Log("SPEED>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].speed);
 
-        for (int i = 0; i < masterData.playerUnitList.Count; i++)
+        //for (int i = 0; i < masterData.playerUnitList.Count; i++)
+        //{
+        //    Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
+        //    Debug.Log("HP>>>:" + masterData.statusDataList.list[i].hp);
+        //    Debug.Log("AT>>>:" + masterData.statusDataList.list[i].at);
+        //    Debug.Log("DF>>>:" + masterData.statusDataList.list[i].df);
+        //    Debug.Log("SPEED>>>:" + masterData.statusDataList.list[i].speed);
+        //}
+
+        int ii = 0;
+
+        foreach (UnitPowerUpStatusData list in masterData.statusDataList)
         {
-            Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
-            Debug.Log("HP>>>:" + masterData.statusDataList.powerUpStatusDataList[i].hp);
-            Debug.Log("AT>>>:" + masterData.statusDataList.powerUpStatusDataList[i].at);
-            Debug.Log("DF>>>:" + masterData.statusDataList.powerUpStatusDataList[i].df);
-            Debug.Log("SPEED>>>:" + masterData.statusDataList.powerUpStatusDataList[i].speed);
+
+            Debug.Log(ii + "HP>>>:" + list.HpValue);
+            Debug.Log(ii + "At>>>:" + list.AtValue);
+            Debug.Log(ii + "Df>>>:" + list.DfValue);
+            Debug.Log(ii + "Speed>>>:" + list.SpeedValue);
+
+            ii++;
+
         }
 
 
