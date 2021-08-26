@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public OnClick onClick = null;
 
+    public LoadUnit loadUnit = null;
+
     public static GameManager instance = null;
 
     public bool objCheck = false;

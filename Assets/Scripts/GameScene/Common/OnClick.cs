@@ -137,6 +137,7 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("ƒƒjƒ…[");
         menuPanel.SetActive(true);
+        StartCoroutine(GameManager.instance.loadUnit.UnitAddButton());
         gameSceneButton.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
     }

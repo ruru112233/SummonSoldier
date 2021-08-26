@@ -15,17 +15,23 @@ public class LoadUnit : MonoBehaviour
     {
         masterData = MasterData.instance;
 
-        StartCoroutine(UnitAddButton());
+        //StartCoroutine(UnitAddButton());
 
     }
 
-    IEnumerator UnitAddButton()
+    public IEnumerator UnitAddButton()
     {
         yield return new WaitUntil(() => masterData.spriteLoadFlag && 
                                          masterData.playerUnitFlag &&
                                          masterData.playerUnitRottationFlag);
 
-        var index = 0;
+        // ‰Šú‰»ˆ—
+        GameObject[] unitButtons = GameObject.FindGameObjectsWithTag("UnitButton");
+
+        foreach (GameObject unitButton in unitButtons)
+        {
+            Destroy(unitButton);
+        }
 
         for (int i = 0; i < masterData.monsterImageList.Count; i++)
         {
@@ -36,20 +42,18 @@ public class LoadUnit : MonoBehaviour
 
             data.sprite = unitImage;
             data.unitName = unitData.UnitName;
-            data.at = unitData.At;
-            data.df = unitData.Df;
-            data.speed = unitData.Speed;
+            data.hp = unitData.Hp + masterData.statusList.hpList[i];
+            data.at = unitData.At + masterData.statusList.atList[i];
+            data.df = unitData.Df + masterData.statusList.dfList[i];
+            data.speed = unitData.Speed + masterData.statusList.speedList[i];
             data.attackRange = GetAttackRange(unitData);
             data.attackType = GetAttackType(unitData);
             data.explanatory = unitData.Explanatory;
 
             data.rotationObj = masterData.playerRotationUnitList[i];
-            data.unitIndex = index;
+            data.unitIndex = i;
 
             unitView.AddUnitButton( data );
-
-            index++;
-
         }
     }
 

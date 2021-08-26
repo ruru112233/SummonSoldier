@@ -46,9 +46,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _labelReference:
     m_LabelString: MonsterImage
+  _itemListLabel:
+    m_LabelString: ItemList
+  _playerUnitLabel:
+    m_LabelString: UnitList
+  _playerRotationLabel:
+    m_LabelString: RotationUnit
   monsterImageList: []
-  selectMonsterList: {fileID: 0}
+  itemList: []
+  playerUnitList: []
+  playerRotationUnitList: []
+  statusUpTargetNo: -1
+  statusList: {fileID: 0}
+  selectMonsterList: {fileID: 1370914806}
   spriteLoadFlag: 0
+  itemListFlag: 0
+  playerUnitFlag: 0
+  playerUnitRottationFlag: 0
 --- !u!114 &1370914806
 MonoBehaviour:
   m_ObjectHideFlags: 0
