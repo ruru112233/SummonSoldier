@@ -1839,8 +1839,8 @@ MonoBehaviour:
   unitName: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF11"
   id: 1
   hp: 500
-  at: 20
-  df: 10
+  at: 100
+  df: 100
   speed: 40
   cost: 1
   explanatory: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF11\u306E\u8AAC\u660E"
