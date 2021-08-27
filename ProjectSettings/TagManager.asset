@@ -20,6 +20,7 @@ TagManager:
   - MasterPlayer
   - MasterEnemy
   - UnitButton
+  - ParmText
   layers:
   - Default
   - TransparentFX
