@@ -12,7 +12,8 @@ public class OnClick : MonoBehaviour
                  , gameSceneButton = null // ゲーム遷移に遷移
                  , selectClearButton = null // セレクトクリアボタン
                  , menuButton = null // メニューボタン
-                 , closeButton = null // 閉じるボタン（メニューの）
+                 , menuCloseButton = null // 閉じるボタン（メニューの）
+                 , itemCloseButton = null // 閉じるボタン（アイテムウインドウの）
                  , strategyButton = null // ストラテジーシーンに遷移
                  , unitProfileButton = null // ユニットプロフィール確認ボタン
                  , unitBuyButton = null // ユニット購入ボタン
@@ -39,9 +40,7 @@ public class OnClick : MonoBehaviour
     void Start()
     {
         SetButton();
-        if (menuPanel) menuPanel.SetActive(false);
-        if (itemScrollView) itemScrollView.SetActive(false);
-        if (reinforcementButton) reinforcementButton.gameObject.SetActive(false);
+        StartFalse();
     }
 
     void SetButton()
@@ -50,11 +49,21 @@ public class OnClick : MonoBehaviour
         if (gameSceneButton) gameSceneButton.onClick.SetListener(OnLoadGameScene);
         if (selectClearButton) selectClearButton.onClick.SetListener(SelectMonsterClear);
         if (menuButton) menuButton.onClick.SetListener(MenuButton);
-        if (closeButton) closeButton.onClick.SetListener(CloseButton);
+        if (menuCloseButton) menuCloseButton.onClick.SetListener(MenuCloseButton);
+        if (itemCloseButton) itemCloseButton.onClick.SetListener(ItemCloseButton);
         if (strategyButton) strategyButton.onClick.SetListener(OnLoadStrategyScene);
         if (unitProfileButton) unitProfileButton.onClick.SetListener(UnitProfileButton);
         if (unitBuyButton) unitBuyButton.onClick.SetListener(UnitBuyButton);
         if (reinforcementButton) reinforcementButton.onClick.SetListener(UnitReinforcementButton);
+    }
+
+    // 初期非表示の設定
+    void StartFalse()
+    {
+        if (menuPanel) menuPanel.SetActive(false);
+        if (itemScrollView) itemScrollView.SetActive(false);
+        if (reinforcementButton) reinforcementButton.gameObject.SetActive(false);
+        if (itemCloseButton) itemCloseButton.gameObject.SetActive(false);
     }
 
     void AttackButton()
@@ -140,10 +149,11 @@ public class OnClick : MonoBehaviour
         StartCoroutine(GameManager.instance.loadUnit.UnitAddButton());
         gameSceneButton.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
+        if (menuCloseButton) menuCloseButton.gameObject.SetActive(true);
     }
 
-    // Cloaseボタン
-    void CloseButton()
+    // メニューのCloseボタン
+    void MenuCloseButton()
     {
         Debug.Log("クローズ");
         if (itemScrollView) itemScrollView.SetActive(false);
@@ -157,6 +167,14 @@ public class OnClick : MonoBehaviour
             Destroy(rotationObj);
         }
 
+    }
+
+    // アイテムウインドウのCloseボタン
+    void ItemCloseButton()
+    {
+        if (itemScrollView) itemScrollView.SetActive(false);
+        if (menuCloseButton) menuCloseButton.gameObject.SetActive(true);
+        if (itemCloseButton) itemCloseButton.gameObject.SetActive(false);
     }
 
     // ユニットプロフィール確認ボタン
@@ -176,5 +194,8 @@ public class OnClick : MonoBehaviour
     void UnitReinforcementButton()
     {
         if (itemScrollView) itemScrollView.SetActive(true);
+        if (menuCloseButton) menuCloseButton.gameObject.SetActive(false);
+        if (itemCloseButton) itemCloseButton.gameObject.SetActive(true);
+
     }
 }
