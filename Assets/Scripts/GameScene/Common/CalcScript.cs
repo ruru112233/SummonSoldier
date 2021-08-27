@@ -10,10 +10,10 @@ public static class CalcScript
     public static int DamagePoint(int at, int df)
     {
 
-        int randAt = Random.Range(at - 3, at + 3);
-        int randDf = Random.Range(df - 2, df + 2);
+        int randAt = Random.Range(at / 2, at * 2);
+        int randDf = Random.Range(df / 2, df * 2);
 
-        int damage = randAt * 3 - randDf * 3;
+        int damage = randAt - randDf;
 
         if (damage <= 3)
         {

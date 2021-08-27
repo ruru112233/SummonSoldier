@@ -141,7 +141,7 @@ public class CharaController : Prms
     }
 
     // 前衛から選択して攻撃
-    protected void FrontAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void FrontAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -167,8 +167,10 @@ public class CharaController : Prms
 
             CharaController target = Target(objs);
 
+            int charDf = target.Df;
+
             // 攻撃処理
-            StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
             // エフェクト処理
             EffectPool(target);
             myTransform.Rotate(0, -1.0f, 0);
@@ -177,7 +179,7 @@ public class CharaController : Prms
 
     
     // 全体から選択して攻撃
-    protected void AllAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void AllAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -201,8 +203,10 @@ public class CharaController : Prms
 
             CharaController target = Target(objs);
 
+            int charDf = target.Df;
+
             // 攻撃処理
-            StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+            StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
             // エフェクト処理
             EffectPool(target);
             myTransform.Rotate(0, -1.0f, 0);
@@ -290,7 +294,7 @@ public class CharaController : Prms
     }
 
     // 縦1列を攻撃
-    protected void ColumnAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void ColumnAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -318,7 +322,9 @@ public class CharaController : Prms
             // 攻撃処理
             foreach (CharaController target in targets)
             {
-                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                int charDf = target.Df;
+
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
                 // エフェクト処理
                 EffectPool(target);
             }
@@ -387,7 +393,7 @@ public class CharaController : Prms
     }
 
     // 横一行（前衛）へ攻撃
-    protected void FrontRowAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void FrontRowAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -413,7 +419,9 @@ public class CharaController : Prms
             // 攻撃処理
             foreach (CharaController target in targets)
             {
-                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                int charDf = target.Df;
+
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
                 // エフェクト処理
                 EffectPool(target);
             }
@@ -422,7 +430,7 @@ public class CharaController : Prms
     }
 
     // 横1行（前衛・後衛）
-    protected void AllRowAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void AllRowAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -450,7 +458,9 @@ public class CharaController : Prms
             // 攻撃処理
             foreach (CharaController target in targets)
             {
-                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                int charDf = target.Df;
+
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
                 // エフェクト処理
                 EffectPool(target);
             }
@@ -474,7 +484,7 @@ public class CharaController : Prms
     }
 
     // 全体攻撃
-    protected void AllRangeAttack(SummonPanelList panels, List<GameObject> objs)
+    protected void AllRangeAttack(SummonPanelList panels, List<GameObject> objs, int charAt)
     {
         time += Time.deltaTime;
 
@@ -502,11 +512,11 @@ public class CharaController : Prms
             // 攻撃処理
             foreach (CharaController target in targets)
             {
-                StartCoroutine(target.DamageText(CalcScript.DamagePoint(At, Df)));
+                int charDf = target.Df;
+
+                StartCoroutine(target.DamageText(CalcScript.DamagePoint(charAt, charDf)));
                 // エフェクト処理
                 EffectPool(target);
-                //Vector3 targetPos = target.transform.position;
-                //if (effectPrefab) Instantiate(effectPrefab, targetPos, Quaternion.identity);
             }
             myTransform.Rotate(0, -1.0f, 0);
         }

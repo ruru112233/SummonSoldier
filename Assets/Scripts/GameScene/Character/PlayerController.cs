@@ -38,21 +38,21 @@ public class PlayerController : CharaController
             {
                 Debug.Log("遠距離");
                 if (ChildCheck.AllCountCheck(enemyPanel)) 
-                    AllAttack(enemyPanel, enemysObj);
+                    AllAttack(enemyPanel, enemysObj, At);
             }
             else
             {
                 Debug.Log("近距離");
                 if (ChildCheck.FrontCountCheck(enemyPanel) &&
                     ChildCheck.FrontCheck(this.transform))
-                    FrontAttack(enemyPanel, enemysObj);
+                    FrontAttack(enemyPanel, enemysObj, At);
             }
         }
         else if(ATTACK_TYPE.COLUMN_RANGE == attack_type)
         {
             // 縦一列
             if(ChildCheck.ColumnCheck(enemyPanel)) 
-                ColumnAttack(enemyPanel, enemysObj);
+                ColumnAttack(enemyPanel, enemysObj, At);
 
         }
         else if(ATTACK_TYPE.ROW_RANGE == attack_type)
@@ -61,19 +61,19 @@ public class PlayerController : CharaController
             if (longRangeFlag)
             {
                 if(ChildCheck.RowCheck(enemyPanel)) 
-                    AllRowAttack(enemyPanel, enemysObj);
+                    AllRowAttack(enemyPanel, enemysObj, At);
             }
             else
             {
                 if(ChildCheck.FrontRowCheck(enemyPanel)) 
-                    FrontRowAttack(enemyPanel, enemysObj);
+                    FrontRowAttack(enemyPanel, enemysObj, At);
             }
         }
         else if (ATTACK_TYPE.ALL_RANGE == attack_type)
         {
             // 全体
             if (ChildCheck.AllCountCheck(enemyPanel))
-                AllRangeAttack(enemyPanel, enemysObj);
+                AllRangeAttack(enemyPanel, enemysObj, At);
         }
 
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
