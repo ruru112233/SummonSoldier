@@ -20,12 +20,16 @@ public class ItemViewScript : MonoBehaviour
     [SerializeField]
     private Button itemButtonPrefab;
 
+    [SerializeField]
+    private ParmText parmText = null;
+
     MasterData masterData = new MasterData();
 
     // Start is called before the first frame update
     void Start()
     {
         masterData = MasterData.instance;
+
     }
 
     public void AddItemButton(ItemData data)
@@ -54,7 +58,13 @@ public class ItemViewScript : MonoBehaviour
             button.onClick.AddListener(() => 
             { 
                 Debug.Log(data.itemName + "‚ª‰Ÿ‚³‚ê‚½");
+                count--;
+                countText.text = count.ToString();
                 UseItem(index);
+                if (count < 1)
+                {
+                    instance.gameObject.SetActive(false);
+                }
 
             });
             nameText.text = itemName;
@@ -79,64 +89,45 @@ public class ItemViewScript : MonoBehaviour
             {
                 Debug.Log("hp‚ªŒÄ‚Î‚ê‚½");
                 // MaxHpUp
-                // masterData.statusDataList.list[masterData.statusUpTargetNo].hp += masterData.itemList[itemIdx].GetValue();
-
-                masterData.statusList.hpList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
-                
+                int value = masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.hpList[masterData.statusUpTargetNo] += value;
+                ParmView(parmText.hpText, value);
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.ATUP)
             {
                 Debug.Log("at‚ªŒÄ‚Î‚ê‚½");
-                
+
                 // AtUp
-                masterData.statusList.atList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
+                int value = masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.atList[masterData.statusUpTargetNo] += value;
+                ParmView(parmText.atText, value);
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.DFUP)
             {
                 Debug.Log("df‚ªŒÄ‚Î‚ê‚½");
-                
+
                 // DfUp
-                masterData.statusList.dfList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
+                int value = masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.dfList[masterData.statusUpTargetNo] += value;
+                ParmView(parmText.dfText, value);
             }
             else if (masterData.itemList[itemIdx].item_type == ItemSO.ITEM_TYPE.SPEEDUP)
             {
                 Debug.Log("speed‚ªŒÄ‚Î‚ê‚½");
-                
+
                 // SpeedUp
-                masterData.statusList.speedList[masterData.statusUpTargetNo] += masterData.itemList[itemIdx].GetValue();
+                int value = masterData.itemList[itemIdx].GetValue();
+                masterData.statusList.speedList[masterData.statusUpTargetNo] += value;
+                ParmView(parmText.speedText, value);
             }
         }
 
-        //Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
-        //Debug.Log("HP>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].hp);
-        //Debug.Log("AT>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].at);
-        //Debug.Log("DF>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].df);
-        //Debug.Log("SPEED>>>:" + masterData.statusDataList.list[masterData.statusUpTargetNo].speed);
+    }
 
-        //for (int i = 0; i < masterData.playerUnitList.Count; i++)
-        //{
-        //    Debug.Log("ID>>>:" + masterData.statusUpTargetNo);
-        //    Debug.Log("HP>>>:" + masterData.statusDataList.list[i].hp);
-        //    Debug.Log("AT>>>:" + masterData.statusDataList.list[i].at);
-        //    Debug.Log("DF>>>:" + masterData.statusDataList.list[i].df);
-        //    Debug.Log("SPEED>>>:" + masterData.statusDataList.list[i].speed);
-        //}
-
-        int ii = 0;
-
-        foreach (UnitPowerUpStatusData list in masterData.statusDataList)
-        {
-
-            Debug.Log(ii + "HP>>>:" + list.HpValue);
-            Debug.Log(ii + "At>>>:" + list.AtValue);
-            Debug.Log(ii + "Df>>>:" + list.DfValue);
-            Debug.Log(ii + "Speed>>>:" + list.SpeedValue);
-
-            ii++;
-
-        }
-
-
+    void ParmView(Text text, int value)
+    {
+        int num = int.Parse(text.text);
+        text.text = (num + value).ToString();
     }
 
 }

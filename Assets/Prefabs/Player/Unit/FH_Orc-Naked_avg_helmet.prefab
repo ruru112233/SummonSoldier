@@ -3719,10 +3719,10 @@ MonoBehaviour:
   longRangeFlag: 0
   unitName: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF12"
   id: 2
-  hp: 110
-  at: 20
-  df: 12
-  speed: 40
+  hp: 600
+  at: 300
+  df: 300
+  speed: 100
   cost: 2
   explanatory: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF12\u306E\u8AAC\u660E"
   attack_type: 1
