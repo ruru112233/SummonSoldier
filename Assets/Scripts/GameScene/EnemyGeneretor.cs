@@ -11,7 +11,7 @@ public class EnemyGeneretor : MonoBehaviour
     private SummonPanelList enemyPanels = null;
 
     // ê∂ê¨éûä‘
-    float intervalTime = 3.0f;
+    float intervalTime = 6.0f;
     float startTime = 0.0f;
 
     // Start is called before the first frame update

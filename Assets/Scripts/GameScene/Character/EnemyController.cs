@@ -85,6 +85,10 @@ public class EnemyController : CharaController
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
         if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 1.8f);
 
+        // Enemyの子オブジェクトが存在しなかった時は、masterオブジェクトへ攻撃
+        if (masterPlayer && ChildCheck.PlayerChildObjectCount() <= 0)
+            MasterObjectAttack(masterPlayer, At);
+
         // HPが0になった時の処理
         if (Hp <= 0)
         {

@@ -84,6 +84,21 @@ public static class ChildCheck
         return sumCount;
     }
 
+    // Playerの子オブジェクトの数をカウント
+    public static int PlayerChildObjectCount()
+    {
+        int playerCount = GameObject.FindGameObjectsWithTag("PlayerMonster").Length;
+
+        return playerCount;
+    }
+
+    // Enemyの子オブジェクトの数をカウント
+    public static int EnemyChildObjectCount()
+    {
+        int enemyCount = GameObject.FindGameObjectsWithTag("EnemyMonster").Length;
+
+        return enemyCount;
+    }
     // 前衛のパネルで子要素に敵が存在するか確認
     public static bool FrontCountCheck(SummonPanelList panels)
     {

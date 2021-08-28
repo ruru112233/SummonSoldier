@@ -79,6 +79,9 @@ public class PlayerController : CharaController
         // オブジェクトの数に変更があった場合、前衛移動の処理をする
         if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 0f);
 
+        if (enemyMaster && ChildCheck.EnemyChildObjectCount() <= 0)
+            MasterObjectAttack(enemyMaster, At);
+
         // HP0になったらオブジェクトを削除
         if (Hp <= 0) Destroy(gameObject);
     }
