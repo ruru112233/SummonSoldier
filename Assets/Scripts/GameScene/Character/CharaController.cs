@@ -19,6 +19,8 @@ public class CharaController : Prms
 
     public int Cost { get { return cost; } set { cost = value; } }
 
+    public int Money { get { return money; } set { money = value; } }
+
     public bool LongRangeFlag { get { return longRangeFlag; } }
 
     // オブジェクト数を入れておく

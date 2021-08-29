@@ -23,6 +23,7 @@ TagManager:
   - ParmText
   - StageButton
   - FieldButton
+  - BuyUnitButton
   layers:
   - Default
   - TransparentFX

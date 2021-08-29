@@ -65,7 +65,6 @@ public class UnitViewSctipt : MonoBehaviour
 
         button.onClick.AddListener(() => 
         { 
-            Debug.Log(data.unitName + "‚ª‰Ÿ‚³‚ê‚½");
             // ƒpƒ‰ƒ[ƒ^‚Ì”½‰f
             parmText.unitName.text = unitName;
             parmText.hpText.text = hp.ToString();

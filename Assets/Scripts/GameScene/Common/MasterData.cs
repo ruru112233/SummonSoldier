@@ -70,12 +70,12 @@ public class MasterData : MonoBehaviour
     // ステータスアップさせるユニット判定用
     public int statusUpTargetNo = -1;
 
-    // ステータスアップ用のList格納用
-    //public PowerUpStatusDataList statusDataList = null;
-
     public List<UnitPowerUpStatusData> statusDataList;
 
     public Status statusList = new Status();
+
+    // 購入済か判定するフラグ
+    public List<bool> buyFlagList;
 
     // 選択したシーン
     private string currentStage = "";
@@ -137,6 +137,7 @@ public class MasterData : MonoBehaviour
         statusDataList = new List<UnitPowerUpStatusData>();
         statusList = GetComponent<Status>();
         StartCoroutine(CreatePowerUpDataList());
+        StartCoroutine(BuyFlagList());
         ClearStage = "039";
 
     }
@@ -243,5 +244,16 @@ public class MasterData : MonoBehaviour
             statusDataList.Add( data );
         }
 
+    }
+
+    // 購入済か判定するフラグ
+    IEnumerator BuyFlagList()
+    {
+        yield return new WaitUntil(() => playerUnitFlag);
+
+        for (int i = 0; i < playerUnitList.Count; i++)
+        {
+            buyFlagList.Add(false);
+        }
     }
 }

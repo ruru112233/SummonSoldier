@@ -780,6 +780,8 @@ MonoBehaviour:
   effectPrefab: {fileID: 0}
   longRangeFlag: 1
   unitName: "\u30E2\u30F3\u30B9\u30BF\u30FC\uFF16"
+  money: 8000
+  buyFlag: 0
   id: 6
   hp: 100
   at: 15
