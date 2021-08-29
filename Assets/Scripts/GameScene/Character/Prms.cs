@@ -19,6 +19,10 @@ public class Prms : MonoBehaviour
     [SerializeField]
     protected string unitName = null;
 
+    // çwì¸ã‡äz
+    [SerializeField]
+    protected int money = 0;
+
     [SerializeField]
     protected int id = 0
                 , hp = 0

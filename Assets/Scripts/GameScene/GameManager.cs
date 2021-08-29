@@ -8,12 +8,10 @@ public class GameManager : MonoBehaviour
     public ManaManager manaManager = null;
     public SummonManager summonManager = null;
 
-    public GameObject backGround = null;
-    public MasterData masterData;
-
     public OnClick onClick = null;
 
     public LoadUnit loadUnit = null;
+    public LoadBuyUnit loadBuyUnit = null;
 
     public static GameManager instance = null;
 

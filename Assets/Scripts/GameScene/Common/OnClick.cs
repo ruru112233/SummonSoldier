@@ -24,8 +24,12 @@ public class OnClick : MonoBehaviour
                           , enemyPanel = null;
 
     [SerializeField]
+    private StageButton stageButton = null;
+
+    [SerializeField]
     private GameObject menuPanel = null
-                     , itemScrollView = null;
+                     , itemScrollView = null
+                     , buyUnitPanel = null;
 
     // モンスターを格納する
     public List<GameObject> playersObj = null;
@@ -147,7 +151,9 @@ public class OnClick : MonoBehaviour
         Debug.Log("メニュー");
         menuPanel.SetActive(true);
         StartCoroutine(GameManager.instance.loadUnit.UnitAddButton());
-        gameSceneButton.gameObject.SetActive(false);
+        //gameSceneButton.gameObject.SetActive(false);
+        if (stageButton) stageButton.stageSelectButton.gameObject.SetActive(false);
+        if (buyUnitPanel) buyUnitPanel.SetActive(false);
         menuButton.gameObject.SetActive(false);
         if (menuCloseButton) menuCloseButton.gameObject.SetActive(true);
     }
@@ -187,7 +193,8 @@ public class OnClick : MonoBehaviour
     // ユニット購入ボタン
     void UnitBuyButton()
     {
-
+        if (buyUnitPanel) buyUnitPanel.SetActive(true);
+        StartCoroutine( GameManager.instance.loadBuyUnit.BuyAddButton());
     }
     
     // 強化
