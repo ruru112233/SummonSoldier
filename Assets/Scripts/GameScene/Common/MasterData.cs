@@ -73,6 +73,15 @@ public class MasterData : MonoBehaviour
 
     public Status statusList = new Status();
 
+    // クリアステージ
+    private string clearStage = "";
+
+    public string ClearStage
+    {
+        get { return clearStage; }
+        set { clearStage = value; }
+    }
+
     // セットしたモンスターの引継ぎ用
     public SelectMonsterList selectMonsterList = null;
 
@@ -113,6 +122,7 @@ public class MasterData : MonoBehaviour
         statusDataList = new List<UnitPowerUpStatusData>();
         statusList = GetComponent<Status>();
         StartCoroutine(CreatePowerUpDataList());
+        ClearStage = "039";
 
     }
 

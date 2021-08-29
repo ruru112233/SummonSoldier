@@ -21,6 +21,8 @@ TagManager:
   - MasterEnemy
   - UnitButton
   - ParmText
+  - StageButton
+  - FieldButton
   layers:
   - Default
   - TransparentFX
