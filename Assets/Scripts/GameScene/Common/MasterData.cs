@@ -49,12 +49,16 @@ public class MasterData : MonoBehaviour
 
     [SerializeField]
     private AssetLabelReference _labelReference
+                              , _backGroundImage
                               , _itemListLabel
                               , _playerUnitLabel
                               , _playerRotationLabel;
 
     // モンスターイメージ画像格納
     public List<Sprite> monsterImageList;
+
+    // 背景画像の格納
+    public List<Sprite> stageBackGroundList;
 
     // ItemListの格納
     public List<ItemSO> itemList;
@@ -73,6 +77,15 @@ public class MasterData : MonoBehaviour
 
     public Status statusList = new Status();
 
+    // 選択したシーン
+    private string currentStage = "";
+
+    public string CurrentStage
+    {
+        get { return currentStage; }
+        set { currentStage = value; }
+    }
+
     // クリアステージ
     private string clearStage = "";
 
@@ -86,6 +99,7 @@ public class MasterData : MonoBehaviour
     public SelectMonsterList selectMonsterList = null;
 
     public bool spriteLoadFlag = false
+              , backGroundFlag = false
               , itemListFlag = false
               , playerUnitFlag = false
               , playerUnitRottationFlag = false;
@@ -115,6 +129,7 @@ public class MasterData : MonoBehaviour
     void Start()
     {
         MonsterImageLoad();
+        BackGroundImageLoad();
         ItemListLoad();
         PlayerUnitList();
         StartCoroutine(ItemCountList());
@@ -139,7 +154,22 @@ public class MasterData : MonoBehaviour
 
             spriteLoadFlag = true;
         };
-    } 
+    }
+
+    // 背景画像のロード
+    void BackGroundImageLoad()
+    {
+        Addressables.LoadAssetsAsync<Sprite>(_backGroundImage, null).
+        Completed += op =>
+        {
+            foreach (Sprite sprite in op.Result)
+            {
+                stageBackGroundList.Add(sprite);
+            }
+
+            backGroundFlag = true;
+        };
+    }
 
     // ItemListのロード
     void ItemListLoad()

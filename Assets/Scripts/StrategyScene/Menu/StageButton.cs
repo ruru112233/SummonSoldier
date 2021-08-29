@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FieldButtonData
 {
@@ -13,6 +14,7 @@ public class FieldButtonData
 public class StageButtonData
 {
     public string stageName = "";
+    public string stageNo = "";
     public int index = 0;
     public bool stageFlag = true;
 }
@@ -26,9 +28,13 @@ public class StageButton : MonoBehaviour
     public GameObject fieldSelectPanel
                     , stageSelectPanel;
 
+    MasterData masterData;
+
     // Start is called before the first frame update
     void Start()
     {
+        masterData = MasterData.instance;
+
         stageSelectButton.onClick.SetListener(FieldSelect);
         fieldSelectPanel.SetActive(false);
         stageSelectPanel.SetActive(false);
@@ -72,9 +78,6 @@ public class StageButton : MonoBehaviour
 
         AddFieldButton(data);
 
-
-
-
     }
 
     // フィールドの名称を返す
@@ -85,13 +88,13 @@ public class StageButton : MonoBehaviour
         switch (index)
         {
             case 0:
-                fieldName = "森";
+                fieldName = "森（昼）";
                 break;
             case 1:
-                fieldName = "荒野";
+                fieldName = "洞窟（昼）";
                 break;
             case 2:
-                fieldName = "砂漠";
+                fieldName = "砂漠（昼）";
                 break;
         }
 
@@ -149,6 +152,8 @@ public class StageButton : MonoBehaviour
 
             string stageName = StageName(fieldNo + 1, i);
 
+            data.stageNo = (fieldNo + 1).ToString() + (i + 1).ToString();
+
             data.stageName = stageName;
             data.index = i;
             data.stageFlag = true;
@@ -181,6 +186,7 @@ public class StageButton : MonoBehaviour
         instance = Instantiate(stageButton);
 
         var fieldName = data.stageName;
+        string stageNo = "0" + data.stageNo;
         var stageFlag = data.stageFlag;
 
         instance.transform.SetParent(stageSelectPanel.transform, false);
@@ -195,7 +201,8 @@ public class StageButton : MonoBehaviour
         {
             if (stageFlag)
             {
-
+                masterData.CurrentStage = stageNo;
+                SceneManager.LoadScene("GameScene");
             }
             else
             {

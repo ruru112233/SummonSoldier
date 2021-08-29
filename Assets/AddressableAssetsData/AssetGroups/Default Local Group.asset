@@ -45,6 +45,13 @@ MonoBehaviour:
     - RotationUnit
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 31b209a02c9faf44b89326a3a4f4e2c3
+    m_Address: Assets/Image/BackGround
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BackGround
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a91dfcfaba2d3c4468d502f0505dbdec, type: 2}
   m_SchemaSet:

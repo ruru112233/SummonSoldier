@@ -74,6 +74,7 @@ MonoBehaviour:
     - ItemList
     - UnitList
     - RotationUnit
+    - BackGround
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 1c0f54584b24ac7469d24c2b4bd94f92, type: 2}
