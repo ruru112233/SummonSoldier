@@ -15,6 +15,8 @@ public class UnitData
     public string attackType = null;
     public string explanatory = null;
     public int unitIndex = 0;
+    public int money = 0;
+    public bool buyFlag = false;
     public GameObject rotationObj = null;
 }
 
