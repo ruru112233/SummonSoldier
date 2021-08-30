@@ -186,7 +186,8 @@ public class OnClick : MonoBehaviour
     // ユニットプロフィール確認ボタン
     void UnitProfileButton()
     {
-
+        if (buyUnitPanel) buyUnitPanel.SetActive(false);
+        StartCoroutine(GameManager.instance.loadUnit.UnitAddButton());
     }
 
 

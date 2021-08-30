@@ -40,6 +40,9 @@ public class LoadUnit : MonoBehaviour
 
             var data = new UnitData();
 
+            var money = unitData.Money;
+            var buyFlag = masterData.buyFlagList[i];
+
             data.sprite = unitImage;
             data.unitName = unitData.UnitName;
             data.hp = unitData.Hp + masterData.statusList.hpList[i];
@@ -49,11 +52,15 @@ public class LoadUnit : MonoBehaviour
             data.attackRange = GetAttackRange(unitData);
             data.attackType = GetAttackType(unitData);
             data.explanatory = unitData.Explanatory;
-
+            
             data.rotationObj = masterData.playerRotationUnitList[i];
             data.unitIndex = i;
 
-            unitView.AddUnitButton( data );
+            if (money == 0 || buyFlag)
+            {
+                unitView.AddUnitButton(data);
+            }
+           
         }
     }
 
