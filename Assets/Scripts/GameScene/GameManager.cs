@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public LoadUnit loadUnit = null;
     public LoadBuyUnit loadBuyUnit = null;
+    public LoadSelectMonster loadSelectMonster = null;
 
     public static GameManager instance = null;
 

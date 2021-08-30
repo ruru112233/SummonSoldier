@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class StrategyDragObj : DragObj
 {
     public int monsterNo = 0;
+    public int panelIndex = 0;
     MasterData masterData = null;
 
     private bool moveFlag = true;
@@ -16,6 +17,8 @@ public class StrategyDragObj : DragObj
         get { return moveFlag; }
         set { moveFlag = value; }
     }
+
+    int index = 0;
 
     // Start is called before the first frame update
     public override void Start()
@@ -45,7 +48,9 @@ public class StrategyDragObj : DragObj
         if (MoveFlag)
         {
             base.OnBeginDrag(data);
-            instancePanel.transform.SetSiblingIndex(SibilingIndex);
+            instancePanel.transform.SetSiblingIndex(panelIndex);
+            Debug.Log(panelIndex);
+
         }
     }
 
@@ -63,7 +68,9 @@ public class StrategyDragObj : DragObj
         {
             base.OnEndDrag(data);
             MoveFlag = selectMonsterCheck();
+
         }
+        transform.SetSiblingIndex(panelIndex);
 
     }
 
@@ -95,5 +102,15 @@ public class StrategyDragObj : DragObj
         }
 
         return true;
+    }
+
+    // セレクトモンスターの数をカウント
+    int objLen()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("SelectMonster");
+
+        int len = objs.Length;
+
+        return len;
     }
 }

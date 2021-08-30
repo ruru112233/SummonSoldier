@@ -14,13 +14,11 @@ public class MoneyManager : MonoBehaviour
     void Start()
     {
         masterData = MasterData.instance;
-
-        moneyText.text = masterData.GameMoney.ToString() + " G";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        moneyText.text = masterData.GameMoney.ToString() + " G";
     }
 }
