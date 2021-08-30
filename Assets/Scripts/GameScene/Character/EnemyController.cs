@@ -11,6 +11,9 @@ public class EnemyController : CharaController
     [SerializeField]
     private List<int> dropItemList = new List<int>();
 
+    [SerializeField]
+    private int dropMoney = 0;
+
     MasterData masterData;
 
     MasterController masterPlayer = null;
@@ -93,6 +96,7 @@ public class EnemyController : CharaController
         if (Hp <= 0)
         {
             GetRandomItem();
+            masterData.GameMoney += dropMoney;
             Destroy(gameObject);
         }
     }

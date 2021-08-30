@@ -163,9 +163,13 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("ÉNÉçÅ[ÉY");
         if (itemScrollView) itemScrollView.SetActive(false);
+        StartCoroutine(GameManager.instance.loadSelectMonster.SelectUnitAddButton());
         menuPanel.SetActive(false);
-        gameSceneButton.gameObject.SetActive(true);
+        //gameSceneButton.gameObject.SetActive(true);
         menuButton.gameObject.SetActive(true);
+
+
+
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
         foreach (GameObject rotationObj in objs)

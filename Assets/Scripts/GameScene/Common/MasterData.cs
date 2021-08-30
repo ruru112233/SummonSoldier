@@ -81,6 +81,7 @@ public class MasterData : MonoBehaviour
 
     // 購入済か判定するフラグ
     public List<bool> buyFlagList;
+    public bool buyLoadFlag = false;
 
     // 選択したシーン
     private string currentStage = "";
@@ -260,5 +261,8 @@ public class MasterData : MonoBehaviour
         {
             buyFlagList.Add(false);
         }
+
+        buyLoadFlag = true;
+
     }
 }

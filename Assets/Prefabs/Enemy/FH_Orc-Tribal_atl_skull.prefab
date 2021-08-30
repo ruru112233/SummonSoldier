@@ -4563,13 +4563,18 @@ MonoBehaviour:
   text: {fileID: 7615313548822300703}
   effectPrefab: {fileID: 100014, guid: ce442e8269f7e264a802dfea7a77b4d8, type: 3}
   longRangeFlag: 1
+  unitName: 
+  money: 0
+  id: 0
   hp: 80
   at: 10
   df: 10
   speed: 40
   cost: 0
+  explanatory: 
   attack_type: 0
   dropItemList: 010000000300000005000000
+  dropMoney: 20
 --- !u!1 &1348772656181419875
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ TagManager:
   - StageButton
   - FieldButton
   - BuyUnitButton
+  - SelectMonster
   layers:
   - Default
   - TransparentFX

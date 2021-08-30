@@ -18,6 +18,7 @@ public class UnitData
     public int money = 0;
     public bool buyFlag = false;
     public GameObject rotationObj = null;
+    public int panelIndex = 0;
 }
 
 public class UnitViewSctipt : MonoBehaviour
@@ -55,6 +56,8 @@ public class UnitViewSctipt : MonoBehaviour
         var attackRange = data.attackRange;
         var attackType = data.attackType;
         var explanatory = data.explanatory;
+
+        Debug.Log(unitName);
 
         var unitRotationObj = data.rotationObj;
         var index = data.unitIndex;
