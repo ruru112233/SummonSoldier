@@ -36,7 +36,10 @@ public class SelectMonsterVieu : MonoBehaviour
 
         instance.transform.SetParent(unitContent.transform, false);
 
-        instance.GetComponent<Image>().sprite = sprite;
+        Image image = instance.GetComponent<Image>();
+
+        image.sprite = sprite;
+        image.enabled = true;
 
         instance.gameObject.SetActive(true);
     }
