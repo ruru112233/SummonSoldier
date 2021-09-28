@@ -163,6 +163,7 @@ public class OnClick : MonoBehaviour
     {
         Debug.Log("ÉNÉçÅ[ÉY");
         if (itemScrollView) itemScrollView.SetActive(false);
+        if (stageButton) stageButton.stageSelectButton.gameObject.SetActive(true);
         StartCoroutine(GameManager.instance.loadSelectMonster.SelectUnitAddButton());
         menuPanel.SetActive(false);
         //gameSceneButton.gameObject.SetActive(true);
