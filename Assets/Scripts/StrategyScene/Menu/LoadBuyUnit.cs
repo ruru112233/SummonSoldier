@@ -40,11 +40,27 @@ public class LoadBuyUnit : MonoBehaviour
             data.money = unitData.Money;
             data.index = i;
 
+            // Š‹àŠz‚Æw“ü‹àŠz‚ğ”äŠr‚µAF‚ğ•ÏX
+            data.color = colorChange(data.money, masterData.GameMoney);
+
             if (data.money != 0 && !buyFlag)
             {
                 buyUnitView.AddBuyUnitButton(data);
             }
         }
+    }
+
+    Color colorChange(int unitMoney, int gameMoney)
+    {
+        if (unitMoney > gameMoney)
+        {
+            // ŠDF
+            //return color = new Color(50, 0, 0, 255);
+            return Color.gray;
+        }
+
+        return Color.white;
+
     }
 
 

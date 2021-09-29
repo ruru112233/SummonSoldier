@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public LoadBuyUnit loadBuyUnit = null;
     public LoadSelectMonster loadSelectMonster = null;
 
+    public GameObject menuPanel = null;
+
     public static GameManager instance = null;
 
     public bool objCheck = false;
