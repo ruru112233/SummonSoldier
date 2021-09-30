@@ -25,6 +25,7 @@ TagManager:
   - FieldButton
   - BuyUnitButton
   - SelectMonster
+  - ButtleManager
   layers:
   - Default
   - TransparentFX

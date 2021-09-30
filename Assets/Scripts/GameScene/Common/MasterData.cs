@@ -70,8 +70,11 @@ public class MasterData : MonoBehaviour
     // 金額の管理
     private int gameMoney = 0;
 
-    //public int GameMoney { get { return gameMoney; } set { gameMoney = value; }}
     public int GameMoney { get ;  set ; }
+
+    // 経験値の管理
+    private int exp = 0;
+    public int Exp { get; set; }
 
     // ステータスアップさせるユニット判定用
     public int statusUpTargetNo = -1;

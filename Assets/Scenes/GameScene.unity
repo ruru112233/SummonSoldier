@@ -1536,10 +1536,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaManager: {fileID: 152887101}
   summonManager: {fileID: 941658142}
-  backGround: {fileID: 216634897}
-  masterData: {fileID: 0}
   onClick: {fileID: 2047779923}
   loadUnit: {fileID: 0}
+  loadBuyUnit: {fileID: 0}
+  loadSelectMonster: {fileID: 0}
+  menuPanel: {fileID: 0}
   objCheck: 0
 --- !u!1001 &272834949
 PrefabInstance:
@@ -2684,7 +2685,7 @@ GameObject:
   - component: {fileID: 558742823}
   m_Layer: 0
   m_Name: ButtleManager
-  m_TagString: Untagged
+  m_TagString: ButtleManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16800,6 +16801,7 @@ MonoBehaviour:
   effectPrefab: {fileID: 0}
   longRangeFlag: 0
   unitName: 
+  money: 0
   id: 0
   hp: 100
   at: 0
@@ -18856,8 +18858,10 @@ MonoBehaviour:
   reinforcementButton: {fileID: 0}
   playerPanel: {fileID: 1675103398}
   enemyPanel: {fileID: 1772759382}
+  stageButton: {fileID: 0}
   menuPanel: {fileID: 0}
   itemScrollView: {fileID: 0}
+  buyUnitPanel: {fileID: 0}
   playersObj: []
   enemysObj: []
 --- !u!1 &2052495459
@@ -29161,6 +29165,7 @@ MonoBehaviour:
   effectPrefab: {fileID: 0}
   longRangeFlag: 0
   unitName: 
+  money: 0
   id: 0
   hp: 100
   at: 0

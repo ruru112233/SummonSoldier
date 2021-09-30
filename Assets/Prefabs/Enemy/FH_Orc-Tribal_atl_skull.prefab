@@ -4565,6 +4565,7 @@ MonoBehaviour:
   longRangeFlag: 1
   unitName: 
   money: 0
+  exp: 100
   id: 0
   hp: 80
   at: 10

@@ -18,6 +18,8 @@ public class EnemyController : CharaController
 
     MasterController masterPlayer = null;
 
+    ButtleManager buttleManager = null;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -28,6 +30,7 @@ public class EnemyController : CharaController
         text.SetActive(false);
 
         masterPlayer = GameObject.FindWithTag("MasterPlayer").GetComponent<MasterController>();
+        buttleManager = GameObject.FindWithTag("ButtleManager").GetComponent<ButtleManager>();
 
         // 下段に召喚され、上段が召喚されていなかったら上段に上げる
         PositionCheck.PositionChenge(myTransform, 1.8f);
@@ -96,7 +99,8 @@ public class EnemyController : CharaController
         if (Hp <= 0)
         {
             GetRandomItem();
-            masterData.GameMoney += dropMoney;
+            buttleManager.Money += dropMoney;
+            buttleManager.Exp += Exp;
             Destroy(gameObject);
         }
     }

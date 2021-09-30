@@ -23,6 +23,10 @@ public class Prms : MonoBehaviour
     [SerializeField]
     protected int money = 0;
 
+    // 経験値
+    [SerializeField]
+    protected int exp = 0;
+
     [SerializeField]
     protected int id = 0
                 , hp = 0
@@ -33,6 +37,7 @@ public class Prms : MonoBehaviour
 
     [SerializeField]
     protected string explanatory = null;
+
 
     // 攻撃タイミング
     protected float waitTime = 0;
