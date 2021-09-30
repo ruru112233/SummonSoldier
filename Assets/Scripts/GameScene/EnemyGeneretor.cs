@@ -10,6 +10,8 @@ public class EnemyGeneretor : MonoBehaviour
     [SerializeField]
     private SummonPanelList enemyPanels = null;
 
+    ButtleManager buttleManager;
+
     // ê∂ê¨éûä‘
     float intervalTime = 6.0f;
     float startTime = 0.0f;
@@ -17,18 +19,21 @@ public class EnemyGeneretor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        buttleManager = GameObject.FindWithTag("ButtleManager").GetComponent<ButtleManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        startTime += Time.deltaTime;
-
-        if (startTime > intervalTime)
+        if (!buttleManager.EndFlag)
         {
-            MonsterInstance();
-            startTime = 0;
+            startTime += Time.deltaTime;
+
+            if (startTime > intervalTime)
+            {
+                MonsterInstance();
+                startTime = 0;
+            }
         }
     }
 

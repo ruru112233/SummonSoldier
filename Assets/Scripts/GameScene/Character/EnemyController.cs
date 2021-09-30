@@ -18,7 +18,7 @@ public class EnemyController : CharaController
 
     MasterController masterPlayer = null;
 
-    ButtleManager buttleManager = null;
+    
 
     // Start is called before the first frame update
     public override void Start()
@@ -30,8 +30,7 @@ public class EnemyController : CharaController
         text.SetActive(false);
 
         masterPlayer = GameObject.FindWithTag("MasterPlayer").GetComponent<MasterController>();
-        buttleManager = GameObject.FindWithTag("ButtleManager").GetComponent<ButtleManager>();
-
+        
         // 下段に召喚され、上段が召喚されていなかったら上段に上げる
         PositionCheck.PositionChenge(myTransform, 1.8f);
 
@@ -40,69 +39,74 @@ public class EnemyController : CharaController
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
-
-        // 敵のパネルにオブジェクトがあった場合、攻撃する
-        if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
+        if (!buttleManager.EndFlag)
         {
-            // 単体
-            if (longRangeFlag)
+            // バトルが終了していない時
+            base.Update();
+
+            // 敵のパネルにオブジェクトがあった場合、攻撃する
+            if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
             {
-                Debug.Log("遠距離");
+                // 単体
+                if (longRangeFlag)
+                {
+                    Debug.Log("遠距離");
+                    if (ChildCheck.AllCountCheck(playerPanel))
+                        AllAttack(playerPanel, playersObj, At);
+                }
+                else
+                {
+                    Debug.Log("近距離");
+                    if (ChildCheck.FrontCountCheck(playerPanel) &&
+                        ChildCheck.FrontCheck(this.transform))
+                        FrontAttack(playerPanel, playersObj, At);
+                }
+            }
+            else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
+            {
+                // 縦一列
+                if (ChildCheck.ColumnCheck(playerPanel))
+                    ColumnAttack(playerPanel, playersObj, At);
+
+            }
+            else if (ATTACK_TYPE.ROW_RANGE == attack_type)
+            {
+                // 横一列
+                if (longRangeFlag)
+                {
+                    if (ChildCheck.RowCheck(playerPanel))
+                        AllRowAttack(playerPanel, playersObj, At);
+                }
+                else
+                {
+                    if (ChildCheck.FrontRowCheck(playerPanel))
+                        FrontRowAttack(playerPanel, playersObj, At);
+                }
+            }
+            else if (ATTACK_TYPE.ALL_RANGE == attack_type)
+            {
+                // 全体
                 if (ChildCheck.AllCountCheck(playerPanel))
-                    AllAttack(playerPanel, playersObj, At);
+                    AllRangeAttack(playerPanel, playersObj, At);
             }
-            else
+
+            // オブジェクトの数に変更があった場合、前衛移動の処理をする
+            if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 1.8f);
+
+            // Enemyの子オブジェクトが存在しなかった時は、masterオブジェクトへ攻撃
+            if (masterPlayer && ChildCheck.PlayerChildObjectCount() <= 0)
+                MasterObjectAttack(masterPlayer, At);
+
+            // HPが0になった時の処理
+            if (Hp <= 0)
             {
-                Debug.Log("近距離");
-                if (ChildCheck.FrontCountCheck(playerPanel) &&
-                    ChildCheck.FrontCheck(this.transform))
-                    FrontAttack(playerPanel, playersObj, At);
+                GetRandomItem();
+                buttleManager.Money += dropMoney;
+                buttleManager.Exp += Exp;
+                Destroy(gameObject);
             }
         }
-        else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
-        {
-            // 縦一列
-            if (ChildCheck.ColumnCheck(playerPanel))
-                ColumnAttack(playerPanel, playersObj, At);
-
-        }
-        else if (ATTACK_TYPE.ROW_RANGE == attack_type)
-        {
-            // 横一列
-            if (longRangeFlag)
-            {
-                if (ChildCheck.RowCheck(playerPanel))
-                    AllRowAttack(playerPanel, playersObj, At);
-            }
-            else
-            {
-                if (ChildCheck.FrontRowCheck(playerPanel))
-                    FrontRowAttack(playerPanel, playersObj, At);
-            }
-        }
-        else if (ATTACK_TYPE.ALL_RANGE == attack_type)
-        {
-            // 全体
-            if (ChildCheck.AllCountCheck(playerPanel))
-                AllRangeAttack(playerPanel, playersObj, At);
-        }
-
-        // オブジェクトの数に変更があった場合、前衛移動の処理をする
-        if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 1.8f);
-
-        // Enemyの子オブジェクトが存在しなかった時は、masterオブジェクトへ攻撃
-        if (masterPlayer && ChildCheck.PlayerChildObjectCount() <= 0)
-            MasterObjectAttack(masterPlayer, At);
-
-        // HPが0になった時の処理
-        if (Hp <= 0)
-        {
-            GetRandomItem();
-            buttleManager.Money += dropMoney;
-            buttleManager.Exp += Exp;
-            Destroy(gameObject);
-        }
+        
     }
 
     

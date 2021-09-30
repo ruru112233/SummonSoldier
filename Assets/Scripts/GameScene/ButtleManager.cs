@@ -14,6 +14,10 @@ public class ButtleManager : MonoBehaviour
 
     public int WinFlag { get { return winFlag; } set { winFlag = value; } }
 
+    // 終了フラグ
+    private bool endFlag = false;
+    public bool EndFlag { get { return endFlag; } set { endFlag = value; } }
+
     // お金の一時保存
     private int money = 0;
 
@@ -22,7 +26,6 @@ public class ButtleManager : MonoBehaviour
     // 経験値の一時保存
     private int exp = 0;
     public int Exp { get { return exp; } set { exp = value; } }
-
 
     [SerializeField]
     private GameObject resultPanel;
@@ -35,6 +38,7 @@ public class ButtleManager : MonoBehaviour
         Money = 0;
         Exp = 0;
         WinFlag = 0;
+        EndFlag = false;
         resultPanel.SetActive(false);
         resultText = resultPanel.transform.GetChild(1).GetComponent<Text>();
 
