@@ -45,6 +45,7 @@ public class OnClick : MonoBehaviour
     {
         SetButton();
         StartFalse();
+        SelectMonsterClear();
     }
 
     void SetButton()
@@ -168,9 +169,6 @@ public class OnClick : MonoBehaviour
         menuPanel.SetActive(false);
         //gameSceneButton.gameObject.SetActive(true);
         menuButton.gameObject.SetActive(true);
-
-
-
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag("RotationModel");
         foreach (GameObject rotationObj in objs)
