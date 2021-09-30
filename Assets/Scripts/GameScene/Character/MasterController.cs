@@ -5,22 +5,20 @@ using UnityEngine.UI;
 
 public class MasterController : Prms
 {
-    public int Hp
-    {
-        get { return hp; }
-        set { hp = value; }
-    }
+    public int Hp { get { return hp; } set { hp = value; } }
 
-    public int Df
-    {
-        get { return df; }
-        set { df = value; }
-    }
+    public int Df { get { return df; } set { df = value; } }
+
+    ButtleManager buttleManager;
+
+    [SerializeField]
+    private int settingWinFlag;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        buttleManager = GameObject.FindWithTag("ButtleManager").GetComponent<ButtleManager>();
     }
 
     // Update is called once per frame
@@ -30,6 +28,7 @@ public class MasterController : Prms
 
         if (Hp <= 0)
         {
+            buttleManager.WinFlag = settingWinFlag;
             Destroy(gameObject);
         }
     }
