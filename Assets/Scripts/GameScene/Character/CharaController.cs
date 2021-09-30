@@ -46,6 +46,8 @@ public class CharaController : Prms
     // 初期位置
     protected Transform myTransform;
 
+    protected ButtleManager buttleManager = null;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -59,6 +61,9 @@ public class CharaController : Prms
 
         playerPanel = GameObject.FindWithTag("PlayerPanel").GetComponent<SummonPanelList>();
         enemyPanel = GameObject.FindWithTag("EnemyPanel").GetComponent<SummonPanelList>();
+
+        // バトルマネージャーをセット
+        buttleManager = GameObject.FindWithTag("ButtleManager").GetComponent<ButtleManager>();
 
     }
 

@@ -23,67 +23,72 @@ public class PlayerController : CharaController
 
     public override void Update()
     {
-        base.Update();
+        if (!buttleManager.EndFlag)
+        {
+            base.Update();
 
-        // この処理は重いか？
-        startTextPos = new Vector3(myTransform.position.x, myTransform.position.y + 2.0f, myTransform.position.z);
+            // この処理は重いか？
+            startTextPos = new Vector3(myTransform.position.x, myTransform.position.y + 2.0f, myTransform.position.z);
 
-        // 敵のパネルにオブジェクトがあった場合、攻撃する
-        // 攻撃タイプによって攻撃範囲を分ける
+            // 敵のパネルにオブジェクトがあった場合、攻撃する
+            // 攻撃タイプによって攻撃範囲を分ける
+
+            if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
+            {
+                // 単体
+                if (longRangeFlag)
+                {
+                    Debug.Log("遠距離");
+                    if (ChildCheck.AllCountCheck(enemyPanel))
+                        AllAttack(enemyPanel, enemysObj, At);
+                }
+                else
+                {
+                    Debug.Log("近距離");
+                    if (ChildCheck.FrontCountCheck(enemyPanel) &&
+                        ChildCheck.FrontCheck(this.transform))
+                        FrontAttack(enemyPanel, enemysObj, At);
+                }
+            }
+            else if (ATTACK_TYPE.COLUMN_RANGE == attack_type)
+            {
+                // 縦一列
+                if (ChildCheck.ColumnCheck(enemyPanel))
+                    ColumnAttack(enemyPanel, enemysObj, At);
+
+            }
+            else if (ATTACK_TYPE.ROW_RANGE == attack_type)
+            {
+                // 横一列
+                if (longRangeFlag)
+                {
+                    if (ChildCheck.RowCheck(enemyPanel))
+                        AllRowAttack(enemyPanel, enemysObj, At);
+                }
+                else
+                {
+                    if (ChildCheck.FrontRowCheck(enemyPanel))
+                        FrontRowAttack(enemyPanel, enemysObj, At);
+                }
+            }
+            else if (ATTACK_TYPE.ALL_RANGE == attack_type)
+            {
+                // 全体
+                if (ChildCheck.AllCountCheck(enemyPanel))
+                    AllRangeAttack(enemyPanel, enemysObj, At);
+            }
+
+            // オブジェクトの数に変更があった場合、前衛移動の処理をする
+            if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 0f);
+
+            if (enemyMaster && ChildCheck.EnemyChildObjectCount() <= 0)
+                MasterObjectAttack(enemyMaster, At);
+
+            // HP0になったらオブジェクトを削除
+            if (Hp <= 0) Destroy(gameObject);
+        }
+
         
-        if (ATTACK_TYPE.SINGLE_RANGE == attack_type)
-        {
-            // 単体
-            if (longRangeFlag)
-            {
-                Debug.Log("遠距離");
-                if (ChildCheck.AllCountCheck(enemyPanel)) 
-                    AllAttack(enemyPanel, enemysObj, At);
-            }
-            else
-            {
-                Debug.Log("近距離");
-                if (ChildCheck.FrontCountCheck(enemyPanel) &&
-                    ChildCheck.FrontCheck(this.transform))
-                    FrontAttack(enemyPanel, enemysObj, At);
-            }
-        }
-        else if(ATTACK_TYPE.COLUMN_RANGE == attack_type)
-        {
-            // 縦一列
-            if(ChildCheck.ColumnCheck(enemyPanel)) 
-                ColumnAttack(enemyPanel, enemysObj, At);
-
-        }
-        else if(ATTACK_TYPE.ROW_RANGE == attack_type)
-        {
-            // 横一列
-            if (longRangeFlag)
-            {
-                if(ChildCheck.RowCheck(enemyPanel)) 
-                    AllRowAttack(enemyPanel, enemysObj, At);
-            }
-            else
-            {
-                if(ChildCheck.FrontRowCheck(enemyPanel)) 
-                    FrontRowAttack(enemyPanel, enemysObj, At);
-            }
-        }
-        else if (ATTACK_TYPE.ALL_RANGE == attack_type)
-        {
-            // 全体
-            if (ChildCheck.AllCountCheck(enemyPanel))
-                AllRangeAttack(enemyPanel, enemysObj, At);
-        }
-
-        // オブジェクトの数に変更があった場合、前衛移動の処理をする
-        if (ObjCountCheck()) PositionCheck.PositionChenge(myTransform, 0f);
-
-        if (enemyMaster && ChildCheck.EnemyChildObjectCount() <= 0)
-            MasterObjectAttack(enemyMaster, At);
-
-        // HP0になったらオブジェクトを削除
-        if (Hp <= 0) Destroy(gameObject);
     }
 
 }
