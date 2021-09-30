@@ -1063,6 +1063,7 @@ MonoBehaviour:
   longRangeFlag: 0
   unitName: 
   money: 0
+  exp: 300
   id: 0
   hp: 200
   at: 30
