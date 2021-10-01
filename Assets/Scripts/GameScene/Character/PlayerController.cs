@@ -38,13 +38,11 @@ public class PlayerController : CharaController
                 // ’P‘Ì
                 if (longRangeFlag)
                 {
-                    Debug.Log("‰“‹——£");
                     if (ChildCheck.AllCountCheck(enemyPanel))
                         AllAttack(enemyPanel, enemysObj, At);
                 }
                 else
                 {
-                    Debug.Log("‹ß‹——£");
                     if (ChildCheck.FrontCountCheck(enemyPanel) &&
                         ChildCheck.FrontCheck(this.transform))
                         FrontAttack(enemyPanel, enemysObj, At);
