@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtleManager : MonoBehaviour
 {
@@ -29,7 +30,9 @@ public class ButtleManager : MonoBehaviour
 
     [SerializeField]
     private GameObject resultPanel;
-    Text resultText = null; 
+    Text resultText = null;
+    Text moneyText = null;
+    Text expText = null;
     
 
     // Start is called before the first frame update
@@ -41,7 +44,8 @@ public class ButtleManager : MonoBehaviour
         EndFlag = false;
         resultPanel.SetActive(false);
         resultText = resultPanel.transform.GetChild(1).GetComponent<Text>();
-
+        moneyText = resultPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>();
+        expText = resultPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -56,9 +60,22 @@ public class ButtleManager : MonoBehaviour
     // リザルトパネルの制御
     public void OpenResultPanel(int winFlag)
     {
-        winOrLoseText(winFlag);
+        StartCoroutine(ResultCol(winFlag));
         this.winFlag = 0; // winFlagの初期化
+    }
+
+    IEnumerator ResultCol(int winFlag)
+    {
+        yield return new WaitForSeconds(1);
+        resultText.text = winOrLoseText(winFlag);
         resultPanel.SetActive(true);
+        moneyText.text = Money.ToString() + "G";
+        expText.text = Exp.ToString();
+
+        yield return new WaitForSeconds(4);
+
+        SceneManager.LoadScene("StrategyScene");
+
     }
 
     // 勝利か敗北の文字を返す
