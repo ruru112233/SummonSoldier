@@ -31,10 +31,13 @@ public class ButtleManager : MonoBehaviour
     [SerializeField]
     private GameObject resultPanel;
     Text resultText = null;
-    Text moneyText = null;
-    Text expText = null;
 
     MasterData masterData;
+
+    float duration = 1.0f;
+
+    ResultText moneyResultText;
+    ResultText expResultText;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +51,9 @@ public class ButtleManager : MonoBehaviour
         masterData = MasterData.instance;
 
         resultText = resultPanel.transform.GetChild(1).GetComponent<Text>();
-        moneyText = resultPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>();
-        expText = resultPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>();
+        moneyResultText = resultPanel.transform.GetChild(2).GetChild(0).GetComponent<ResultText>();
+        expResultText = resultPanel.transform.GetChild(3).GetChild(0).GetComponent<ResultText>();
+
     }
 
     // Update is called once per frame
@@ -76,15 +80,15 @@ public class ButtleManager : MonoBehaviour
         resultPanel.SetActive(true);
         if (winFlag != 2)
         {
-            moneyText.text = Money.ToString() + "G";
-            expText.text = Exp.ToString();
+            moneyResultText.SlideToNumber(0, Money, duration, "G");
+            expResultText.SlideToNumber(0, Exp, duration);
 
             // マスターデータへ反映        
             masterData.GameMoney += Money;
             masterData.Exp += Exp;
         }
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
 
         SceneManager.LoadScene("StrategyScene");
 
@@ -101,4 +105,5 @@ public class ButtleManager : MonoBehaviour
 
         return "勝利";
     }
+
 }
