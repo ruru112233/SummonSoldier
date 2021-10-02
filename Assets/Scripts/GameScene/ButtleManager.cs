@@ -51,8 +51,8 @@ public class ButtleManager : MonoBehaviour
         masterData = MasterData.instance;
 
         resultText = resultPanel.transform.GetChild(1).GetComponent<Text>();
-        moneyResultText = resultPanel.transform.GetChild(2).GetChild(0).GetComponent<ResultText>();
-        expResultText = resultPanel.transform.GetChild(3).GetChild(0).GetComponent<ResultText>();
+        moneyResultText = resultPanel.transform.GetChild(2).GetChild(1).GetComponent<ResultText>();
+        expResultText = resultPanel.transform.GetChild(3).GetChild(1).GetComponent<ResultText>();
 
     }
 
