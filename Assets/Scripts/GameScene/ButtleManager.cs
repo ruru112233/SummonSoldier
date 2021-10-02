@@ -33,7 +33,8 @@ public class ButtleManager : MonoBehaviour
     Text resultText = null;
     Text moneyText = null;
     Text expText = null;
-    
+
+    MasterData masterData;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,9 @@ public class ButtleManager : MonoBehaviour
         WinFlag = 0;
         EndFlag = false;
         resultPanel.SetActive(false);
+
+        masterData = MasterData.instance;
+
         resultText = resultPanel.transform.GetChild(1).GetComponent<Text>();
         moneyText = resultPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>();
         expText = resultPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>();
@@ -67,10 +71,18 @@ public class ButtleManager : MonoBehaviour
     IEnumerator ResultCol(int winFlag)
     {
         yield return new WaitForSeconds(1);
+        // リザルト画面の表示
         resultText.text = winOrLoseText(winFlag);
         resultPanel.SetActive(true);
-        moneyText.text = Money.ToString() + "G";
-        expText.text = Exp.ToString();
+        if (winFlag != 2)
+        {
+            moneyText.text = Money.ToString() + "G";
+            expText.text = Exp.ToString();
+
+            // マスターデータへ反映        
+            masterData.GameMoney += Money;
+            masterData.Exp += Exp;
+        }
 
         yield return new WaitForSeconds(4);
 
