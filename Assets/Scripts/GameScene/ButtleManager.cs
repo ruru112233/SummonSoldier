@@ -29,6 +29,9 @@ public class ButtleManager : MonoBehaviour
     public int Exp { get { return exp; } set { exp = value; } }
 
     [SerializeField]
+    private Fade fade;
+
+    [SerializeField]
     private GameObject resultPanel;
     Text resultText = null;
 
@@ -74,10 +77,13 @@ public class ButtleManager : MonoBehaviour
 
     IEnumerator ResultCol(int winFlag)
     {
+        fade.FadeIn(1.0f);
         yield return new WaitForSeconds(1);
+        fade.FadeOut(1.0f);
+        resultPanel.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
         // ƒŠƒUƒ‹ƒg‰æ–Ê‚Ì•\Ž¦
         resultText.text = winOrLoseText(winFlag);
-        resultPanel.SetActive(true);
         if (winFlag != 2)
         {
             moneyResultText.SlideToNumber(0, Money, duration, "G");
