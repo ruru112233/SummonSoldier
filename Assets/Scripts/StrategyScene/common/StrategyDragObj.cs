@@ -49,8 +49,6 @@ public class StrategyDragObj : DragObj
         {
             base.OnBeginDrag(data);
             instancePanel.transform.SetSiblingIndex(panelIndex);
-            Debug.Log(panelIndex);
-
         }
     }
 

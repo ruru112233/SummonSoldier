@@ -552,9 +552,6 @@ public class CharaController : Prms
     // masterオブジェクトへ攻撃
     protected void MasterObjectAttack(MasterController masterCtr, int at)
     {
-        Debug.Log("at>>: " + at);
-        Debug.Log("masDf>>: " + masterCtr.Df);
-
         time += Time.deltaTime;
 
         if (time > waitTime)
