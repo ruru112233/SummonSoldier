@@ -42,6 +42,8 @@ public class ButtleManager : MonoBehaviour
     ResultText moneyResultText;
     ResultText expResultText;
 
+    public List<string> getItemList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,8 @@ public class ButtleManager : MonoBehaviour
         WinFlag = 0;
         EndFlag = false;
         resultPanel.SetActive(false);
+
+        getItemList.Clear();
 
         masterData = MasterData.instance;
 
@@ -92,6 +96,14 @@ public class ButtleManager : MonoBehaviour
             // マスターデータへ反映        
             masterData.GameMoney += Money;
             masterData.Exp += Exp;
+
+            for (int i = 0; i < getItemList.Count; i++)
+            {
+                if (masterData.itemCounter.ContainsKey(getItemList[i]))
+                {
+                    masterData.itemCounter[getItemList[i]] = masterData.itemCounter[getItemList[i]] + 1;
+                }
+            }
         }
 
         yield return new WaitForSeconds(5);

@@ -70,11 +70,19 @@ public class MasterData : MonoBehaviour
     // 金額の管理
     private int gameMoney = 0;
 
-    public int GameMoney { get ;  set ; }
+    public int GameMoney 
+    { 
+        get { return gameMoney; }  
+        set { gameMoney = value; } 
+    }
 
     // 経験値の管理
     private int exp = 0;
-    public int Exp { get; set; }
+    public int Exp 
+    { 
+        get { return exp; }
+        set { exp = value; } 
+    }
 
     // ステータスアップさせるユニット判定用
     public int statusUpTargetNo = -1;
@@ -115,7 +123,6 @@ public class MasterData : MonoBehaviour
               , playerUnitRottationFlag = false;
 
     public Dictionary<string, int> itemCounter = new Dictionary<string, int>();
-
 
     public static MasterData instance;
 
