@@ -126,8 +126,10 @@ public class EnemyController : CharaController
 
         string dropItemId = "id" + (randItemId + 1);
 
-        if(masterData.itemCounter.ContainsKey(dropItemId))
-            masterData.itemCounter[dropItemId] = masterData.itemCounter[dropItemId] + 1;
+        buttleManager.getItemList.Add(dropItemId);
+
+        //if(masterData.itemCounter.ContainsKey(dropItemId))
+        //    masterData.itemCounter[dropItemId] = masterData.itemCounter[dropItemId] + 1;
 
     }
 
