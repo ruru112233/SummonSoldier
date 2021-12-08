@@ -28,6 +28,9 @@ public class StageButton : MonoBehaviour
     public GameObject fieldSelectPanel
                     , stageSelectPanel;
 
+    [SerializeField]
+    private OnClick onClick;
+
     MasterData masterData;
 
     // Start is called before the first frame update
@@ -50,9 +53,16 @@ public class StageButton : MonoBehaviour
     public void FieldSelect()
     {
         fieldSelectPanel.SetActive(true);
+        ButtonOnOff(false);
         FieldSelectButton();
     }
 
+    // ボタン表示非表示
+    void ButtonOnOff(bool flag)
+    {
+        stageSelectButton.gameObject.SetActive(flag);
+        onClick.menuButton.gameObject.SetActive(flag);
+    }
 
     // フィールドセレクト関係
     void FieldSelectButton()
@@ -227,7 +237,7 @@ public class StageButton : MonoBehaviour
             {
                 Destroy(button);
             }
-
+            ButtonOnOff(true);
             fieldSelectPanel.SetActive(false);
         }
         else
