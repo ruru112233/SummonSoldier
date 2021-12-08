@@ -25,7 +25,7 @@ public class GameDragObj : DragObj
 
     public override void OnBeginDrag(PointerEventData data)
     {
-        if(player && manaManager.curManaPoint >= player.Cost)
+        if(player && manaManager.CurentManaPoint >= player.Cost)
         {
             base.OnBeginDrag(data);
             dropFlag = true;
@@ -39,7 +39,7 @@ public class GameDragObj : DragObj
 
     public override void OnDrag(PointerEventData data)
     {
-        if (player && manaManager.curManaPoint >= player.Cost)
+        if (player && manaManager.CurentManaPoint >= player.Cost)
             base.OnDrag(data);
     }
 
@@ -47,9 +47,9 @@ public class GameDragObj : DragObj
     {
         base.OnEndDrag(data);
 
-        if (player && manaManager.curManaPoint >= player.Cost)
+        if (player && manaManager.CurentManaPoint >= player.Cost)
         {
-            manaManager.curManaPoint -= player.Cost;   
+            manaManager.CurentManaPoint -= player.Cost;   
         }
     }
 

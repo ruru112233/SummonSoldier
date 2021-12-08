@@ -124,6 +124,15 @@ public class MasterData : MonoBehaviour
 
     public Dictionary<string, int> itemCounter = new Dictionary<string, int>();
 
+    // 最大マナポイント引継ぎ用
+    private int maxManaPoint = 0;
+
+    public int MaxManaPoint
+    {
+        get { return maxManaPoint; }
+        set { maxManaPoint = value; }
+    }
+
     public static MasterData instance;
 
     private void Awake()
