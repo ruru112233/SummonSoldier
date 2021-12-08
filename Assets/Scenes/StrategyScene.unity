@@ -1450,6 +1450,7 @@ MonoBehaviour:
   stageButton: {fileID: 378777258}
   fieldSelectPanel: {fileID: 1258405770}
   stageSelectPanel: {fileID: 2107065433}
+  onClick: {fileID: 1441964901}
 --- !u!1 &306543675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,13 +6758,13 @@ MonoBehaviour:
   atButton: {fileID: 0}
   gameSceneButton: {fileID: 0}
   selectClearButton: {fileID: 2125606414}
-  menuButton: {fileID: 611048585}
   menuCloseButton: {fileID: 308042435}
   itemCloseButton: {fileID: 639080925}
   strategyButton: {fileID: 0}
   unitProfileButton: {fileID: 493610972}
   unitBuyButton: {fileID: 333906520}
   reinforcementButton: {fileID: 1757872032}
+  menuButton: {fileID: 611048585}
   playerPanel: {fileID: 0}
   enemyPanel: {fileID: 0}
   stageButton: {fileID: 299953471}

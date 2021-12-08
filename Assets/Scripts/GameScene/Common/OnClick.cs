@@ -11,13 +11,14 @@ public class OnClick : MonoBehaviour
     private Button atButton = null // 攻撃ボタン
                  , gameSceneButton = null // ゲーム遷移に遷移
                  , selectClearButton = null // セレクトクリアボタン
-                 , menuButton = null // メニューボタン
                  , menuCloseButton = null // 閉じるボタン（メニューの）
                  , itemCloseButton = null // 閉じるボタン（アイテムウインドウの）
                  , strategyButton = null // ストラテジーシーンに遷移
                  , unitProfileButton = null // ユニットプロフィール確認ボタン
                  , unitBuyButton = null // ユニット購入ボタン
                  , reinforcementButton = null;  // 強化
+
+    public Button menuButton = null; // メニューボタン
 
     [SerializeField]
     private SummonPanelList playerPanel = null
