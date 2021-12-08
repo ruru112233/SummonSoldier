@@ -6416,6 +6416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385162791}
+  - component: {fileID: 1385162792}
   m_Layer: 0
   m_Name: LvCounter
   m_TagString: Untagged
@@ -6437,6 +6438,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385162792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385162790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350c8a959330b5340847c1e56d6ec13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvText: {fileID: 1125389065}
 --- !u!1 &1414282054
 GameObject:
   m_ObjectHideFlags: 0
@@ -6758,6 +6772,7 @@ MonoBehaviour:
   buyUnitPanel: {fileID: 85585025}
   playersObj: []
   enemysObj: []
+  parmText: {fileID: 2052207731}
 --- !u!1 &1443648377
 GameObject:
   m_ObjectHideFlags: 0

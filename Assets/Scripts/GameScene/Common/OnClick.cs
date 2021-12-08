@@ -35,6 +35,9 @@ public class OnClick : MonoBehaviour
     public List<GameObject> playersObj = null;
     public List<GameObject> enemysObj = null;
 
+    [SerializeField]
+    private ParmText parmText;
+
     public Button ReinforcementButton
     {
         get { return reinforcementButton; }
@@ -163,6 +166,7 @@ public class OnClick : MonoBehaviour
     void MenuCloseButton()
     {
         Debug.Log("クローズ");
+        if(parmText) StatusIsNull();
         if (itemScrollView) itemScrollView.SetActive(false);
         if (stageButton) stageButton.stageSelectButton.gameObject.SetActive(true);
         StartCoroutine(GameManager.instance.loadSelectMonster.SelectUnitAddButton());
@@ -176,6 +180,19 @@ public class OnClick : MonoBehaviour
             Destroy(rotationObj);
         }
 
+    }
+
+    // ステータスに空文字を入れる
+    void StatusIsNull()
+    {
+        parmText.unitName.text = "";
+        parmText.hpText.text = "";
+        parmText.atText.text = "";
+        parmText.dfText.text = "";
+        parmText.speedText.text = "";
+        parmText.attackRange.text = "";
+        parmText.attackType.text = "";
+        parmText.explanatoryText.text = "";
     }
 
     // アイテムウインドウのCloseボタン
